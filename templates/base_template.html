@@ -13,6 +13,19 @@
         <nav class="header" ">
             <h1 class="header-content">Header text</h1>
         </nav>
+        {% if user.is_authenticated %}
+            <form action="{% url 'account:logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <a href="{% url 'account:login' %}">Login</a>
+            <a href="{% url 'account:signup' %}">Signup</a>
+        {% endif %}
+
+        <a href="{% url 'homepage'%}">Pocetna</a>
+        <a href="{% url 'za_brucose:homepage'%}">Za brucose</a>
+        <a href="{% url 'tko_smo:homepage'%}">Tko smo?</a>
         {% block content %}
 
         {% endblock %}

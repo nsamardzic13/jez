@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tko_smo',
     'za_brucose',
+    'account',
 ]
 
 MIDDLEWARE = [
