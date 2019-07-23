@@ -1,0 +1,14 @@
+{% extends 'base_template.html' %}
+
+{% block content %}
+    <h1>Login forma</h1>
+    <form action="{% url 'account:login' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+        {% endif %}
+        <input type="submit" value="Login">
+    </form>
+    <a href="{% url 'account:signup' %}">Nemaš račun? Registriraj se!</a>
+{% endblock %}
