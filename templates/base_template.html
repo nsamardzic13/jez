@@ -5,9 +5,14 @@
     <head>
         <meta charset="UTF-8">
         <title>Jez</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
     </head>
 
     <body>
+        <!-- Mozda ne header tag? -->
+        <nav class="header" ">
+            <h1 class="header-content">Header text</h1>
+        </nav>
         {% block content %}
 
         {% endblock %}

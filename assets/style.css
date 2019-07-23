@@ -1,0 +1,6 @@
+.header {
+    background-image: url(/static/riteh.png);
+    min-height: 20% !important;
+    z-index: -1;
+    opacity: 0.5;
+}
