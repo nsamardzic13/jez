@@ -2,4 +2,7 @@
 
 {% block content %}
     <h1>This is a homepage</h1>
+    <a href="{% url 'homepage'%}">Pocetna</a>
+    <a href="{% url 'za_brucose:homepage'%}">Za brucose</a>
+    <a href="{% url 'tko_smo:homepage'%}">Tko smo?</a>
 {% endblock %}
