@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'tko_smo',
     'za_brucose',
     'account',
+    'studij',
 ]
 
 MIDDLEWARE = [

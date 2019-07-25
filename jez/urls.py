@@ -22,6 +22,7 @@ urlpatterns = [
     path('za_brucose/', include('za_brucose.urls')), #including urls.py from za_brucose
     path('tko_smo/', include('tko_smo.urls')), #include urls.py from tko_smo
     path('account/', include('account.urls')), #include urls.py from account
+    path('studij/', include('studij.urls')), #include urls.py from studij
     path('', views.homepage, name="homepage"), #landing page
 
 ]
