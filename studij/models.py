@@ -1,4 +1,5 @@
 from django.db import models
+#from compositekey import db
 
 # Create your models here.
 class Studij(models.Model):
@@ -9,7 +10,7 @@ class Studij(models.Model):
         return self.studij_ime
 
 class Kolegij(models.Model):
-    kolegij_id = models.CharField(max_length=10, primary_key=True)
+    kolegij_id = models.CharField(max_length=10)
     kolegij_ime = models.CharField(max_length=60)
     semestar = models.SmallIntegerField()
     studij_id = models.ForeignKey(Studij, on_delete=models.CASCADE)
