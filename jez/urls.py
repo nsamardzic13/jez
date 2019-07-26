@@ -23,6 +23,7 @@ urlpatterns = [
     path('tko_smo/', include('tko_smo.urls')), #include urls.py from tko_smo
     path('account/', include('account.urls')), #include urls.py from account
     path('studij/', include('studij.urls')), #include urls.py from studij
+    path('objava/', include('objava.urls')), #include urls.py from objava
     path('', views.homepage, name="homepage"), #landing page
 
 ]
