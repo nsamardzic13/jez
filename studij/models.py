@@ -10,6 +10,7 @@ class Studij(models.Model):
         return self.studij_ime
 
 class Kolegij(models.Model):
+    dummy_id = models.AutoField(primary_key=True)
     kolegij_id = models.CharField(max_length=10)
     kolegij_ime = models.CharField(max_length=60)
     semestar = models.SmallIntegerField()
