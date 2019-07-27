@@ -40,7 +40,7 @@ def signup_view(request):
             password2 = request.POST.get('password_repeat', '')
             studij_id_form = request.POST.get('studij_id', '')
 
-            if(password1 == password2):
+            if(password1 == password2 and not Student.objects.filter(email = email).exists()):
                 student_obj = Student(username = username, ime = ime, prezime = prezime, email = email, password = password1, email_ver = False, studij_id = Studij.objects.get(studij_id = studij_id_form))
                 student_obj.save()
             else:
