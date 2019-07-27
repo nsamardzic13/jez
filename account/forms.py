@@ -9,17 +9,10 @@ class RegistrationForm(forms.Form):
     ime = forms.CharField(max_length=30, required=True)
     prezime = forms.CharField(max_length=30, required=True)
     email = forms.EmailField(max_length=50, required=True)
-    #studij_id = forms.ModelChoiceField(queryset=Studij.objects.a)
+    studij_id = forms.ModelChoiceField(queryset=Studij.objects.all())
     password = forms.CharField(max_length=30, widget=forms.PasswordInput)
     password_repeat = forms.CharField(max_length=30, widget=forms.PasswordInput)
-    """
-    username = forms.CharField(max_length=30, required=True)
-    ime = forms.CharField(max_length=30, required=True)
-    prezime = forms.CharField(max_length=30, required=True)
-    email = forms.EmailField(max_length=50, required=True)
-    password = forms.CharField(widget=forms.PasswordInput())
-
-     
+    """ 
     Prema ovom tutorijalu :https://www.youtube.com/watch?v=66l9b2QrBR8, ali baca error Object "super" no atribute save, nez kako to riješiti
     class Meta:
         model = Student

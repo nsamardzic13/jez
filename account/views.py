@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from account.forms import RegistrationForm
 from account.models import Student
+from studij.models import Studij
 from django.contrib.auth.hashers import check_password
 
 # Create your views here.
@@ -37,8 +38,10 @@ def signup_view(request):
             email = request.POST.get('email', '')
             password1 = request.POST.get('password', '')
             password2 = request.POST.get('password_repeat', '')
+            studij_id_form = request.POST.get('studij_id', '')
+
             if(password1 == password2):
-                student_obj = Student(username = username, ime = ime, prezime = prezime, email = email, password = password1)
+                student_obj = Student(username = username, ime = ime, prezime = prezime, email = email, password = password1, email_ver = False, studij_id = Studij.objects.get(studij_id = studij_id_form))
                 student_obj.save()
             else:
                 #neki html
