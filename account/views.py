@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
+from .forms import RegistrationForm
+from .models import Studij
 from account.models import Student
 
 # Create your views here.
@@ -24,7 +26,7 @@ def account_settings(request):
         return render(request, 'account/settings')
     else:
         return redirect('account:login')
-
+"""
 def signup_view(request):
     if request.method == 'POST':
         form = UserCreationForm(data=request.POST)
@@ -34,6 +36,14 @@ def signup_view(request):
             return redirect('homepage')
     else:
         form = UserCreationForm()
+    return render(request, 'account/signup.html', {'form':form})
+"""
+def signup_view(request):
+    """if request.method == 'POST':
+        form = RegistrationForm(data=request.POST)
+        if form.is_valid():
+            form."""
+    form = RegistrationForm()
     return render(request, 'account/signup.html', {'form':form})
 
 def logout_view(request):
