@@ -36,16 +36,12 @@ def signup_view(request):
             ime = request.POST.get('ime', '')
             prezime = request.POST.get('prezime', '')
             email = request.POST.get('email', '')
-            password1 = request.POST.get('password', '')
-            password2 = request.POST.get('password_repeat', '')
+            password = request.POST.get('password', '')
+            password = make_password(clearPassNoHash, None, 'md5')
             studij_id_form = request.POST.get('studij_id', '')
 
-            if(password1 == password2 and not Student.objects.filter(email = email).exists()):
-                student_obj = Student(username = username, ime = ime, prezime = prezime, email = email, password = password1, email_ver = False, studij_id = Studij.objects.get(studij_id = studij_id_form))
-                student_obj.save()
-            else:
-                #neki html
-                print("lala")
+            student_obj = Student(username = username, ime = ime, prezime = prezime, email = email, password = password, email_ver = False, studij_id = Studij.objects.get(studij_id = studij_id_form))
+            student_obj.save()
 
             return redirect('homepage')
     else:
