@@ -1,7 +1,6 @@
 from django import forms
-from django.db import models
+import re
 from studij.models import Studij
-from django.contrib.auth.forms import UserCreationForm
 from account.models import Student
 
 class RegistrationForm(forms.Form):
@@ -12,24 +11,51 @@ class RegistrationForm(forms.Form):
     studij_id = forms.ModelChoiceField(queryset=Studij.objects.all())
     password = forms.CharField(max_length=30, widget=forms.PasswordInput)
     password_repeat = forms.CharField(max_length=30, widget=forms.PasswordInput)
-    """ 
-    Prema ovom tutorijalu :https://www.youtube.com/watch?v=66l9b2QrBR8, ali baca error Object "super" no atribute save, nez kako to riješiti
-    class Meta:
-        model = Student
-        fields = {'username','ime','prezime','email','password'}
 
-    def save(self, commit=True):
-        student = super(Student).save(commit=false)
-        student.username= self.cleaned_data['username']
-        student.ime = self.cleaned_data['ime']
-        student.prezime = self.cleaned_data['prezime']
-        student.email = self.cleaned_data['email']
+    def clean_ime(self):
+        ime = self.cleaned_data.get('ime')
+        if not re.match("^[a-zA-Z0-9_]*$", ime):
+            raise forms.ValidationError("Neispravan oblik imena!")
+        return ime
 
-        if commit:
-            student.save()
+    def clean_prezime(self):
+        prezime = self.cleaned_data.get('prezime')
 
-        return student
-    """
+        if not re.match("^[a-zA-Z0-9_]*$", ime):
+            raise forms.ValidationError("Neispravan oblik prezimena!")
+        return prezime
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        student_flag= Student.objects.filter(username=username).exists()
+
+        if(student_flag):
+            raise forms.ValidationError("Korisničko ime se već koristi!")
+        if not re.match("^[a-zA-Z0-9_]*$", username):
+            raise forms.ValidationError("Neispravan oblik korisničkog imena!")
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        email_base, provider = email.split("@")
+        domain, extension = provider.split(".")
+        email_flag = Student.objects.filter(email=email).exists()
+
+        if not domain == "riteh":
+            raise forms.ValidationError("Potrebno je koristiti valjanu riteh mail adresu!")
+        if(email_flag):
+            raise forms.ValidationError("Uneseni email se već koristi!")
+        return email
+
+    def clean(self):
+        password1 = self.cleaned_data.get('password')
+        password2 = self.cleaned_data.get('password_repeat')
+
+        if(password1 != password2):
+            raise forms.ValidationError("Lozinke nisu jednake!")
+        if(password1 == password2 and len(password1) < 8):
+                raise forms.ValidationError("Lozinka mora imati minimalno 8 znakova!")
+        return password1
 
 
 class LoginForm(forms.Form):
