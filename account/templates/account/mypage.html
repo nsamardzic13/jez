@@ -1,0 +1,8 @@
+{% extends 'base_template.html' %}
+
+{% block content %}
+    <h1>Pozdrav {{ user.username }}</h1>
+    {% if user.is_authenticated %}
+    <h2> Tvoj mail je {{user.email}}</h2>
+    {% endif %}
+{% endblock %}
