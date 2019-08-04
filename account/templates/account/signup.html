@@ -2,6 +2,7 @@
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
+    {{ student_form.as_p}}
     <button type="submit">Registriraj se</button>
 </form>
 {% endblock %}
