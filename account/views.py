@@ -1,26 +1,29 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import  User
+from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login, logout
-from account.forms import RegistrationForm
-from account.models import Student
-from studij.models import Studij
-from django.contrib.auth.hashers import check_password
-
+from django.contrib.auth import login, logout, authenticate
+from account.forms import RegistrationForm, LoginForm, StudentProfileForm
+from django.contrib import messages
+from .models import Student
 # Create your views here.
 def login_view(request):
-    if request.method == 'POST':
+    if request.method== 'POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            #ako ima nastavak u urlu redirektaj korisnika na tu stranicu, a ne na homepage
-            if 'next' in request.POST:
-                return redirect(request.POST.get('next'))
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"hey {username}")
+                return redirect('account:mypage')
             else:
-                return redirect('homepage')
-    else:
-        form = AuthenticationForm()
-    return render(request, 'account/login.html', {'form':form})
+                messages.error(request, "Ne valja nesto!")
+        else:
+                messages.error(request, "AA")
+    form = AuthenticationForm()
+    return render(request, "account/login.html", {'form':form})
 
 def account_settings(request):
     if request.user.is_authenticated:
@@ -31,25 +34,27 @@ def account_settings(request):
 def signup_view(request):
     if request.method == 'POST':
         form = RegistrationForm(data=request.POST)
-        if form.is_valid():
-            username = request.POST.get('username', '')
-            ime = request.POST.get('ime', '')
-            prezime = request.POST.get('prezime', '')
-            email = request.POST.get('email', '')
-            password = request.POST.get('password', '')
-            password = make_password(clearPassNoHash, None, 'md5')
-            studij_id_form = request.POST.get('studij_id', '')
+        student_form = StudentProfileForm(request.POST)
 
-            student_obj = Student(username = username, ime = ime, prezime = prezime, email = email, password = password, email_ver = False, studij_id = Studij.objects.get(studij_id = studij_id_form))
-            student_obj.save()
+        if form.is_valid() and student_form.is_valid():
+            user = form.save() #prvo spremim podatke iz forme u DJANGO USER MODEL
+            student = student_form.save(commit=False) #želim spremiti u studenta al prvo pohranim podatke (commit - false) i onda nadodam podatke iz usera)
+            student.user = user
+            student.save()
 
+            messages.success(request, "Bravo!")
             return redirect('homepage')
+
     else:
         form = RegistrationForm()
+        student_form = StudentProfileForm()
 
-    return render(request, 'account/signup.html', {'form': form})
+    context = {'form' : form, 'profile_form' : student_form}
+    return render(request, "account/signup.html", context)
+
+def mypage_view(request):
+    return render(request, "account/mypage.html")
 
 def logout_view(request):
-    if request.method == 'POST':
-        logout(request)
+    logout(request)
     return redirect('homepage')
