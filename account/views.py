@@ -25,9 +25,9 @@ def login_view(request):
     form = AuthenticationForm()
     return render(request, "account/login.html", {'form':form})
 
-def account_settings(request):
+def settings_view(request):
     if request.user.is_authenticated:
-        return render(request, 'account/settings')
+        return render(request, 'account/settings.html')
     else:
         return redirect('account:login')
 

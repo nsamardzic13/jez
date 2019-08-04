@@ -2,6 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 #not done
+
+def homepage(request):
+    return render(request, 'studij/homepage.html')
+
 def psvss(request):
     return render(request, 'studij/psvss.html')
 

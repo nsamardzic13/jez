@@ -19,4 +19,5 @@ urlpatterns = [
     path('dsvsb/', views.dsvsb, name="dsvsb"),
     path('dsvse/', views.dsvse, name="dsvse"),
     path('dsvsr/', views.dsvsr, name="dsvsr"),
+    path('', views.homepage, name="homepage"), #landing page studija
 ]
