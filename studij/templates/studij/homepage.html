@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <title>Title</title>
-    <h1>tu se prikazuju svi trenutni studiji koji dalje vode na razdiobu po semestrima i onda po predmetima</h1>
-</head>
-<body>
 
+</head>
+{% block body %}
+<body>
+ <h1>tu se prikazuju svi trenutni studiji koji dalje vode na razdiobu po semestrima i onda po predmetima</h1>
+
+    <h2>{{ text }}</h2>
+    {% csrf_token %}
+    <h1> van fora</h1>
+    {% for studij in smjerovi %}
+        <h1>{{studij.studij_ime}}</h1>
+    {% endfor %}
 </body>
+{% endblock %}
 </html>

@@ -1,10 +1,11 @@
-from django.shortcuts import render
-
-# Create your views here.
-#not done
+from django.shortcuts import render, redirect
+from django.views.generic import TemplateView
+from .models import Studij
 
 def homepage(request):
-    return render(request, 'studij/homepage.html')
+    smjerovi = Studij.objects.all()
+    context = {'smjerovi': smjerovi}
+    return render(request, 'studij/homepage.html', context)
 
 def psvss(request):
     return render(request, 'studij/psvss.html')

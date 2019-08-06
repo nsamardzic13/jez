@@ -1,8 +1,33 @@
-{% extends 'base_template.html' %}
+{% load static from staticfiles %}
 
-{% block content %}
-    <h1>Pozdrav {{ user.username }}</h1>
-    {% if user.is_authenticated %}
-    <h2> Tvoj mail je {{user.email}}</h2>
-    {% endif %}
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Jez</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+
+    <body>
+        {% if user.is_authenticated %}
+            <form action="{% url 'account:logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" align="right">Logout</button>
+            </form>
+        {% endif %}
+        <a href="{% url 'homepage'%}">Početna</a>
+        <a href="{% url 'studij:homepage'%}">Studiji</a>
+        <a href="">Forum</a>
+        <a href="{% url 'account:settings'%}">Postavke</a>
+
+        {% block content %}
+
+         <h1>Pozdrav {{ user.username }}! Ovo je tvoj profil</h1>
+        {% if user.is_authenticated %}
+        <img src="{{ user.student.profile_image.url }}" width="240">
+        <h2> Tu će ići ispis predmeta koje si ti bookmarka:</h2>
+        {% endif %}
+        {% endblock %}
+
+    </body>
+</html>

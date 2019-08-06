@@ -52,6 +52,8 @@ def signup_view(request):
     context = {'form' : form, 'profile_form' : student_form}
     return render(request, "account/signup.html", context)
 
+
+
 def mypage_view(request):
     return render(request, "account/mypage.html")
 
