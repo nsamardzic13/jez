@@ -1,0 +1,9 @@
+{% extends 'mypage.html' %}
+
+{% block content %}
+ <h1>Ide popis predmeta po semestru!!</h1>
+    {% csrf_token %}
+    {% for kolegij in kolegiji %}
+        <a href="/studij/studijski_programi/studij={{studij_id}}/semestar={{semestar_num}}/kolegij={{kolegij.kolegij_id}}">{{kolegij.kolegij_ime}}</a><br><br>
+    {% endfor %}
+{% endblock %}

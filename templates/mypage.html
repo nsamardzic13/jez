@@ -20,6 +20,7 @@
         <a href="{% url 'studij:homepage'%}">Studiji</a>
         <a href="">Forum</a>
         <a href="{% url 'account:settings'%}">Postavke</a>
+
         {% block content %}
 
          <h1>Pozdrav {{ user.username }}! Ovo je tvoj profil</h1>

@@ -1,41 +1,39 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
-from .models import Studij
+from .models import Studij, Kolegij
+
 
 def homepage(request):
     smjerovi = Studij.objects.all()
     context = {'smjerovi': smjerovi}
     return render(request, 'studij/homepage.html', context)
 
-def psvss(request):
-    return render(request, 'studij/psvss.html')
+def studijski_programi(request, studij_id):
+    studij = Studij.objects.get(studij_id=studij_id)
+    studij_ime = studij.studij_id
+    razina = studij_id[0]
+    if razina == 'p':
+        razina = 0
+    elif razina == 'd':
+        #ode postaje zanimljivo ako je diplomski onda se prvo preusmjeravamo na biranje smjerova! pa tek onda na biranje semestara!
+        razina = 1
+    else:
+        razina = 2 #nije nista od navedenog doslo je do zajeba
 
-def psvsb(request):
-    return render(request, 'studij/psvss.html')
+    context={'studij_id': studij_id, 'studij_ime': studij_ime, 'razina': razina}
 
-def psvse(request):
-    return render(request, 'studij/psvss.html')
+    return render(request, 'studij/semestri.html', context)
 
-def psvsr(request):
-    return render(request, 'studij/psvss.html')
+def semestri(request, studij_id, semestar_num):
+    #sad dohvaćam sve predmete koje su u prvom semestru tog studij_ida
+    #braco mila
+    kolegiji = Kolegij.objects.all().filter(semestar=semestar_num, studij_id_id=studij_id)
 
-def pstss(request):
-    return render(request, 'studij/psvss.html')
+    context={'kolegiji': kolegiji, 'studij_id': studij_id, 'semestar_num': semestar_num}
+    return render(request, 'studij/kolegiji.html', context)
 
-def pstsb(request):
-    return render(request, 'studij/psvss.html')
+def predmet(request, studij_id, kolegij_id, semestar_num):
 
-def pstse(request):
-    return render(request, 'studij/psvss.html')
+    context = {'kolegij_id': kolegij_id, 'studij_id': studij_id, 'semestar_num': semestar_num}
 
-def dsvss(request):
-    return render(request, 'studij/psvss.html')
-
-def dsvsb(request):
-    return render(request, 'studij/psvss.html')
-
-def dsvse(request):
-    return render(request, 'studij/psvss.html')
-
-def dsvsr(request):
-    return render(request, 'studij/psvss.html')
+    return render (request, 'studij/predmet.html', context)

@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends 'mypage.html' %}
 
-    <meta charset="UTF-8">
-    <title>Title</title>
-
-</head>
-{% block body %}
-<body>
- <h1>tu se prikazuju svi trenutni studiji koji dalje vode na razdiobu po semestrima i onda po predmetima</h1>
-
-    <h2>{{ text }}</h2>
+{% block content %}
+ <h1>Svi trenutni studiji na RiTehu:</h1>
     {% csrf_token %}
-    <h1> van fora</h1>
     {% for studij in smjerovi %}
-        <h1>{{studij.studij_ime}}</h1>
+        <a href="/studij/studijski_programi/studij={{studij.studij_id}}">{{studij.studij_ime}}</a><br><br>
     {% endfor %}
-</body>
 {% endblock %}
-</html>

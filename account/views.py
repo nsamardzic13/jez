@@ -49,7 +49,7 @@ def signup_view(request):
         form = RegistrationForm()
         student_form = StudentProfileForm()
 
-    context = {'form' : form, 'profile_form' : student_form}
+    context = {'form' : form, 'student_form' : student_form}
     return render(request, "account/signup.html", context)
 
 
