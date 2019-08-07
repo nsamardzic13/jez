@@ -15,4 +15,3 @@ class Student(models.Model):
 class Student_Kolegij(models.Model):
     username = models.ForeignKey(Student, on_delete=models.DO_NOTHING, null=True)
     kolegij_id = models.ForeignKey(Kolegij, on_delete=models.DO_NOTHING, null=True)
-

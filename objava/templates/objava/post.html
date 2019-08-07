@@ -1,5 +1,9 @@
 {% extends 'base_template.html' %}
 
 {% block content %}
-    <h1>Neka objava</h1>
+    <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Objavi</button>
+</form>
 {% endblock %}
