@@ -4,6 +4,7 @@
     <form method="post">
     {% csrf_token %}
     {{ form }}
+        <h1>{{test}}</h1>
     <button type="submit">Objavi</button>
 </form>
 {% endblock %}

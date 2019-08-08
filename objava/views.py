@@ -3,6 +3,7 @@ from .forms import ObjavaForm
 
 # Create your views here.
 def post(request):
+    test = request.session['test']
     if request.method == 'POST':
         form = ObjavaForm(data=request.POST)
         if form.is_valid():
@@ -13,4 +14,4 @@ def post(request):
             return redirect('homepage')
     else:
         form = ObjavaForm()
-    return render(request, 'objava/post.html', {'form':form})
+    return render(request, 'objava/post.html', {'form':form, 'test': test})

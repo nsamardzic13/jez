@@ -26,6 +26,7 @@ urlpatterns = [
     path('account/', include('account.urls')), #include urls.py from account
     path('studij/', include('studij.urls')), #include urls.py from studij
     path('objava/', include('objava.urls')), #include urls.py from objava
+    path('tema/', include('tema.urls')), #include urls.py from objava
     path('', views.homepage, name="homepage"), #landing page
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

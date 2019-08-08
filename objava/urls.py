@@ -5,4 +5,5 @@ app_name = "objava"
 
 urlpatterns = [
     path('', views.post, name="post"),
+
 ]

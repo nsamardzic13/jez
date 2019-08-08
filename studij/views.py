@@ -33,7 +33,9 @@ def semestri(request, studij_id, semestar_num):
     return render(request, 'studij/kolegiji.html', context)
 
 def predmet(request, studij_id, kolegij_id, semestar_num):
-
     context = {'kolegij_id': kolegij_id, 'studij_id': studij_id, 'semestar_num': semestar_num}
+    request.session['kolegij_id'] = kolegij_id
+    request.session['studij_id'] = studij_id
+    request.session['semestar_num'] = semestar_num
+    return redirect('tema:teme_views')
 
-    return render (request, 'studij/predmet.html', context)
