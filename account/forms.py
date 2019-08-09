@@ -4,7 +4,7 @@ from studij.models import Studij
 from django.contrib.auth.models import User
 from account.models import Student
 
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=50, required=True)
@@ -54,8 +54,19 @@ class StudentProfileForm(forms.ModelForm):
         model = Student
         fields = ('studij_id',)
 
+class EditUserForm(UserChangeForm):
 
-class LoginForm(forms.Form):
-    username = forms.CharField(max_length=50, required=True)
-    password = forms.CharField(max_length=30, widget=forms.PasswordInput)
+    class Meta:
+        model = User
+        fields = (
+            'username',
+            'first_name',
+            'last_name',
+            'email'
+        )
+class EditStudentForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ('studij_id', 'profile_image')
+
 
