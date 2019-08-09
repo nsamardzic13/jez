@@ -9,5 +9,5 @@ from . import views
 app_name = "tema"
 
 urlpatterns = [
-    path('teme/', views.teme_views, name="teme_views"),
+    path('studij=<str:studij_id>/semestar=<int:semestar_num>/kolegij=<str:kolegij_id>', views.teme_views, name="teme_homepage"),
 ]
