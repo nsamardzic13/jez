@@ -5,5 +5,14 @@
     {% csrf_token %}
     {% for kolegij in kolegiji %}
         <a href="/studij/studijski_programi/studij={{studij_id}}/semestar={{semestar_num}}/kolegij={{kolegij.kolegij_id}}">{{kolegij.kolegij_ime}}</a><br><br>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" value="{{ kolegij.kolegij_id }}" name="kolegij_id">
+            {% if kolegij.kolegij_id in svi_moji_kolegiji %}
+                <button type="submit">Izbrisi iz mojih kolegija</button>
+            {%  else %}
+                <button type="submit">Dodaj u moje kolegije</button>
+            {% endif %}
+</form>
     {% endfor %}
 {% endblock %}

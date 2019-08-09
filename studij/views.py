@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Studij, Kolegij
-
+from account.models import  Moj_Kolegij
 
 def homepage(request):
     smjerovi = Studij.objects.all()
@@ -23,10 +23,25 @@ def studijski_programi(request, studij_id):
     return render(request, 'studij/semestri.html', context)
 
 def semestri(request, studij_id, semestar_num):
-    #sad dohvaćam sve predmete koje su u prvom semestru tog studij_ida
-    #braco mila
+    username = request.session['username']
     kolegiji = Kolegij.objects.all().filter(semestar=semestar_num, studij_id_id=studij_id)
-    context={'kolegiji': kolegiji, 'studij_id': studij_id, 'semestar_num': semestar_num}
+    svi_moji_kolegiji = Moj_Kolegij.objects.all().filter(username=username, studij_id_id=studij_id)
+
+    context={'kolegiji': kolegiji, 'studij_id': studij_id, 'semestar_num': semestar_num, 'svi_moji_kolegiji': svi_moji_kolegiji, }
+
+    #sad ide botun za dodati kolegij u omiljeni, tj maknuti iz omiljenih! prvo treba pronaći sve
+    if request.method == 'POST': #ako sam stisla neki botun
+        moj_kolegij_id = request.POST['kolegij_id']
+        #ako već postoji u Student_Kolegij znači da ga želi maknuti od tamo inače dodaje
+        postoji = Moj_Kolegij.objects.filter(username=username, kolegij_id=moj_kolegij_id, studij_id_id=studij_id)
+        if postoji:
+            #brisi me
+            Moj_Kolegij.objects.filter(username=username, kolegij_id=moj_kolegij_id).delete()
+        else:
+            #dodaj me
+            moj_kolegij = Moj_Kolegij(username=username, kolegij_id=moj_kolegij_id, studij_id_id=studij_id)
+            moj_kolegij.save()
+
     return render(request, 'studij/kolegiji.html', context)
 
 def predmet(request, studij_id, kolegij_id, semestar_num):

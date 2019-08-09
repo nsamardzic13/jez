@@ -5,7 +5,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from account.forms import RegistrationForm, LoginForm, StudentProfileForm
 from django.contrib import messages
-from .models import Student
+from .models import Student, Moj_Kolegij
+from .models import Kolegij
 # Create your views here.
 def login_view(request):
     if request.method== 'POST':
@@ -16,6 +17,7 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                request.session['username'] = username
                 messages.info(request, f"hey {username}")
                 return redirect('account:mypage')
             else:
@@ -41,7 +43,6 @@ def signup_view(request):
             student = student_form.save(commit=False) #želim spremiti u studenta al prvo pohranim podatke (commit - false) i onda nadodam podatke iz usera)
             student.user = user
             student.save()
-
             messages.success(request, "Bravo!")
             return redirect('homepage')
 
@@ -55,7 +56,13 @@ def signup_view(request):
 
 
 def mypage_view(request):
-    return render(request, "account/mypage.html")
+    #ispis sve moje kolegije
+    username = request.session['username']
+    svi_moji_kolegiji = Kolegij.objects.raw('select * from studij_kolegij, account_moj_kolegij where studij_kolegij.kolegij_id=account_moj_kolegij.kolegij_id and account_moj_kolegij.username= %s and studij_kolegij.studij_id_id=account_moj_kolegij.studij_id_id', [username])
+    for k in svi_moji_kolegiji:
+        print(k)
+    context = {'svi_moji_kolegiji' : svi_moji_kolegiji}
+    return render(request, "account/mypage.html", context)
 
 def logout_view(request):
     logout(request)

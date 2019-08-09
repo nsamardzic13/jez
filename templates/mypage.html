@@ -28,6 +28,9 @@
         <img src="{{ user.student.profile_image.url }}" width="240">
         <h2> Tu će ići ispis predmeta koje si ti bookmarka:</h2>
         {% endif %}
+        {% for kolegij in svi_moji_kolegiji %}
+            <p>{{kolegij.kolegij_ime}}</p>
+        {% endfor %}
         {% endblock %}
 
     </body>
