@@ -15,3 +15,6 @@ def post(request):
     else:
         form = ObjavaForm()
     return render(request, 'objava/post.html', {'form':form, 'test': test})
+
+def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
+    return render(request, 'objava/post.html')
