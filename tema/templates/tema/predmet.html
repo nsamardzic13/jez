@@ -6,8 +6,9 @@
     {{ form }}
     <button type="submit">Stvori novu temu</button>
 </form>
-<br><br><br><br><br><br><br><br><br><br><br><br>
-<h1>EVO NAS NAPOKON na stranici {{kolegij_id}}</h1>
-<h3>sad ide app objava</h3>
-<h2>template predmet.html se nalazi u studij/templates/studij/predmet.html i tu bi tribalo trpati iz aplikacije objava??nez kako ćeš to</h2>
+<h1>{{kolegij_id}}</h1>
+<h1>Otvorene teme:</h1>
+ {% for tema in sve_teme %}
+      <a href="/objava/studij={{studij_id}}/semestar={{semestar_num}}/kolegij={{kolegij_id}}/tema={{tema.tema_id}}">{{tema.tema_ime}}</a><br><br>
+    {% endfor %}
 {% endblock %}

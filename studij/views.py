@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
 from .models import Studij, Kolegij
 
 
@@ -21,21 +20,15 @@ def studijski_programi(request, studij_id):
         razina = 2 #nije nista od navedenog doslo je do zajeba
 
     context={'studij_id': studij_id, 'studij_ime': studij_ime, 'razina': razina}
-
     return render(request, 'studij/semestri.html', context)
 
 def semestri(request, studij_id, semestar_num):
     #sad dohvaćam sve predmete koje su u prvom semestru tog studij_ida
     #braco mila
     kolegiji = Kolegij.objects.all().filter(semestar=semestar_num, studij_id_id=studij_id)
-
     context={'kolegiji': kolegiji, 'studij_id': studij_id, 'semestar_num': semestar_num}
     return render(request, 'studij/kolegiji.html', context)
 
 def predmet(request, studij_id, kolegij_id, semestar_num):
-    context = {'kolegij_id': kolegij_id, 'studij_id': studij_id, 'semestar_num': semestar_num}
-    request.session['kolegij_id'] = kolegij_id
-    request.session['studij_id'] = studij_id
-    request.session['semestar_num'] = semestar_num
-    return redirect('tema:teme_views')
+    return redirect('tema:teme_homepage', studij_id=studij_id, semestar_num=semestar_num, kolegij_id=kolegij_id)
 
