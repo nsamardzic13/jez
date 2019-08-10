@@ -1,10 +1,13 @@
-{% extends 'mypage.html' %}
+{% extends 'base_template.html' %}
 
 {% block content %}
-
+    {% for objava in sve_objave %}
+        <h3>{{ objava.username }} {{ objava.date }}</h3>
+        <p>{{ objava.tekst }}<p>
+    {% endfor %}
 <form method="post">
     {% csrf_token %}
     {{ form }}
-    <button type="submit" name="dodaj_temu">Dodaj novu temu</button>
+    <button type="submit" name="objavi">Objavi</button>
 </form>
 {% endblock %}
