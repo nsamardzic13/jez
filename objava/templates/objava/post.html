@@ -1,5 +1,10 @@
 {% extends 'mypage.html' %}
 
 {% block content %}
-<h1>test test</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" name="dodaj_temu">Dodaj novu temu</button>
+</form>
 {% endblock %}
