@@ -12,8 +12,8 @@ class Objava(models.Model):
     username = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     kolegij_id = models.ForeignKey(Kolegij, on_delete=models.DO_NOTHING)
     tema = models.ForeignKey(Tema, on_delete=models.DO_NOTHING)
-    date = models.DateTimeField(default=timezone.now())
-    attachment = forms.FileField()
+    date = models.DateTimeField(default=timezone.now)
+    attachment = models.FileField(upload_to= 'objava_att', null=True, blank=True)
     tekst = models.TextField()
 
     def __str__(self):

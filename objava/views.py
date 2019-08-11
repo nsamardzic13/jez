@@ -9,7 +9,7 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
     # test = request.session['test']
     username = request.session['username']
     kol = Kolegij.objects.get(kolegij_id = kolegij_id)
-    sve_objave = Objava.objects.all().filter(kolegij_id = kol, tema_id = tema_id)
+    sve_objave = Objava.objects.all().filter(kolegij_id = kol, tema_id = tema_id).order_by('date')
 
     if request.method == 'POST':
         form = ObjavaForm(data=request.POST)
@@ -20,7 +20,6 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
             objava.tema = Tema.objects.get(tema_id = tema_id)
             # nadodati sta sve jos treba se pokupiti
             objava.save()
-            return redirect('homepage')
     else:
         form = ObjavaForm()
     return render(request, 'objava/post.html', {'form': form, 'sve_objave':sve_objave})

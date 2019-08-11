@@ -5,4 +5,4 @@ from objava.models import Objava
 class ObjavaForm(forms.ModelForm):
     class Meta:
         model = Objava
-        fields = ('tekst',)
+        fields = ('tekst', 'attachment',)

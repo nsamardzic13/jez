@@ -7,7 +7,7 @@
     {% endfor %}
 <form method="post">
     {% csrf_token %}
-    {{ form }}
+    {{ form.as_p }}
     <button type="submit" name="objavi">Objavi</button>
 </form>
 {% endblock %}
