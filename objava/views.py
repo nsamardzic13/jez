@@ -20,6 +20,7 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
             objava.tema = Tema.objects.get(tema_id = tema_id)
             objava.save()
             form = ObjavaForm()
+            #return redirect('objava:objava_homepage')
     else:
         form = ObjavaForm()
 

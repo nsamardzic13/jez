@@ -10,14 +10,22 @@ from django import forms
 class Objava(models.Model):
     objava_id = models.AutoField(primary_key=True)
     username = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    kolegij_id = models.CharField(max_length=500)
+    kolegij_id = models.CharField(max_length=500, default="NN")
     tema = models.ForeignKey(Tema, on_delete=models.DO_NOTHING)
     date = models.DateTimeField(default=timezone.now)
     attachment = models.FileField(upload_to= 'objava_att/', null=True, blank=True, max_length=500)
     tekst = models.TextField()
+    likes = models.IntegerField(default=0)
 
     def __str__(self):
         return self.objava_id
+
+    def get_likes(self):
+        if Objava_Likes.objects.filter(objava_id_id = self.objava_id):
+            self.likes = Objava_Likes.objects.filter(objava_id_id = self.objava_id).count
+        else:
+            self.likes = 0
+        return self.likes
 
 class Objava_Likes(models.Model):
     objava_id = models.ForeignKey(Objava, on_delete=models.DO_NOTHING)

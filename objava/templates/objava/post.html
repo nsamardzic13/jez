@@ -7,14 +7,9 @@
         {% else %}
             <p>Nije lajkano buton za unlike</p>
         {% endif %}
-        <h3>{{ objava.username }} {{ objava.date }}</h3>
+        <h3>{{ objava.get_likes }}  {{ objava.username }} {{ objava.date }}</h3>
         <p>{{ objava.tekst }}<p>
     <a href="/media/objava_att/{{objava.attachment}}" download>{{objava.attachment}}</a>
-    {% endfor %}
-
-    {% for lajk in lajkovi %}
-        <h3>{{ lajk.username }} {{ lajk.objava_id }}</h3>
-
     {% endfor %}
 <form method="post" enctype="multipart/form-data" >
     {% csrf_token %}
