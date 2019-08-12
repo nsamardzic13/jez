@@ -1,5 +1,23 @@
-{% extends 'mypage.html' %}
+{% extends 'base_template.html' %}
 
 {% block content %}
-<h1>test test</h1>
+    {% for objava in sve_objave %}
+        {% if objava.objava_id  and  user.username in svi_lajkovi %}
+            <p>Tu buton za lajk i onda ide jedna fun</p>
+        {% else %}
+            <p>Nije lajkano buton za unlike</p>
+        {% endif %}
+        <h3>{{ objava.username }} {{ objava.date }}</h3>
+        <p>{{ objava.tekst }}<p>
+    {% endfor %}
+
+    {% for lajk in lajkovi %}
+        <h3>{{ lajk.username }} {{ lajk.objava_id }}</h3>
+
+    {% endfor %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="objavi">Objavi</button>
+</form>
 {% endblock %}

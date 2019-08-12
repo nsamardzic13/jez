@@ -9,7 +9,7 @@ def teme_views(request, studij_id, kolegij_id, semestar_num):
     moj_kolegij = Moj_Kolegij.objects.filter(username=username, kolegij_id=kolegij_id).exists()
 
     #ispis svih postojecih tema i dodavanje novih
-    sve_teme = Tema.objects.all().filter(kolegij_id=kolegij_id)
+    sve_teme = Tema.objects.all().filter(kolegij_id=kolegij_id).order_by('tema_ime')
     form = TemaForm()
     context = {'kolegij_id': kolegij_id, 'studij_id': studij_id, 'moj_kolegij': moj_kolegij, 'sve_teme': sve_teme, 'form': form, 'semestar': semestar_num,}
     #debilana radim istu var 3 puta...
