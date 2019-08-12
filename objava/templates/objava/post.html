@@ -7,13 +7,21 @@
         {% else %}
             <p>Nije lajkano buton za unlike</p>
         {% endif %}
-        <h3>{{ objava.get_likes }}  {{ objava.username }} {{ objava.date }}</h3>
+        {{ objava.get_likes }}
+        <h3>{{ objava.likes }}  {{ objava.username }} {{ objava.date }}</h3>
         <p>{{ objava.tekst }}<p>
     <a href="/media/objava_att/{{objava.attachment}}" download>{{objava.attachment}}</a>
+    <form action="{% url 'objava:like' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" value="{{ user.username }}" name="html_user">
+        <input type="hidden" value="{{ objava.objava_id }}" name="html_objava">
+        <button type="submit">Like</button>
+    </form>
     {% endfor %}
 <form method="post" enctype="multipart/form-data" >
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" name="objavi">Objavi</button>
 </form>
+
 {% endblock %}
