@@ -6,23 +6,31 @@
     {% define as prethodna_objava %}
 
     {% for obj in sve_objave %}
-      {% csrf_token %}
-      {% if prethodna_objava != obj.objava.objava_id %}
-        <h3>{{ obj.getusername }}</h3> <p>{{obj.getdate}}</p>
-         <!--samo jedan like/unlike botun po tekstu-->
-        <form action="{% url 'objava:like' %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" value="{{ user.username }}" name="html_user">
-            <input type="hidden" value="{{ objava.objava_id }}" name="html_objava">
-            <button type="submit">Like</button>
-        </form>
-
-        <p> {{ obj.gettekst }}</p>
+        {% csrf_token %}
+        {% if prethodna_objava != obj.objava.objava_id %}
+            <h3>{{ obj.getusername }}</h3> <p>{{obj.getdate}}</p> <p>{{ obj.getlikes }}</p>
+            <!--samo jedan like/unlike botun po tekstu SKRATI KONJU-->
+            {{ obj.isliked }}
+            {% if obj.objava_id and user.username in svi_lajkovi %}
+                <form action="{% url 'objava:like' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ user.username }}" name="html_user">
+                    <input type="hidden" value="{{ obj.objava_id }}" name="html_objava">
+                    <button type="submit">Like</button>
+                </form>
+            {% else %}
+                <form action="{% url 'objava:like' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ user.username }}" name="html_user">
+                    <input type="hidden" value="{{ obj.objava_id }}" name="html_objava">
+                    <button type="submit">Disike</button>
+                </form>
+            {% endif %}
+            <p> {{ obj.gettekst }}</p>
         {% endif %}
 
         {% if obj.check_image %} <!--provjeram format dokumenta -->
-            <a href="{{obj.attachment.url}}" download>{{ obj.attachment | split_name}}
-                <img src="{{ obj.attachment.url}}" width="240"></a>
+            <a href="{{obj.attachment.url}}" download><img src="{{ obj.attachment.url}}" width="240"></a>
             {% else %}
             <a href="{{obj.attachment.url}}" download>{{ obj.attachment | split_name}}</a>
 
@@ -40,10 +48,7 @@
             <p>Nije lajkano buton za unlike</p>
         {% endif %}
         {{ objava.get_likes }}
-<!--
-
-
-
+-->
 
 <form method="post" enctype="multipart/form-data" >
     {% csrf_token %}

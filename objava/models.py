@@ -19,15 +19,6 @@ class Objava(models.Model):
     def __str__(self):
         return self.objava_id
 
-    def get_likes(self):
-        if Objava_Likes.objects.filter(objava_id_id = self.objava_id):
-            self.likes = Objava_Likes.objects.filter(objava_id_id = self.objava_id).count
-        else:
-            self.likes = 0
-        return self.likes
-
-
-
 class Objava_Files(models.Model):
     attachment = models.FileField(upload_to='objava_att/', null=True, blank=True, max_length=500)
     objava = models.ForeignKey(Objava, on_delete=models.CASCADE)
@@ -42,8 +33,15 @@ class Objava_Files(models.Model):
     def getdate(self):
         return self.objava.date
 
-    # vjerovatno će se sad tu morat pozvat funkcija za getlikes od gore!
+    def getlikes(self):
+        if Objava_Likes.objects.filter(objava_id_id = self.objava.objava_id):
+            self.objava.likes = Objava_Likes.objects.filter(objava_id_id = self.objava.objava_id).count()
+        else:
+            self.objava.likes = 0
+        return self.objava.likes
 
+    def isliked(self):
+        return Objava_Likes.objects.filter(objava_id_id = self.objava.objava_id).exists()
 
     def check_image(self):
         name, extension = os.path.splitext(str(self.attachment))
