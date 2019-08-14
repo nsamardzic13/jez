@@ -1,26 +1,55 @@
 {% extends 'base_template.html' %}
+{% load static from staticfiles %}
+{% load extras %}
 
 {% block content %}
+    {% define as prethodna_objava %}
     {% for objava in sve_objave %}
-        {% if objava.objava_id  and  user.username in svi_lajkovi %}
+        {% csrf_token %}
+    {% if prethodna_objava != objava.objava_id %}
+        <p>--------------POČINJE NOVI POST----------</p>
+        <h3>{{ objava.likes }}  {{ objava.username }} {{ objava.date }}</h3>
+        <p>{{ objava.tekst }}<p>
+        <a href="{{objava.attachment}}" download>{{objava.attachment}}</a><br>
+    {% else %}
+    <a href="{{objava.attachment}}" download>{{objava.attachment}}</a><br>
+    {% endif %}
+    {% change objava.objava_id as prethodna_objava %}
+
+
+<!--        {% if objava.objava_id  and  user.username in svi_lajkovi %}
             <p>Tu buton za lajk i onda ide jedna fun</p>
         {% else %}
             <p>Nije lajkano buton za unlike</p>
         {% endif %}
         {{ objava.get_likes }}
-        <h3>{{ objava.likes }}  {{ objava.username }} {{ objava.date }}</h3>
-        <p>{{ objava.tekst }}<p>
-    <a href="/media/objava_att/{{objava.attachment}}" download>{{objava.attachment}}</a>
-    <form action="{% url 'objava:like' %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" value="{{ user.username }}" name="html_user">
-        <input type="hidden" value="{{ objava.objava_id }}" name="html_objava">
-        <button type="submit">Like</button>
-    </form>
+
+<!--
+
+        {% if objava.image %}
+            <a href="{{objava.image.url}}" download>{{ objava.image | split_name}}<br>
+            <img src="{{ objava.image.url}}" width="240"></a>
+        {% endif %}
+
+        {% if objava.extension == ".jpg" or objava.extension == ".png" or objava.extension == ".svg" %}
+            <a href="{{objava.attachment.url}}" download>{{ objava.attachment | split_name}}<br>
+            <img src="{{ objava.attachment.url}}" width="240"></a>
+        {% else %}
+              <a href="{{objava.attachment.url}}" download>{{ objava.attachment | split_name}}</a>
+        {% endif %}
+-->
+<!--
+        <form action="{% url 'objava:like' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" value="{{ user.username }}" name="html_user">
+            <input type="hidden" value="{{ objava.objava_id }}" name="html_objava">
+            <button type="submit">Like</button>
+        </form>-->
     {% endfor %}
 <form method="post" enctype="multipart/form-data" >
     {% csrf_token %}
     {{ form.as_p }}
+    {{ file_form.as_p }}
     <button type="submit" name="objavi">Objavi</button>
 </form>
 
