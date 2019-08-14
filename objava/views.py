@@ -4,6 +4,8 @@ from studij.models import Kolegij
 from tema.models import Tema
 from objava.models import Objava, Objava_Likes, Objava_Files
 from django.contrib.auth.models import User
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
 
 # Create your views here.
@@ -23,10 +25,12 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
             objava.save()
 
             for f in files:
-                file_instance = Objava_Files(attachment=f, objava=objava)
+                file_instance = Objava_Files(attachment=f, objava=objava, tema_id=tema_id)
                 file_instance.save()
 
-    sve_objave = Objava.objects.raw('select * from objava_objava, objava_objava_files where objava_objava.objava_id = objava_objava_files.objava_id and objava_objava.tema_id=%s order by objava_objava.date',[tema_id])
+        #return HttpResponseRedirect(reverse('objava:objava_homepage'))
+
+    sve_objave = Objava_Files.objects.all().filter(tema_id=tema_id)
     svi_lajkovi = Objava_Likes.objects.all()
     form = ObjavaForm()
     file_form = FilesObjavaForm()

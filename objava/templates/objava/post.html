@@ -4,48 +4,47 @@
 
 {% block content %}
     {% define as prethodna_objava %}
-    {% for objava in sve_objave %}
-        {% csrf_token %}
-    {% if prethodna_objava != objava.objava_id %}
-        <p>--------------POČINJE NOVI POST----------</p>
-        <h3>{{ objava.likes }}  {{ objava.username }} {{ objava.date }}</h3>
-        <p>{{ objava.tekst }}<p>
-        <a href="{{objava.attachment}}" download>{{objava.attachment}}</a><br>
-    {% else %}
-    <a href="{{objava.attachment}}" download>{{objava.attachment}}</a><br>
-    {% endif %}
-    {% change objava.objava_id as prethodna_objava %}
 
-
-<!--        {% if objava.objava_id  and  user.username in svi_lajkovi %}
-            <p>Tu buton za lajk i onda ide jedna fun</p>
-        {% else %}
-            <p>Nije lajkano buton za unlike</p>
-        {% endif %}
-        {{ objava.get_likes }}
-
-<!--
-
-        {% if objava.image %}
-            <a href="{{objava.image.url}}" download>{{ objava.image | split_name}}<br>
-            <img src="{{ objava.image.url}}" width="240"></a>
-        {% endif %}
-
-        {% if objava.extension == ".jpg" or objava.extension == ".png" or objava.extension == ".svg" %}
-            <a href="{{objava.attachment.url}}" download>{{ objava.attachment | split_name}}<br>
-            <img src="{{ objava.attachment.url}}" width="240"></a>
-        {% else %}
-              <a href="{{objava.attachment.url}}" download>{{ objava.attachment | split_name}}</a>
-        {% endif %}
--->
-<!--
+    {% for obj in sve_objave %}
+      {% csrf_token %}
+      {% if prethodna_objava != obj.objava.objava_id %}
+        <h3>{{ obj.getusername }}</h3> <p>{{obj.getdate}}</p>
+         <!--samo jedan like/unlike botun po tekstu-->
         <form action="{% url 'objava:like' %}" method="post">
             {% csrf_token %}
             <input type="hidden" value="{{ user.username }}" name="html_user">
             <input type="hidden" value="{{ objava.objava_id }}" name="html_objava">
             <button type="submit">Like</button>
-        </form>-->
+        </form>
+
+        <p> {{ obj.gettekst }}</p>
+        {% endif %}
+
+        {% if obj.check_image %} <!--provjeram format dokumenta -->
+            <a href="{{obj.attachment.url}}" download>{{ obj.attachment | split_name}}
+                <img src="{{ obj.attachment.url}}" width="240"></a>
+            {% else %}
+            <a href="{{obj.attachment.url}}" download>{{ obj.attachment | split_name}}</a>
+
+        {% endif %}
+
+        {% change obj.objava_id as prethodna_objava %}
+        <br>
     {% endfor %}
+
+    <!--
+        ne znam di se sad ovo uklapa pa sam tu stavila
+        {% if objava.objava_id  and  user.username in svi_lajkovi %}
+            <p>Tu buton za lajk i onda ide jedna fun</p>
+        {% else %}
+            <p>Nije lajkano buton za unlike</p>
+        {% endif %}
+        {{ objava.get_likes }}
+<!--
+
+
+
+
 <form method="post" enctype="multipart/form-data" >
     {% csrf_token %}
     {{ form.as_p }}

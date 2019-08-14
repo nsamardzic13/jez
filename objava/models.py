@@ -31,10 +31,25 @@ class Objava(models.Model):
 class Objava_Files(models.Model):
     attachment = models.FileField(upload_to='objava_att/', null=True, blank=True, max_length=500)
     objava = models.ForeignKey(Objava, on_delete=models.CASCADE)
+    tema = models.ForeignKey(Tema, on_delete=models.DO_NOTHING, default=1)
 
-    def extension(self):
+    def gettekst(self):
+        return self.objava.tekst
+
+    def getusername(self):
+        return self.objava.username
+
+    def getdate(self):
+        return self.objava.date
+
+    # vjerovatno će se sad tu morat pozvat funkcija za getlikes od gore!
+
+
+    def check_image(self):
         name, extension = os.path.splitext(str(self.attachment))
-        return extension
+        if extension == ".jpg" or extension == ".png" or extension == ".svg":
+            return True
+        return False
 
 class Objava_Likes(models.Model):
     objava_id = models.ForeignKey(Objava, on_delete=models.DO_NOTHING)
