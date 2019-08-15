@@ -10,22 +10,17 @@
         {% if prethodna_objava != obj.objava.objava_id %}
             <h3>{{ obj.getusername }}</h3> <p>{{obj.getdate}}</p> <p>{{ obj.getlikes }}</p>
             <!--samo jedan like/unlike botun po tekstu SKRATI KONJU-->
-            {{ obj.isliked }}
-            {% if obj.objava_id and user.username in svi_lajkovi %}
-                <form action="{% url 'objava:like' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" value="{{ user.username }}" name="html_user">
-                    <input type="hidden" value="{{ obj.objava_id }}" name="html_objava">
-                    <button type="submit">Like</button>
-                </form>
-            {% else %}
-                <form action="{% url 'objava:like' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" value="{{ user.username }}" name="html_user">
-                    <input type="hidden" value="{{ obj.objava_id }}" name="html_objava">
-                    <button type="submit">Disike</button>
-                </form>
-            {% endif %}
+            <form action="{% url 'objava:like' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" value="{{ user.username }}" name="html_user">
+                <input type="hidden" value="{{ obj.objava_id }}" name="html_objava">
+                {% if obj.objava_id not in user_likes %}
+                    <button type="submit" name="html_like" value="html_like">Like</button>
+                {% else %}
+                    <button type="submit" name="html_like" value="html_dislike">Disike</button>
+                {% endif %}
+            </form>
+
             <p> {{ obj.gettekst }}</p>
         {% endif %}
 

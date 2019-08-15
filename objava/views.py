@@ -8,7 +8,8 @@ from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-MAX_SIZE = 2097152 #2MB
+
+
 # Create your views here.
 def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
 
@@ -29,14 +30,19 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
                 file_instance = Objava_Files(attachment=f, objava=objava, tema_id=tema_id)
                 file_instance.save()
     else:
-        form = ObjavaForm()
+        user_likes = list(Objava_Likes.objects.filter(username_id = request.user.id).values_list('objava_id', flat=True))form = ObjavaForm()
         file_form = FilesObjavaForm()
 
     sve_objave = Objava_Files.objects.all().filter(tema_id=tema_id)
     svi_lajkovi = Objava_Likes.objects.all()
-    context = {'form': form, 'file_form': file_form, 'sve_objave':sve_objave, 'svi_lajkovi':svi_lajkovi}
+    context = {'form': form, 'file_form': file_form, 'sve_objave':sve_objave, 'svi_lajkovi':svi_lajkovi, 'user_likes':user_likes,}
     return render(request, 'objava/post.html', context)
 
 def like_view(request):
-    Objava_Likes.objects.create(objava_id = Objava.objects.get(objava_id = request.POST['html_objava']), username = User.objects.get(username= request.POST['html_user']))
+    tmp_like = request.POST['html_like']
+    if tmp_like == "html_like":
+        Objava_Likes.objects.create(objava_id = Objava.objects.get(objava_id = request.POST['html_objava']), username = User.objects.get(username= request.POST['html_user']))
+    if tmp_like == "html_dislike":
+        print("aa")
+        Objava_Likes.objects.filter(objava_id=Objava.objects.get(objava_id=request.POST['html_objava']), username=User.objects.get(username=request.POST['html_user'])).delete()
     return redirect('homepage')
