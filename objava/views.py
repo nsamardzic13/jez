@@ -17,13 +17,6 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
         file_form = FilesObjavaForm(request.POST, request.FILES)
         files = request.FILES.getlist('attachment')  # field name in model
 
-        # sum = 0
-        # for f in files:
-        #     sum = sum + f.size
-        # if sum > MAX_SIZE:
-        #     raise ValidationError("Prevelika datoteka, limit je 2MB!")
-        #     #ružno ga ispiše redirecta na drugu stranicu!
-
         if form.is_valid() and file_form.is_valid():
             objava = form.save(commit=False)
             objava.username = request.user
