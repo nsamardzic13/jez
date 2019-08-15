@@ -64,6 +64,11 @@ class EditUserForm(UserChangeForm):
             'last_name',
             'email'
         )
+
+        widgets = {
+            'email': forms.TextInput(attrs={'disabled': True}),
+        }
+
 class EditStudentForm(forms.ModelForm):
     class Meta:
         model = Student

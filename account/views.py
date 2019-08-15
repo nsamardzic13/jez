@@ -1,13 +1,20 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import  User
-from django.utils import timezone
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import (
+    UserCreationForm,
+    AuthenticationForm,
+    PasswordChangeForm
+)
 from django.contrib.auth import login, logout, authenticate
-from account.forms import RegistrationForm, StudentProfileForm, EditUserForm, EditStudentForm
+from account.forms import (
+    RegistrationForm,
+    StudentProfileForm,
+    EditUserForm,
+    EditStudentForm,
+)
 from django.contrib import messages
-from .models import Student, Moj_Kolegij
 from .models import Kolegij
-# Create your views here.
+from django.contrib.auth import update_session_auth_hash #za ponovnu prijavu nakon promjene lozinke!
+
 def login_view(request):
     if request.method== 'POST':
         form = AuthenticationForm(data=request.POST)
@@ -44,6 +51,20 @@ def settings_view(request):
             context = {'form': form, 'student_form': student_form}
             return render(request, "account/settings.html", context)
 
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            #jedno kad se promjeni lozinka django automatski odjavi usera jer se promjene podaci
+            return redirect('account:mypage')
+            #neka poruka uspješna promjena blabla
+    else:
+        form = PasswordChangeForm(user=request.user)
+        context = {'form' : form}
+        return render(request, 'account/change_password.html', context)
 
 def signup_view(request):
     if request.method == 'POST':
