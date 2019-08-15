@@ -1,12 +1,10 @@
 from django.db import models
-from studij.models import Kolegij
 from tema.models import Tema
 from django.contrib.auth.models import User
-from account.models import Student
 from django.utils import timezone
-from django import forms
 import os
-# Create your models here.
+
+
 class Objava(models.Model):
     objava_id = models.AutoField(primary_key=True)
     username = models.ForeignKey(User, on_delete=models.DO_NOTHING)
