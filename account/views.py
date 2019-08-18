@@ -76,8 +76,7 @@ def signup_view(request):
             student = student_form.save(commit=False) #želim spremiti u studenta al prvo pohranim podatke (commit - false) i onda nadodam podatke iz usera)
             student.user = user
             student.save()
-            messages.success(request, "Bravo!")
-            return redirect('homepage')
+            return redirect('templates/index.html') #riješiti redirect
 
     else:
 
