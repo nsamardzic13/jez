@@ -23,7 +23,7 @@
 
 	<header class="header">
 			
-		<!-- Top Bar -->
+		{% if not user.is_authenticated %}
 		<div class="top_bar">
 			<div class="top_bar_container">
 				<div class="container">
@@ -46,8 +46,9 @@
 				</div>
 			</div>				
 		</div>
-
+		{% endif %}
 		<!-- Header Content -->
+
 		<div class="header_container">
 			<div class="container">
 				<div class="row">
@@ -60,14 +61,25 @@
 							</div>
 							<nav class="main_nav_contaner ml-auto">
 								<ul class="main_nav">
-									<li class="active"><a href="#">Home</a></li>
+									<li class="active"><a href="{% url 'homepage' %}">Home</a></li>
 									<li> <a href="{% url 'tko_smo:homepage'%}">Tko smo?</a></li>
 									<li><a href="{% url 'za_brucose:homepage'%}">Za brucose</a></li>
 									<li><a href="contact.html">Kontakt</a></li>
 									<li><a href="contact.html">Doniraj</a></li>
-                                    <li><a href="{% url 'account:signup'%}">Registriraj se</a></li>
+									{% if not user.is_authenticated %}
+									<li><a href="{% url 'account:signup'%}">Registriraj se</a></li>
+									{% else %}
+									<li class="dropdown">
+										<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{user.get_username }}
+										<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="{% url 'account:mypage' %}">Moj profil</a></li><br>
+										  	<li><a href="{% url 'account:settings'%}">Postavke</a></li><br>
+											<li><a href="{% url 'account:logout' %}">Odjavi se</a></li><br>
+										</ul>
+      								</li>
+									{% endif %}
 								</ul>
-								<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 							</nav>
 						</div>
 					</div>
@@ -216,7 +228,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 </div>
-
+{% endblock content %}
 <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
 <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
@@ -229,6 +241,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{% static 'plugins/easing/easing.js' %}"></script>
 <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
-{% endblock content %}
+
 </body>
 </html>

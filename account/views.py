@@ -26,7 +26,7 @@ def login_view(request):
                 login(request, user)
                 request.session['username'] = username
                 messages.info(request, f"hey {username}")
-                return redirect('account:mypage')
+                return redirect('account/mypage.html')
             else:
                 messages.error(request, "Ne valja nesto!")
         else:
@@ -76,7 +76,7 @@ def signup_view(request):
             student = student_form.save(commit=False) #želim spremiti u studenta al prvo pohranim podatke (commit - false) i onda nadodam podatke iz usera)
             student.user = user
             student.save()
-            return redirect('templates/index.html') #riješiti redirect
+            return redirect('homepage') #riješiti redirect
 
     else:
 

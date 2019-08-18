@@ -1,9 +1,10 @@
-{% extends 'index.html' %}
-
+{% extends 'account/mypage.html' %}
+{% load static %}
 {% block content %}
- <h1>Svi trenutni studiji na RiTehu:</h1>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+ <h2>Svi trenutni studiji na RiTehu:</h2>
     {% csrf_token %}
     {% for studij in smjerovi %}
-        <a href="/studij/studijski_programi/studij={{studij.studij_id}}">{{studij.studij_ime}}</a><br><br>
+    <li><a href="/studij/studijski_programi/studij={{studij.studij_id}}">{{studij.studij_ime}}</a><br><br></li>
     {% endfor %}
 {% endblock %}

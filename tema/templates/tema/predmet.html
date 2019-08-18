@@ -1,4 +1,4 @@
-{% extends 'mypage.html' %}
+{% extends 'account/mypage.html' %}
 
 {% block content %}
 <form method="post">
@@ -6,6 +6,7 @@
     {{ form }}
     <button type="submit" name="dodaj_temu">Dodaj novu temu</button>
 </form>
+<br><br><br>
 <h1>{{kolegij_id}}</h1>
 <form method="post">
     {% csrf_token %}
@@ -15,7 +16,8 @@
     <button type="submit" name="favorit">Dodaj u moj kolegij</button>
     {% endif %}
 </form>
-<h1>Otvorene teme:</h1>
+<br><br><br>
+<h2>Otvorene teme:</h2>
  {% for tema in sve_teme %}
       <a href="/objava/studij={{studij_id}}/semestar={{semestar}}/kolegij={{kolegij_id}}/tema={{tema.tema_id}}">{{tema.tema_ime}}</a><br><br>
     {% endfor %}
