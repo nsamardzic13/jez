@@ -66,7 +66,7 @@ class EditUserForm(UserChangeForm):
         )
 
         widgets = {
-            'email': forms.TextInput(attrs={'disabled': True, 'class': 'form-control'},)
+            'email': forms.TextInput(attrs={'disabled': True},)
         }
 
 class EditStudentForm(forms.ModelForm):

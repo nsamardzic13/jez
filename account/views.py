@@ -80,8 +80,10 @@ def signup_view(request):
             return redirect('homepage')
 
     else:
+
         form = RegistrationForm()
         student_form = StudentProfileForm()
+        student_form.fields['studij_id'].widget.attrs = {'class': 'form-control'}
 
     context = {'form' : form, 'student_form' : student_form}
     return render(request, "account/signup.html", context)

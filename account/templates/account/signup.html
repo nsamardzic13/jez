@@ -10,11 +10,10 @@
 <div class="container login-container">
             <div class="row">
                 <div class="col-md-6 login-form-1">
-                    <h3>Registriraj se</h3>
                     <form action="{% url 'account:login' %}" method="post">
                         {% csrf_token %}
                         <div class="form-group">
-                         <input type="text" class="form-control" name="username" id="id_username" maxlength="150" placeholder="Korisničko ime">
+                            <input type="text" class="form-control" name="username" id="id_username" maxlength="150" placeholder="Korisničko ime">
                         </div>
 
                         <div class="form-group">
@@ -45,6 +44,7 @@
                             <a href="{% url 'account:login' %}" class="ForgetPwd">Imaš već račun? Prijavi se!</a>
                         </div>
                     </form>
+                    <h3>Registriraj se</h3>
                 </div>
             </div>
         </div>
