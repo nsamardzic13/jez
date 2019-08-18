@@ -30,7 +30,8 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
                 file_instance = Objava_Files(attachment=f, objava=objava, tema_id=tema_id)
                 file_instance.save()
     else:
-        user_likes = list(Objava_Likes.objects.filter(username_id = request.user.id).values_list('objava_id', flat=True))form = ObjavaForm()
+        user_likes = list(Objava_Likes.objects.filter(username_id = request.user.id).values_list('objava_id', flat=True))
+        form = ObjavaForm()
         file_form = FilesObjavaForm()
 
     sve_objave = Objava_Files.objects.all().filter(tema_id=tema_id)
