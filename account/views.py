@@ -26,7 +26,7 @@ def login_view(request):
                 login(request, user)
                 request.session['username'] = username
                 messages.info(request, f"hey {username}")
-                return redirect('account/mypage.html')
+                return render(request, "account/mypage.html")
             else:
                 messages.error(request, "Ne valja nesto!")
         else:
@@ -48,6 +48,7 @@ def settings_view(request):
         else:
             form = EditUserForm(instance=request.user)
             student_form = EditStudentForm(instance=request.user.student)
+            student_form.fields['studij_id'].widget.attrs = {'class': 'form-control'}
             context = {'form': form, 'student_form': student_form}
             return render(request, "account/settings.html", context)
 

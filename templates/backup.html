@@ -1,36 +1,10 @@
-{% load static from staticfiles %}
+{% extends 'index.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Jez</title>
-        <link rel="stylesheet" href="{% static 'style.css' %}">
-    </head>
-
-    <body>
-        <!-- Mozda ne header tag? -->
-        <nav class="header" ">
-            <h1 class="header-content">Header text</h1>
-        </nav>
-        {% if user.is_authenticated %}
-            <form action="{% url 'account:logout' %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Logout</button>
-            </form>
-            <a href="{% url 'account:mypage' %}">Moj profil</a>
-            <a href="{% url 'studij:homepage'%}">Studiji</a>
-            <a href="">Forum</a>
-            <a href="{% url 'account:settings'%}">Postavke</a>
-        {% else %}
-            <a href="{% url 'account:login' %}">Login</a>
-            <a href="{% url 'account:signup' %}">Signup</a>
-        {% endif %}
-        <a href="{% url 'homepage'%}">Pocetna</a>
-        <a href="{% url 'za_brucose:homepage'%}">Za brucose</a>
-        <a href="{% url 'tko_smo:homepage'%}">Tko smo?</a>
-        {% block content %}
-
-        {% endblock %}
-    </body>
-</html>
+{% block content %}
+<h1>Promjena lozinke</h1>
+<form method="post"  enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Spremi promjene</button>
+</form>
+{% endblock %}

@@ -39,11 +39,14 @@
 									<li class="dropdown">
 										<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{user.get_username }}
 										<span class="caret"></span></a>
-										<ul class="dropdown-menu">
-											<li><a href="{% url 'account:mypage' %}">Moj profil</a></li><br>
-										  	<li><a href="{% url 'account:settings'%}">Postavke</a></li><br>
-											<li><a href="{% url 'account:logout' %}">Odjavi se</a></li><br>
-										</ul>
+										<div class="dropdown-menu">
+                                            <span class="fa fa-user" style="font-size:30px;color:blue "></span>
+                                            <a href="{% url 'account:mypage' %}">&nbsp Moj profil</a><br>
+                                            <span class="fa fa-gear" style="font-size:30px;color:blue "></span>
+										  	<a href="{% url 'account:settings'%}">Postavke</a><br>
+                                            <span class="fa fa-sign-out" style="font-size:30px;color:blue "></span>
+											<a href="{% url 'account:logout' %}">Odjavi se</a>
+										</div>
       								</li>
 								</ul>
 							</nav>

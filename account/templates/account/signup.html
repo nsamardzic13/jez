@@ -8,54 +8,54 @@
 <br><br><br><br>
 
 <div class="container login-container">
-            <div class="row">
-                <div class="col-md-6 login-form-1">
-                    <h3>Registriraj se</h3>
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="username" id="id_username" maxlength="150" placeholder="Korisničko ime">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="email" class="form-control" name="email" maxlength="150" id="id_email" placeholder="@riteh mail">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="ime" maxlength="30" id="id_ime" placeholder="Ime">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="prezime" maxlength="30" id="id_prezime" placeholder="Prezime">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password1"  id="id_password1" placeholder="Lozinka">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password2"  id="id_password2" placeholder="Ponovi lozinku">
-                        </div>
-
-
-                        <div class="form-group">
-                            {{student_form.studij_id}}
-                        </div>
-
-                        <div class="form-group">
-                            <input type="checkbox" class="form-check-inline" required name="terms"> Prihvaćam <a href="pravila.html"><u>pravila korištenja</u></a>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="submit" class="btnSubmit" value="Registriraj me" />
-                        </div>
-
-                        <div class="form-group">
-                            <a href="{% url 'account:login' %}" class="ForgetPwd">Imaš već račun? Prijavi se!</a>
-                        </div>
-                    </form>
-
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            <h3>Registriraj se</h3>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" id="id_username" maxlength="150" placeholder="Korisničko ime">
                 </div>
-            </div>
+
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" maxlength="150" id="id_email" placeholder="@riteh mail">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="ime" maxlength="30" id="id_ime" placeholder="Ime">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="prezime" maxlength="30" id="id_prezime" placeholder="Prezime">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password1"  id="id_password1" placeholder="Lozinka">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password2"  id="id_password2" placeholder="Ponovi lozinku">
+                </div>
+
+
+                <div class="form-group">
+                    {{student_form.studij_id}}
+                </div>
+
+                <div class="form-group">
+                    <input type="checkbox" class="form-check-inline" required name="terms"> Prihvaćam <a href="pravila.html"><u>pravila korištenja</u></a>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="btnSubmit" value="Registriraj me" />
+                </div>
+
+                <div class="form-group">
+                    <a href="{% url 'account:login' %}" class="ForgetPwd">Imaš već račun? Prijavi se!</a>
+                </div>
+
+            </form>
         </div>
+    </div>
+</div>
 {% endblock %}
