@@ -29,13 +29,10 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
             for f in files:
                 file_instance = Objava_Files(attachment=f, objava=objava, tema_id=tema_id)
                 file_instance.save()
-    else:
-        user_likes = list(Objava_Likes.objects.filter(username_id = request.user.id).values_list('objava_id', flat=True))
-        form = ObjavaForm()
-        file_form = FilesObjavaForm()
 
     sve_objave = Objava_Files.objects.all().filter(tema_id=tema_id)
     svi_lajkovi = Objava_Likes.objects.all()
+    user_likes = list(Objava_Likes.objects.filter(username_id=request.user.id).values_list('objava_id', flat=True))
     context = {'form': form, 'file_form': file_form, 'sve_objave':sve_objave, 'svi_lajkovi':svi_lajkovi, 'user_likes':user_likes,}
     return render(request, 'objava/post.html', context)
 

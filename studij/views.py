@@ -24,10 +24,7 @@ def studijski_programi(request, studij_id):
 
 def semestri(request, studij_id, semestar_num):
     username = request.session['username']
-    kolegiji = Kolegij.objects.all().filter(semestar=semestar_num, studij_id_id=studij_id)
-    svi_moji_kolegiji = Moj_Kolegij.objects.all().filter(username=username, studij_id_id=studij_id)
 
-    context={'kolegiji': kolegiji, 'studij_id': studij_id, 'semestar_num': semestar_num, 'svi_moji_kolegiji': svi_moji_kolegiji, }
 
     #sad ide botun za dodati kolegij u omiljeni, tj maknuti iz omiljenih! prvo treba pronaći sve
     if request.method == 'POST': #ako sam stisla neki botun
@@ -41,6 +38,10 @@ def semestri(request, studij_id, semestar_num):
             #dodaj me
             moj_kolegij = Moj_Kolegij(username=username, kolegij_id=moj_kolegij_id, studij_id_id=studij_id)
             moj_kolegij.save()
+
+    kolegiji = Kolegij.objects.all().filter(semestar=semestar_num, studij_id_id=studij_id)
+    svi_moji_kolegiji = list(Moj_Kolegij.objects.all().filter(username=username, studij_id_id=studij_id).values_list('kolegij_id', flat=True))
+    context={'kolegiji': kolegiji, 'studij_id': studij_id, 'semestar_num': semestar_num, 'svi_moji_kolegiji': svi_moji_kolegiji, }
 
     return render(request, 'studij/kolegiji.html', context)
 

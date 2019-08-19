@@ -28,7 +28,7 @@
 					<div class="col">
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
 							<div class="logo_container">
-								<a href="#">
+								<a href="{% url 'account:mypage' %}">
 									<div class="logo_text">Jež</div>
 								</a>
 							</div>
@@ -64,7 +64,7 @@
         <h2>Moji kolegiji:</h2>
         {% for kolegij in svi_moji_kolegiji %}
              <a href="/studij/studijski_programi/studij={{kolegij.studij_id_id}}/semestar={{kolegij.semestar}}/kolegij={{kolegij.kolegij_id}}">{{kolegij.kolegij_ime}}</a><br><br>
-        {% endfor %}
+		{% endfor %}
     </div>
     {% endblock %}
 
