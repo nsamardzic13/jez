@@ -4,16 +4,17 @@
 
 {% block content %}
     {% define as prethodna_objava %}
-
+    <br><br><br>
     {% for obj in sve_objave %}
         {% csrf_token %}
         {% if prethodna_objava != obj.objava.objava_id %}
-            <h3>{{ obj.getusername }}</h3> <p>{{obj.getdate}}</p> <p>{{ obj.getlikes }}</p>
+            <h3>{{ obj.getusername }} {{ student.stars }}</h3> <p>{{obj.getdate}}</p> <p>{{ obj.getlikes }}</p>
             <!--samo jedan like/unlike botun po tekstu SKRATI KONJU-->
             <form action="{% url 'objava:like' %}" method="post">
                 {% csrf_token %}
                 <input type="hidden" value="{{ user.username }}" name="html_user">
                 <input type="hidden" value="{{ obj.objava_id }}" name="html_objava">
+                <input type="hidden" value="{{ obj.getusername }}" name="html_objava_user">
                 {% if obj.objava_id not in user_likes %}
                     <button type="submit" name="html_like" value="html_like">Like</button>
                 {% else %}
@@ -46,6 +47,7 @@
 -->
 
 <form method="post" enctype="multipart/form-data" >
+    <br><br><br><br><br><br><br><br>
     {% csrf_token %}
     {{ form.as_p }}
     {{ file_form.as_p }}

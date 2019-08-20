@@ -8,6 +8,7 @@ class Student(models.Model):
     studij_id = models.ForeignKey(Studij, on_delete=models.CASCADE, default='pss')
     email_ver = models.BooleanField(default=False)
     profile_image = models.ImageField(upload_to='profile_image', default='/profile_image/default.png')
+    stars = models.SmallIntegerField(default=1)
 
     def __str__(self):
         return self.user.username

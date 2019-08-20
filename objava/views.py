@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import ObjavaForm, FilesObjavaForm
 from studij.models import Kolegij
+from account.models import Student
 from tema.models import Tema
 from objava.models import Objava, Objava_Likes, Objava_Files
 from django.contrib.auth.models import User
@@ -12,6 +13,9 @@ from django.urls import reverse
 
 # Create your views here.
 def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
+    form = ObjavaForm()
+    file_form = FilesObjavaForm()
+    active_student = Student.objects.get(user_id = request.user)
 
     if request.method == 'POST':
         form = ObjavaForm(request.POST)
@@ -33,14 +37,29 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
     sve_objave = Objava_Files.objects.all().filter(tema_id=tema_id)
     svi_lajkovi = Objava_Likes.objects.all()
     user_likes = list(Objava_Likes.objects.filter(username_id=request.user.id).values_list('objava_id', flat=True))
-    context = {'form': form, 'file_form': file_form, 'sve_objave':sve_objave, 'svi_lajkovi':svi_lajkovi, 'user_likes':user_likes,}
+    context = {'form': form, 'file_form': file_form, 'sve_objave':sve_objave, 'svi_lajkovi':svi_lajkovi, 'user_likes':user_likes, 'student':active_student}
     return render(request, 'objava/post.html', context)
 
 def like_view(request):
     tmp_like = request.POST['html_like']
+    active_user = User.objects.get(username= request.POST['html_user'])
+    active_student = Student.objects.get(user_id=User.objects.get(username= request.POST['html_objava_user']))
     if tmp_like == "html_like":
-        Objava_Likes.objects.create(objava_id = Objava.objects.get(objava_id = request.POST['html_objava']), username = User.objects.get(username= request.POST['html_user']))
+        Objava_Likes.objects.create(objava_id = Objava.objects.get(objava_id = request.POST['html_objava']), username = active_user)
     if tmp_like == "html_dislike":
-        print("aa")
-        Objava_Likes.objects.filter(objava_id=Objava.objects.get(objava_id=request.POST['html_objava']), username=User.objects.get(username=request.POST['html_user'])).delete()
+        Objava_Likes.objects.filter(objava_id=Objava.objects.get(objava_id=request.POST['html_objava']), username= active_user).delete()
+
+    likes_cnt = Objava_Likes.objects.filter(username = active_user).count()
+    if likes_cnt > 30:
+        if likes_cnt > 70:
+            if likes_cnt > 100:
+                if likes_cnt > 150:
+                    active_student.stars = 5
+                active_student.stars = 4
+            active_student.stars = 3
+        active_student.stars = 2
+    else:
+        active_student.stars = 1
+
+    active_student.save()
     return redirect('homepage')
