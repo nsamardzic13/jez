@@ -1,0 +1,194 @@
+ERROR  : 22:15:59: Error: Error connecting to the server: FATAL:  Peer authentication failed for user "postgres"
+
+ERROR  : 22:16:31: Error: Error connecting to the server: FATAL:  password authentication failed for user "postgres"
+FATAL:  password authentication failed for user "postgres"
+
+ERROR  : 15:12:35: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 11::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 15:12:36: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 11::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 16:12:04: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 16:12:09: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 16:52:55: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 16:52:56: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 17:37:04: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 17:37:07: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 18:11:45: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 18:11:48: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 18:11:55: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 18:11:56: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 21:07:25: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 21:07:27: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 18:42:55: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 18:42:59: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 18:43:47: Error: ERROR:  database "jez_database" is being accessed by other users
+DETAIL:  There are 4 other sessions using the database.
+ERROR  : 18:44:13: Error: ERROR:  database "jez_database" is being accessed by other users
+DETAIL:  There are 4 other sessions using the database.
+ERROR  : 18:45:17: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 18:45:18: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 16:34:39: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 16:34:40: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 22:11:43: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 22:11:46: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 22:12:08: Error: ERROR:  database "jez_database" is being accessed by other users
+DETAIL:  There is 1 other session using the database.
+ERROR  : 20:25:55: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 20:26:02: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 20:30:00: ERROR:  syntax error at or near "PGDMP"
+LINE 1: PGDMP
+        ^
+ERROR  : 19:59:16: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 19:59:18: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 19:59:32: Error: ERROR:  database "jez_database" is being accessed by other users
+DETAIL:  There is 1 other session using the database.
+ERROR  : 18:28:50: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 18:28:53: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 18:29:16: Error: ERROR:  cannot drop table objava_objava because other objects depend on it
+DETAIL:  constraint objava_objava_likes_objava_id_id_68dd7da5_fk_objava_ob on table objava_objava_likes depends on table objava_objava
+HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+ERROR  : 18:29:24: Error: ERROR:  cannot drop table objava_objava because other objects depend on it
+DETAIL:  constraint objava_objava_likes_objava_id_id_68dd7da5_fk_objava_ob on table objava_objava_likes depends on table objava_objava
+HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+ERROR  : 18:34:24: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 18:34:45: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 19:40:34: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 19:40:36: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 19:40:52: Error: ERROR:  database "jez_database" is being accessed by other users
+DETAIL:  There are 2 other sessions using the database.
+ERROR  : 19:42:18: Error: Error connecting to the server: FATAL:  Peer authentication failed for user "postgres"
+
+ERROR  : 19:42:26: Error: Error connecting to the server: FATAL:  Peer authentication failed for user "postgres"
+
+ERROR  : 19:42:39: Error: Error connecting to the server: FATAL:  Peer authentication failed for user "postgres"
+
+ERROR  : 19:44:54: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 19:44:56: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 20:40:36: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 20:40:38: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 20:40:53: Error: ERROR:  database "jez_database" is being accessed by other users
+DETAIL:  There is 1 other session using the database.
+ERROR  : 20:41:04: Error: ERROR:  database "jez_database" is being accessed by other users
+DETAIL:  There is 1 other session using the database.
+ERROR  : 20:42:31: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 20:42:33: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 18:04:30: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
+ERROR  : 18:04:31: Error: ERROR:  column "proisagg" does not exist
+LINE 9:  WHERE proisagg = FALSE AND pronamespace = 2200::oid
+               ^
+HINT:  Perhaps you meant to reference the column "pr.prolang".
