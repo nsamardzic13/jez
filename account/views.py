@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.contrib.auth.forms import (
     UserCreationForm,
     AuthenticationForm,
@@ -31,6 +33,7 @@ def login_view(request):
                 messages.error(request, "Ne valja nesto!")
         else:
                 messages.error(request, "AA")
+        return HttpResponseRedirect(reverse('account:login'))
     form = AuthenticationForm()
     return render(request, "account/login.html", {'form':form})
 

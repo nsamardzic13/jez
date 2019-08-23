@@ -20,6 +20,6 @@
 <br><br><br>
 <h2>Otvorene teme:</h2>
  {% for tema in sve_teme %}
-      <a href="/objava/studij={{studij_id}}/semestar={{semestar}}/kolegij={{kolegij_id}}/tema={{tema.tema_id}}">{{tema.tema_ime}}</a><br><br>
+      <a href="/objava/studij={{studij_id}}/semestar={{semestar_num}}/kolegij={{kolegij_id}}/tema={{tema.tema_id}}">{{tema.tema_ime}}</a><br><br>
     {% endfor %}
 {% endblock %}

@@ -7,7 +7,7 @@ from objava.models import Objava, Objava_Likes, Objava_Files
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import  HttpResponseRedirect
 from django.urls import reverse
 
 
@@ -34,7 +34,8 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
                 file_instance = Objava_Files(attachment=f, objava=objava, tema_id=tema_id)
                 file_instance.save()
 
-    sve_objave = Objava_Files.objects.all().filter(tema_id=tema_id)
+            return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id}))
+    sve_objave = Objava_Files.objects.all().filter(tema_id=tema_id).order_by('objava_id')
     svi_lajkovi = Objava_Likes.objects.all()
     user_likes = list(Objava_Likes.objects.filter(username_id=request.user.id).values_list('objava_id', flat=True))
     context = {'form': form, 'file_form': file_form, 'sve_objave':sve_objave, 'svi_lajkovi':svi_lajkovi, 'user_likes':user_likes, 'student':active_student}
