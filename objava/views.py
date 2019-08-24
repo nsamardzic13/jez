@@ -35,7 +35,7 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
                     file_instance = Objava_Files(attachment=f, objava=objava, tema_id=tema_id)
                     file_instance.save()
 
-            #return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id}))
+        return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id}))
 
     sve_objave = Objava.objects.all().filter(tema_id=tema_id).order_by('objava_id')
 
@@ -69,14 +69,17 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
         'kolegij_id': kolegij_id,
         'page_range': page_range,
         'items': items,
-
+        'studij_id': studij_id,
+        'semestar_num': semestar_num,
+        'tema_id': tema_id,
     }
     return render(request, 'objava/post.html', context)
 
 def like_view(request):
+    print(request.POST['html_objava'])
     tmp_like = request.POST['html_like']
     active_user = User.objects.get(username= request.POST['html_user'])
-    active_student = Student.objects.get(user_id=User.objects.get(username= request.POST['html_objava_user']))
+    active_student = Student.objects.get(user_id=User.objects.get(username= request.POST['html_user']))
     if tmp_like == "html_like":
         Objava_Likes.objects.create(objava_id = Objava.objects.get(objava_id = request.POST['html_objava']), username = active_user)
     if tmp_like == "html_dislike":
@@ -95,4 +98,9 @@ def like_view(request):
         active_student.stars = 1
 
     active_student.save()
-    return redirect('homepage')
+
+    studij_id = request.POST['get_studij_id']
+    kolegij_id = request.POST['get_kolegij_id']
+    semestar_num = request.POST['get_semestar_num']
+    tema_id = request.POST['get_tema_id']
+    return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id}))
