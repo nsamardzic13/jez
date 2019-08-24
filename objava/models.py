@@ -14,6 +14,20 @@ class Objava(models.Model):
     tekst = models.TextField()
     likes = models.IntegerField(default=0)
 
+    def getfiles(self):
+        return Objava_Files.objects.filter(objava_id=self.objava_id)
+
+    def getlikes(self):
+        if Objava_Likes.objects.filter(objava_id_id = self.objava_id):
+            self.likes = Objava_Likes.objects.filter(objava_id_id = self.objava_id).count()
+        else:
+            self.likes = 0
+        return self.likes
+
+    def isliked(self):
+        return Objava_Likes.objects.filter(objava_id_id = self.objava_id).exists()
+
+
     def __str__(self):
         return self.objava_id
 
@@ -40,12 +54,6 @@ class Objava_Files(models.Model):
 
     def isliked(self):
         return Objava_Likes.objects.filter(objava_id_id = self.objava.objava_id).exists()
-
-    def check_image(self):
-        name, extension = os.path.splitext(str(self.attachment))
-        if extension == ".jpg" or extension == ".png" or extension == ".svg":
-            return True
-        return False
 
 class Objava_Likes(models.Model):
     objava_id = models.ForeignKey(Objava, on_delete=models.DO_NOTHING)

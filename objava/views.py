@@ -9,7 +9,7 @@ from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.http import  HttpResponseRedirect
 from django.urls import reverse
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
@@ -34,16 +34,43 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
                 for f in files:
                     file_instance = Objava_Files(attachment=f, objava=objava, tema_id=tema_id)
                     file_instance.save()
-            # else:
-            #     file_instance = Objava_Files(attachment=Null, objava=objava, tema_id=tema_id)
-            #     file_instance.save()
 
-            return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id}))
+            #return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id}))
 
-    sve_objave = Objava_Files.objects.all().filter(tema_id=tema_id).order_by('objava_id')
+    sve_objave = Objava.objects.all().filter(tema_id=tema_id).order_by('objava_id')
+
+    # ide paginacijica hehe
+    paginator = Paginator(sve_objave, 1)
+    page = request.GET.get('page', 1)
+
+    try:
+        items = paginator.page(page)
+    except PageNotAnInteger:
+        items = paginator.page(1)
+    except EmptyPage:
+        items = paginator.page(paginator.num_pages)
+
+    index = items.number - 1
+    max_index = len(paginator.page_range)
+    start_index = index - 5 if index >= 5 else 0
+    end_index = index + 5 if index <= max_index - 5 else max_index
+    page_range = paginator.page_range[start_index:end_index]
+
+
     svi_lajkovi = Objava_Likes.objects.all()
     user_likes = list(Objava_Likes.objects.filter(username_id=request.user.id).values_list('objava_id', flat=True))
-    context = {'form': form, 'file_form': file_form, 'sve_objave':sve_objave, 'svi_lajkovi':svi_lajkovi, 'user_likes':user_likes, 'student':active_student}
+    context = {
+        'form': form,
+        'file_form': file_form,
+        'sve_objave': sve_objave,
+        'svi_lajkovi': svi_lajkovi,
+        'user_likes': user_likes,
+        'student': active_student,
+        'kolegij_id': kolegij_id,
+        'page_range': page_range,
+        'items': items,
+
+    }
     return render(request, 'objava/post.html', context)
 
 def like_view(request):

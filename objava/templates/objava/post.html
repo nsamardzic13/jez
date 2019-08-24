@@ -20,38 +20,47 @@
                     <div class="blog_content">
                         <!-- Comments -->
                         <div class="comments_container">
-                            <div class="comments_title"><span>Objave na XY kolegiju</span></div>
+                            <div class="comments_title"><span>{{kolegij_id}}</span></div>
                             <ul class="comments_list">
                                 {% define as prethodna_objava %}
-
                                 {% for obj in sve_objave %}
                                     {% csrf_token %}
                                     <li>
+                                        <!--USER INFO-->
                                         <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-                                            {% if prethodna_objava != obj.objava.objava_id %}
-                                                <div class="comment_image"><div><img src="{% static 'images/comment_1.jpg' %}" alt=""></div></div>
+                                            {% if prethodna_objava != obj.objava_id %}
+                                                <div class="comment_image"><div><img src="{{ user.student.profile_image.url}}" alt=""></div></div>
                                             {% endif %}
                                             <div class="comment_content">
-                                                {% if prethodna_objava != obj.objava.objava_id %}
+                                                {% if prethodna_objava != obj.objava_id %}
                                                 <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-                                                    <div class="comment_author"><a href="#">{{obj.getusername}} {{ student.stars }}</a></div>
-                                                    <div class="comment_time ml-auto">{{obj.getdate}}</div>
+                                                    <div class="comment_author"><a href="#">{{obj.username}}
+                                                      {% for i in student.stars|times %}
+                                                        <i class="fa fa-star" aria-hidden="true" style="font-size:18px;color:blue"></i>
+                                                      {% endfor %}
+                                                    </a></div>
+                                                    <div class="comment_time ml-auto">{{obj.date}}</div>
                                                 </div>
 
                                                 <div class="comment_text">
-                                                        <p>{{obj.gettekst}}</p>
+                                                        <p>{{obj.tekst}}</p>
                                                  </div>
                                                 {% endif %}
-
+                                                 <!--FILES   -->
                                                  <div class=" justify-content-center align-items-center">
-                                                    {% if obj.check_image %} <!--provjeram format dokumenta -->
-                                                        <a href="{{obj.attachment.url}}" download><img src="{{ obj.attachment.url}}" width="240"></a>
-                                                        {% else %}
-                                                        <a href="{{obj.attachment.url}}" download>{{ obj.attachment | split_name}}</a>
-                                                    {% endif %}
-                                                 </div>
+                                                      {% for f in obj.getfiles %}
+                                                         {% check_image f.attachment as flag %}
+                                                         {% if flag %}
+                                                            <a href="{{f.attachment.url}}" download><img src="{{ f.attachment.url}}" width="240"></a>
+                                                            {% else %}
+                                                             <a href="{{f.attachment.url}}" download>{{ f.attachment | split_name}}</a>
+                                                             <br><br>
+                                                        {% endif %}
+                                                       {% endfor %}
 
-                                                {% if prethodna_objava != obj.objava.objava_id %}
+                                                 </div>
+                                                <!--LIKES-->
+                                                {% if prethodna_objava != obj.objava_id %}
                                                      <!--<form action="{% url 'objava:like' %}" method="post">-->
                                                          {% csrf_token %}
                                                          <input type="hidden" value="{{ user.username }}" name="html_user">
@@ -59,7 +68,7 @@
                                                           <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
                                                             {% if obj.objava_id not in user_likes %}
                                                                <!--<button type="submit" name="html_like" value="html_like">Like</button>-->
-                                                                <div class="comment_extra comment_likes"><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>{{ obj.getlikes }}</span></a></div>
+                                                                <div class="comment_extra comment_likes"><a href="#"><i class="fa fa-thumbs-up" style="font-size:22px;color:blue"></i><span>{{ obj.getlikes }}</span></a></div>
                                                             {% else %}
                                                                 <button type="submit" name="html_like" value="html_dislike">Disike</button>
                                                             {% endif %}
@@ -73,6 +82,45 @@
                                 {% endfor %}
                             </ul>
 
+                            <!--PAGINACIJA-->
+                            {% if items.has_other_pages %}
+                                <div class="col-6 offset-3 text-center pagination-set"
+                                    <nav aria-label="">
+                                        <ul class="pagination">
+                                            {% if items.has_previous %}
+                                                <li class="page-item">
+                                                    <a href="?page={{items.previous_page_number}}" class="page-link"><<</a>
+                                                </li>
+                                            {% else %}
+                                                <li class="page-item disabled">
+                                                    <a class="page-link"><span><<</span></a>
+                                                </li>
+                                            {% endif %}
+
+                                            {% for i in page_range %}
+                                                {% if items.number == i %}
+                                                    <li class="page-item active">
+                                                        <a href="#" class="page-link">{{i}}<span class="sr-only">(current)</span></a>
+                                                    </li>
+                                                {% else %}
+                                                    <li class="page-item">
+                                                        <a href="?page={{i}}" class="page-link">{{i}}</a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% if items.has_next %}
+                                                    <li class="page-item">
+                                                        <a href="?page={{items.next_page_number}}" class="page-link" aria-label="Next">>></a>
+                                                    </li>
+                                            {% else %}
+                                                    <li class="page-item disabled">
+                                                        <a href="" class="page-link"><span>>></span></a>
+                                                    </li>
+                                            {% endif %}
+                                        </ul>
+                                    </nav>
+                                </div>
+                            {% endif %}
                             <div class="add_comment_container">
                                 <form method="post" enctype="multipart/form-data" class="comment_form">
                                     {% csrf_token %}
@@ -92,7 +140,6 @@
                                     <div>
                                         <button type="submit" class="comment_button trans_200">Objavi</button>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
@@ -100,8 +147,6 @@
 			    </div>
 		    </div>
 	</div>
-
-
 </div>
 
 <script src="js/jquery-3.2.1.min.js"></script>

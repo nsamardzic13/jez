@@ -9,6 +9,17 @@ register = template.Library()
 def split_name(value):
     return os.path.basename(str(value))
 
+@register.filter(name='times')
+def times(number):
+    return range(number)
+
+@register.simple_tag()
+def check_image(value):
+    name, extension = os.path.splitext(str(value))
+    if extension == ".jpg" or extension == ".png" or extension == ".svg":
+        return True
+    return False
+
 @register.simple_tag()
 def define():
      return None
