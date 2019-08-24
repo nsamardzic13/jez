@@ -1,0 +1,57 @@
+{% extends 'account/mypage.html' %}
+{% load static from staticfiles %}
+{% load extras %}
+
+{% block content %}
+    {% define as prethodna_objava %}
+    <br><br><br>
+    {% for obj in sve_objave %}
+        {% csrf_token %}
+        {% if prethodna_objava != obj.objava.objava_id %}
+            <h3>{{ obj.getusername }} {{ student.stars }}</h3> <p>{{obj.getdate}}</p> <p>{{ obj.getlikes }}</p>
+            <!--samo jedan like/unlike botun po tekstu SKRATI KONJU-->
+            <form action="{% url 'objava:like' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" value="{{ user.username }}" name="html_user">
+                <input type="hidden" value="{{ obj.objava_id }}" name="html_objava">
+                <input type="hidden" value="{{ obj.getusername }}" name="html_objava_user">
+                {% if obj.objava_id not in user_likes %}
+                    <button type="submit" name="html_like" value="html_like">Like</button>
+                {% else %}
+                    <button type="submit" name="html_like" value="html_dislike">Disike</button>
+                {% endif %}
+            </form>
+
+            <p> {{ obj.gettekst }}</p>
+        {% endif %}
+
+        {% if obj.check_image %} <!--provjeram format dokumenta -->
+            <a href="{{obj.attachment.url}}" download><img src="{{ obj.attachment.url}}" width="240"></a>
+            {% else %}
+            <a href="{{obj.attachment.url}}" download>{{ obj.attachment | split_name}}</a>
+
+        {% endif %}
+
+        {% change obj.objava_id as prethodna_objava %}
+        <br>
+    {% endfor %}
+
+    <!--
+        ne znam di se sad ovo uklapa pa sam tu stavila
+        {% if objava.objava_id  and  user.username in svi_lajkovi %}
+            <p>Tu buton za lajk i onda ide jedna fun</p>
+        {% else %}
+            <p>Nije lajkano buton za unlike</p>
+        {% endif %}
+        {{ objava.get_likes }}
+-->
+
+<form method="post" enctype="multipart/form-data" >
+    <br><br><br><br><br><br><br><br>
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ file_form.as_p }}
+    <button type="submit" name="objavi">Objavi</button>
+</form>
+
+{% endblock %}
