@@ -8,7 +8,7 @@
     {% for obj in sve_objave %}
         {% csrf_token %}
         {% if prethodna_objava != obj.objava.objava_id %}
-            <h3><img src="{{ student.profile_image.url }}" width="100" height="100"> {{ obj.getusername }} {{ student.stars }}</h3> <p>{{obj.getdate}}</p> <p>{{ obj.getlikes }}</p>
+            <h3>{{ obj.getusername }} {{ student.stars }}</h3> <p>{{obj.getdate}}</p> <p>{{ obj.getlikes }}</p>
             <!--samo jedan like/unlike botun po tekstu SKRATI KONJU-->
             <form action="{% url 'objava:like' %}" method="post">
                 {% csrf_token %}
