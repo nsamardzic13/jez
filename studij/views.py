@@ -3,8 +3,12 @@ from .models import Studij, Kolegij
 from account.models import  Moj_Kolegij
 
 def homepage(request):
-    smjerovi = Studij.objects.all()
-    context = {'smjerovi': smjerovi}
+    predd = Studij.objects.all().filter(studij_ime__startswith='P')
+    dipl = Studij.objects.all().filter(studij_ime__startswith='D')
+    context = {
+        'predd': predd,
+        'dipl': dipl,
+    }
     return render(request, 'studij/homepage.html', context)
 
 def studijski_programi(request, studij_id):
