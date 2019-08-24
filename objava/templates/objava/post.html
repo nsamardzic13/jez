@@ -3,55 +3,114 @@
 {% load extras %}
 
 {% block content %}
-    {% define as prethodna_objava %}
-    <br><br><br>
-    {% for obj in sve_objave %}
-        {% csrf_token %}
-        {% if prethodna_objava != obj.objava.objava_id %}
-            <h3>{{ obj.getusername }} {{ student.stars }}</h3> <p>{{obj.getdate}}</p> <p>{{ obj.getlikes }}</p>
-            <!--samo jedan like/unlike botun po tekstu SKRATI KONJU-->
-            <form action="{% url 'objava:like' %}" method="post">
-                {% csrf_token %}
-                <input type="hidden" value="{{ user.username }}" name="html_user">
-                <input type="hidden" value="{{ obj.objava_id }}" name="html_objava">
-                <input type="hidden" value="{{ obj.getusername }}" name="html_objava_user">
-                {% if obj.objava_id not in user_likes %}
-                    <button type="submit" name="html_like" value="html_like">Like</button>
-                {% else %}
-                    <button type="submit" name="html_like" value="html_dislike">Disike</button>
-                {% endif %}
-            </form>
+<meta name="description" content="Unicat project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'plugins/colorbox/colorbox.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/blog_single.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/blog_single_responsive.css' %}">
 
-            <p> {{ obj.gettekst }}</p>
-        {% endif %}
+<div class="super_container">
+	<div class="blog">
+		<div class="container">
+			<div class="row">
+				<!-- Blog Content -->
+				<div class="col-lg-8">
+                    <div class="blog_content">
+                        <!-- Comments -->
+                        <div class="comments_container">
+                            <div class="comments_title"><span>Objave na XY kolegiju</span></div>
+                            <ul class="comments_list">
+                                {% define as prethodna_objava %}
 
-        {% if obj.check_image %} <!--provjeram format dokumenta -->
-            <a href="{{obj.attachment.url}}" download><img src="{{ obj.attachment.url}}" width="240"></a>
-            {% else %}
-            <a href="{{obj.attachment.url}}" download>{{ obj.attachment | split_name}}</a>
+                                {% for obj in sve_objave %}
+                                    {% csrf_token %}
+                                    <li>
+                                        <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
+                                            {% if prethodna_objava != obj.objava.objava_id %}
+                                                <div class="comment_image"><div><img src="{% static 'images/comment_1.jpg' %}" alt=""></div></div>
+                                            {% endif %}
+                                            <div class="comment_content">
+                                                {% if prethodna_objava != obj.objava.objava_id %}
+                                                <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
+                                                    <div class="comment_author"><a href="#">{{obj.getusername}} {{ student.stars }}</a></div>
+                                                    <div class="comment_time ml-auto">{{obj.getdate}}</div>
+                                                </div>
 
-        {% endif %}
+                                                <div class="comment_text">
+                                                        <p>{{obj.gettekst}}</p>
+                                                 </div>
+                                                {% endif %}
 
-        {% change obj.objava_id as prethodna_objava %}
-        <br>
-    {% endfor %}
+                                                 <div class=" justify-content-center align-items-center">
+                                                    {% if obj.check_image %} <!--provjeram format dokumenta -->
+                                                        <a href="{{obj.attachment.url}}" download><img src="{{ obj.attachment.url}}" width="240"></a>
+                                                        {% else %}
+                                                        <a href="{{obj.attachment.url}}" download>{{ obj.attachment | split_name}}</a>
+                                                    {% endif %}
+                                                 </div>
 
-    <!--
-        ne znam di se sad ovo uklapa pa sam tu stavila
-        {% if objava.objava_id  and  user.username in svi_lajkovi %}
-            <p>Tu buton za lajk i onda ide jedna fun</p>
-        {% else %}
-            <p>Nije lajkano buton za unlike</p>
-        {% endif %}
-        {{ objava.get_likes }}
--->
+                                                {% if prethodna_objava != obj.objava.objava_id %}
+                                                     <form action="{% url 'objava:like' %}" method="post">
+                                                         {% csrf_token %}
+                                                         <input type="hidden" value="{{ user.username }}" name="html_user">
+                                                         <input type="hidden" value="{{ obj.objava_id }}" name="html_objava">
+                                                          <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
+                                                            {% if obj.objava_id not in user_likes %}
+                                                               <!--<button type="submit" name="html_like" value="html_like">Like</button>-->
+                                                                <div class="comment_extra comment_likes"><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>108</span></a></div>
+                                                            {% else %}
+                                                                <button type="submit" name="html_like" value="html_dislike">Disike</button>
+                                                            {% endif %}
 
-<form method="post" enctype="multipart/form-data" >
-    <br><br><br><br><br><br><br><br>
-    {% csrf_token %}
-    {{ form.as_p }}
-    {{ file_form.as_p }}
-    <button type="submit" name="objavi">Objavi</button>
-</form>
+                                                          </div>
+                                                {% endif %}
 
+                                        </div>
+                                    </li>
+                                    {% change obj.objava_id as prethodna_objava %}
+                                {% endfor %}
+                            </ul>
+
+                            <div class="add_comment_container">
+                                <form method="post" enctype="multipart/form-data" class="comment_form">
+                                    {% csrf_token %}
+                                    <div class="justify-content-center input_col">
+                                        <div>
+                                            <div class="form_title">Komentiraj</div>
+                                            <label for="id_tekst"></label>
+                                            <textarea name="tekst" required="" id="id_tekst" class="comment_input comment_textarea"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label for="id_attachment">Attachment:</label>
+                                        <input type="file" name="attachment" multiple="" id="id_attachment">
+                                    </div>
+
+                                    <div>
+                                        <button type="submit" class="comment_button trans_200">Objavi</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+				    </div>
+			    </div>
+		    </div>
+	</div>
+
+
+</div>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="styles/bootstrap4/popper.js"></script>
+<script src="styles/bootstrap4/bootstrap.min.js"></script>
+<script src="plugins/easing/easing.js"></script>
+<script src="plugins/parallax-js-master/parallax.min.js"></script>
+<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
+<script src="js/blog_single.js"></script>
+</body>
+</html>
 {% endblock %}
