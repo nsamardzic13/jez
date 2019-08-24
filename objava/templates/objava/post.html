@@ -52,19 +52,19 @@
                                                  </div>
 
                                                 {% if prethodna_objava != obj.objava.objava_id %}
-                                                     <form action="{% url 'objava:like' %}" method="post">
+                                                     <!--<form action="{% url 'objava:like' %}" method="post">-->
                                                          {% csrf_token %}
                                                          <input type="hidden" value="{{ user.username }}" name="html_user">
                                                          <input type="hidden" value="{{ obj.objava_id }}" name="html_objava">
                                                           <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
                                                             {% if obj.objava_id not in user_likes %}
                                                                <!--<button type="submit" name="html_like" value="html_like">Like</button>-->
-                                                                <div class="comment_extra comment_likes"><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>108</span></a></div>
+                                                                <div class="comment_extra comment_likes"><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>{{ obj.getlikes }}</span></a></div>
                                                             {% else %}
                                                                 <button type="submit" name="html_like" value="html_dislike">Disike</button>
                                                             {% endif %}
-
                                                           </div>
+                                                     <!--</form>-->
                                                 {% endif %}
 
                                         </div>

@@ -18,11 +18,8 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
     active_student = Student.objects.get(user_id = request.user)
 
     if request.method == 'POST':
-        form = ObjavaForm(request.POST)
-        file_form = FilesObjavaForm(request.POST, request.FILES)
-        files = request.FILES.getlist('attachment')  # field name in model
-
-        if form.is_valid() and file_form.is_valid():
+        form = ObjavaForm(data=request.POST)
+        if form.is_valid(): #ako imam tekst ne znaci da imam i files
             objava = form.save(commit=False)
             objava.username = request.user
             kol = Kolegij.objects.get(kolegij_id=kolegij_id, studij_id=studij_id)
@@ -30,11 +27,19 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
             objava.tema = Tema.objects.get(tema_id = tema_id)
             objava.save()
 
-            for f in files:
-                file_instance = Objava_Files(attachment=f, objava=objava, tema_id=tema_id)
-                file_instance.save()
+
+            file_form = FilesObjavaForm(request.POST, request.FILES)
+            if file_form.is_valid():
+                files = request.FILES.getlist('attachment')  # field name in model
+                for f in files:
+                    file_instance = Objava_Files(attachment=f, objava=objava, tema_id=tema_id)
+                    file_instance.save()
+            # else:
+            #     file_instance = Objava_Files(attachment=Null, objava=objava, tema_id=tema_id)
+            #     file_instance.save()
 
             return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id}))
+
     sve_objave = Objava_Files.objects.all().filter(tema_id=tema_id).order_by('objava_id')
     svi_lajkovi = Objava_Likes.objects.all()
     user_likes = list(Objava_Likes.objects.filter(username_id=request.user.id).values_list('objava_id', flat=True))
