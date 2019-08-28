@@ -1,13 +1,104 @@
 {% extends 'account/mypage.html' %}
 
-{% block content %}
- <h1>tu se prikazuje broj semestara ovisno preddipl/dipl</h1>
-    <h2>{{studij_ime}}</h2>
-    <a href="/studij/studijski_programi/studij={{studij_id}}/semestar=1">Prvi semestar</a><br><br>
-    <a href="/studij/studijski_programi/studij={{studij_id}}/semestar=2">Drugi semestar</a><br><br>
-    <a href="/studij/studijski_programi/studij={{studij_id}}/semestar=3">Treci semestar</a><br><br>
-    <a href="/studij/studijski_programi/studij={{studij_id}}/semestar=4">Četvrti semestar</a><br><br>
-    <a href="/studij/studijski_programi/studij={{studij_id}}/semestar=5">Peti semestar</a><br><br>
-    <a href="/studij/studijski_programi/studij={{studij_id}}/semestar=6">Šesti semestar</a><br><br>
+{% load static from staticfiles %}
+{% load extras %}
 
+{% block content %}
+
+
+<meta name="description" content="Unicat project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/style_login.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'plugins/colorbox/colorbox.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/course.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/course_responsive.css' %}">
+
+<div class="super_container">
+	<br><br><br>
+   <div class="course">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-8">
+					<div class="course_container">
+						<div class="course_title">{{studij_ime}}</div>
+							<div class="tab_panel active">
+								<div class="tab_panel_content">
+									<div class="tab_panel_title">Semestri</div>
+									<div class="tab_panel_content">
+										<!-- Dropdowns semestri -->
+
+                                       {% for i in 6|times %}
+                                          <ul class="dropdowns">
+                                               <li class="has_children">
+                                                   <div class="dropdown_item">
+                                                       <div class="dropdown_item_title">
+														   <span>{{i | add}}. semestar</span>
+													   </div>
+                                                   </div>
+												   {% for kolegij in kolegiji %}
+												   		{% check_sem i as sem_num %}
+														{% if kolegij.semestar == sem_num %}
+															<ul>
+															   <li>
+																   <div class="dropdown_item">
+																	   <div class="dropdown_item_title">
+
+																			<span>
+																				<a href="/studij/studijski_programi/studij={{studij_id}}/semestar={{i | add}}/kolegij={{kolegij.kolegij_id}}">{{kolegij.kolegij_ime}}</a>
+																			</span>
+
+																	   </div>
+																   </div>
+															   </li>
+														   </ul>
+												   		{% endif %}
+												   {% endfor %}
+                                               </li>
+                                           </ul>
+                                       {% endfor %}
+
+									</div>
+								</div>
+							</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				</div>
+			</div>
+		</div>
+</div>
+
+
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'plugins/colorbox/jquery.colorbox-min.js' %}"></script>
+<script src="{% static 'js/course.js' %}"></script>
+</body>
+</html>
 {% endblock %}

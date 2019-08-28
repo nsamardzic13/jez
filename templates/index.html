@@ -61,11 +61,11 @@
 							</div>
 							<nav class="main_nav_contaner ml-auto">
 								<ul class="main_nav">
-									<li class="active"><a href="{% url 'homepage' %}">Home</a></li>
+									<li class="active"><a href="{% url 'homepage' %}">Početna</a></li>
 									<li> <a href="{% url 'tko_smo:homepage'%}">Tko smo?</a></li>
 									<li><a href="{% url 'za_brucose:homepage'%}">Za brucose</a></li>
-									<li><a href="contact.html">Kontakt</a></li>
-									<li><a href="contact.html">Doniraj</a></li>
+									<li><a href="{% url 'kontakt:kontakt'%}">Kontakt</a></li>
+									<li><a href="{% url 'donacije:donacije'%}">Doniraj</a></li>
 									{% if not user.is_authenticated %}
 									<li><a href="{% url 'account:signup'%}">Registriraj se</a></li>
 									{% else %}

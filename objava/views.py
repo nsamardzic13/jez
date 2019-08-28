@@ -10,13 +10,16 @@ from django.contrib import messages
 from django.http import  HttpResponseRedirect
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='account/login')
 def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
     form = ObjavaForm()
     file_form = FilesObjavaForm()
     active_student = Student.objects.get(user_id = request.user)
-
+    tema = Tema.objects.get(tema_id=tema_id)
+    tema_ime=tema.tema_ime
     if request.method == 'POST':
         form = ObjavaForm(data=request.POST)
         if form.is_valid(): #ako imam tekst ne znaci da imam i files
@@ -72,6 +75,7 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
         'studij_id': studij_id,
         'semestar_num': semestar_num,
         'tema_id': tema_id,
+        'tema_ime': tema_ime
     }
     return render(request, 'objava/post.html', context)
 

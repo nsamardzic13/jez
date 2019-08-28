@@ -9,6 +9,7 @@ class Studij(models.Model):
     def __str__(self):
         return self.studij_ime
 
+
 class Kolegij(models.Model):
     dummy_id = models.AutoField(primary_key=True)
     kolegij_id = models.CharField(max_length=10)

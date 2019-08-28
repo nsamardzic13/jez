@@ -1,0 +1,13 @@
+{% extends 'account/mypage.html' %}
+
+{% block content %}
+ <h1>tu se prikazuje broj semestara ovisno preddipl/dipl</h1>
+    <h2>{{studij_ime}}</h2>
+    <a href="/studij/studijski_programi/studij={{studij_id}}/semestar=1">Prvi semestar</a><br><br>
+    <a href="/studij/studijski_programi/studij={{studij_id}}/semestar=2">Drugi semestar</a><br><br>
+    <a href="/studij/studijski_programi/studij={{studij_id}}/semestar=3">Treci semestar</a><br><br>
+    <a href="/studij/studijski_programi/studij={{studij_id}}/semestar=4">Četvrti semestar</a><br><br>
+    <a href="/studij/studijski_programi/studij={{studij_id}}/semestar=5">Peti semestar</a><br><br>
+    <a href="/studij/studijski_programi/studij={{studij_id}}/semestar=6">Šesti semestar</a><br><br>
+
+{% endblock %}

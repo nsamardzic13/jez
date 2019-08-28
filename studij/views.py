@@ -13,8 +13,9 @@ def homepage(request):
 
 def studijski_programi(request, studij_id):
     studij = Studij.objects.get(studij_id=studij_id)
-    studij_ime = studij.studij_id
+    studij_ime = studij.studij_ime
     razina = studij_id[0]
+    kolegiji = Kolegij.objects.all().filter(studij_id_id=studij_id)
     if razina == 'p':
         razina = 0
     elif razina == 'd':
@@ -23,7 +24,12 @@ def studijski_programi(request, studij_id):
     else:
         razina = 2 #nije nista od navedenog doslo je do zajeba
 
-    context={'studij_id': studij_id, 'studij_ime': studij_ime, 'razina': razina}
+    context={
+        'studij_id': studij_id,
+        'studij_ime': studij_ime,
+        'razina': razina,
+        'kolegiji' : kolegiji,
+    }
     return render(request, 'studij/semestri.html', context)
 
 def semestri(request, studij_id, semestar_num):

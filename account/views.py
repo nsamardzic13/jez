@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from .models import User
 from django.contrib.auth.forms import (
     UserCreationForm,
     AuthenticationForm,
@@ -27,13 +28,8 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 request.session['username'] = username
-                messages.info(request, f"hey {username}")
-                return render(request, "account/mypage.html")
-            else:
-                messages.error(request, "Ne valja nesto!")
-        else:
-                messages.error(request, "AA")
-        return HttpResponseRedirect(reverse('account:login'))
+
+        return HttpResponseRedirect(reverse('account:mypage'))
     form = AuthenticationForm()
     return render(request, "account/login.html", {'form':form})
 
@@ -95,7 +91,7 @@ def signup_view(request):
 
 def mypage_view(request):
     #ispis sve moje kolegije
-    username = request.session['username']
+    username = request.user.username
     svi_moji_kolegiji = Kolegij.objects.raw('select * from studij_kolegij, account_moj_kolegij where studij_kolegij.kolegij_id=account_moj_kolegij.kolegij_id and account_moj_kolegij.username= %s and studij_kolegij.studij_id_id=account_moj_kolegij.studij_id_id', [username])
     context = {'svi_moji_kolegiji' : svi_moji_kolegiji}
     return render(request, "account/mypage.html", context)

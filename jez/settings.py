@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'studij',
     'objava',
     'tema',
+    'kontakt',
+    'donacije'
 ]
 
 

@@ -20,14 +20,14 @@
                     <div class="blog_content">
                         <!-- Comments -->
                         <div class="comments_container">
-                            <div class="comments_title"><span>{{kolegij_id}}</span></div>
+                            <div class="comments_title"><span>{{kolegij_id}} - {{tema_ime}}</span></div><br><br>
                             <ul class="comments_list">
                                 {% define as prethodna_objava %}
                                 {% for obj in sve_objave %}
                                     {% csrf_token %}
                                     <li>
                                         <!--USER INFO-->
-                                        <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
+                                        <div class="comment_item d-flex flex-row align-items-start jutify-content-start border">
                                             {% if prethodna_objava != obj.objava_id %}
                                                 <div class="comment_image"><div><img src="{{ user.student.profile_image.url}}" alt=""></div></div>
                                             {% endif %}
@@ -36,7 +36,7 @@
                                                 <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
                                                     <div class="comment_author"><a href="#">{{obj.username}}
                                                       {% for i in student.stars|times %}
-                                                        <i class="fa fa-star" aria-hidden="true" style="font-size:18px;color:blue"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" style="font-size:18px;color:rgba(94.90196078431372%,100%,0%,0.953)"></i>
                                                       {% endfor %}
                                                     </a></div>
                                                     <div class="comment_time ml-auto">{{obj.date}}</div>
@@ -68,20 +68,21 @@
                                                           <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
                                                             {% if obj.objava_id not in user_likes %}
                                                               <input type="hidden" value="html_like" name="html_like">
-                                                              <div class="comment_extra comment_likes"><a><i class="fa fa-thumbs-up" style="font-size:22px;color:blue" onclick="document.forms['like_dislike{{obj.objava_id}}'].submit()"></i><span>{{ obj.getlikes }}</span></a></div>
+                                                              <div class="comment_extra comment_likes"><a><i class="fa fa-heart-o" style="font-size:22px;color:#e60e08" onclick="document.forms['like_dislike{{obj.objava_id}}'].submit()"></i><span>{{ obj.getlikes }}</span></a></div>
                                                             {% else %}
                                                                 <input type="hidden" value="html_dislike" name="html_like">
-                                                              <div class="comment_extra comment_likes"><a><i class="fa fa-thumbs-down" style="font-size:22px;color:blue" onclick="document.forms['like_dislike{{obj.objava_id}}'].submit()"></i><span>{{ obj.getlikes }}</span></a></div>
+                                                              <div class="comment_extra comment_likes"><a><i class="fa fa-heart" style="font-size:22px;color:#e60e08" onclick="document.forms['like_dislike{{obj.objava_id}}'].submit()"></i><span>{{ obj.getlikes }}</span></a></div>
                                                             {% endif %}
-                                                          </div>
                                                          <input type="hidden" value="{{ studij_id }}" name="get_studij_id">
                                                          <input type="hidden" value="{{ kolegij_id }}" name="get_kolegij_id">
                                                          <input type="hidden" value="{{ semestar_num }}" name="get_semestar_num">
                                                          <input type="hidden" value="{{ tema_id }}" name="get_tema_id">
                                                      </form>
-                                                {% endif %}
-                                                <a href="#id_tekst" onclick="copyText('{{user.username}}', '{{obj.tekst}}', '{{obj.date}}')">Odgovori</a>
-                                        </div>
+                                                    <div class="comment_extra comment_reply"><a href="#id_tekst" onclick="copyText('{{user.username}}', '{{obj.tekst}}', '{{obj.date}}')"><i class="fa fa-reply" style="font-size:22px;color:#e60e08" aria-hidden="true"></i>&nbsp;Odgovori</a></div>
+                                                </div>
+                                            {% endif %}
+                                            </div>
+
                                     </li>
                                     {% change obj.objava_id as prethodna_objava %}
                                 {% endfor %}

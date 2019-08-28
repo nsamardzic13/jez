@@ -13,6 +13,14 @@ def split_name(value):
 def times(number):
     return range(number)
 
+@register.filter(name='add')
+def add(number):
+    return number+1
+
+@register.simple_tag()
+def check_sem(value):
+    return value+1
+
 @register.simple_tag()
 def check_image(value):
     name, extension = os.path.splitext(str(value))
