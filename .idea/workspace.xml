@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d993984f-5e6b-491f-a6db-443f308afced" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/studij/templates/studij/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/studij/templates/studij/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/studij/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/studij/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema/templates/tema/predmet.html" beforeDir="false" afterPath="$PROJECT_DIR$/tema/templates/tema/predmet.html" afterDir="false" />
-    </list>
+    <list default="true" id="d993984f-5e6b-491f-a6db-443f308afced" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,20 +206,20 @@
           <entry key="cell" value="50" />
           <entry key="html" value="263" />
           <entry key="py" value="113" />
-          <entry key="txt" value="23" />
+          <entry key="txt" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="263" />
-          <entry key="PLAIN_TEXT" value="23" />
+          <entry key="PLAIN_TEXT" value="38" />
           <entry key="Python" value="113" />
           <entry key="Scratch" value="50" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -271,8 +266,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/studij/templates/studij/homepage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="102" column="81" selection-start-line="102" selection-start-column="81" selection-end-line="102" selection-end-column="81" />
+            <state relative-caret-position="243">
+              <caret line="93" column="61" lean-forward="true" selection-start-line="93" selection-start-column="61" selection-end-line="93" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -732,7 +727,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566664963770</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="arhiva kolegija">
+      <created>1566669817987</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1566669817987</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -848,7 +850,8 @@
     <MESSAGE value="mypage" />
     <MESSAGE value="account templates almost done" />
     <MESSAGE value="subject landing page" />
-    <option name="LAST_COMMIT_MESSAGE" value="subject landing page" />
+    <MESSAGE value="arhiva kolegija" />
+    <option name="LAST_COMMIT_MESSAGE" value="arhiva kolegija" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1187,8 +1190,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/studij/templates/studij/homepage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="102" column="81" selection-start-line="102" selection-start-column="81" selection-end-line="102" selection-end-column="81" />
+        <state relative-caret-position="243">
+          <caret line="93" column="61" lean-forward="true" selection-start-line="93" selection-start-column="61" selection-end-line="93" selection-end-column="61" />
         </state>
       </provider>
     </entry>
