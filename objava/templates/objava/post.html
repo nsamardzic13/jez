@@ -20,10 +20,10 @@
                     <div class="blog_content">
                         <!-- Comments -->
                         <div class="comments_container">
-                            <div class="comments_title"><span>{{kolegij_id}} - {{tema_ime}}</span></div><br><br>
+                            <div class="comments_title"><span>{{kolegij_id}}</span></div><br><br>
                             <ul class="comments_list">
                                 {% define as prethodna_objava %}
-                                {% for obj in sve_objave %}
+                                {% for obj in items %}
                                     {% csrf_token %}
                                     <li>
                                         <!--USER INFO-->
@@ -87,7 +87,7 @@
                                     {% change obj.objava_id as prethodna_objava %}
                                 {% endfor %}
                             </ul>
-
+                            <br><br>
                             <!--PAGINACIJA-->
                             {% if items.has_other_pages %}
                                 <div class="col-6 offset-3 text-center pagination-set"

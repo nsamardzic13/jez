@@ -13,7 +13,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required(login_url='account/login')
+
 def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
     form = ObjavaForm()
     file_form = FilesObjavaForm()
@@ -43,8 +43,8 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
     sve_objave = Objava.objects.all().filter(tema_id=tema_id).order_by('objava_id')
 
     # ide paginacijica hehe
-    paginator = Paginator(sve_objave, 1)
-    page = request.GET.get('page', 1)
+    paginator = Paginator(sve_objave, 4)
+    page = request.GET.get('page')
 
     try:
         items = paginator.page(page)
