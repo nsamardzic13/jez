@@ -11,6 +11,14 @@
 <link rel="stylesheet" type="text/css" href="{% static 'styles/blog_single.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'styles/blog_single_responsive.css' %}">
 
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+
 <div class="super_container">
 	<div class="blog">
 		<div class="container">
@@ -29,7 +37,7 @@
                                         <!--USER INFO-->
                                         <div class="comment_item d-flex flex-row align-items-start jutify-content-start border">
                                             {% if prethodna_objava != obj.objava_id %}
-                                                <div class="comment_image"><div><img src="{{ user.student.profile_image.url}}" alt=""></div></div>
+                                                <div class="comment_image"><div><img src="{{ obj.getprofileimage.student.profile_image.url}}" alt=""></div></div>
                                             {% endif %}
                                             <div class="comment_content">
                                                 {% if prethodna_objava != obj.objava_id %}
@@ -78,7 +86,17 @@
                                                          <input type="hidden" value="{{ semestar_num }}" name="get_semestar_num">
                                                          <input type="hidden" value="{{ tema_id }}" name="get_tema_id">
                                                      </form>
-                                                    <div class="comment_extra comment_reply"><a href="#id_tekst" onclick="copyText('{{user.username}}', '{{obj.tekst}}', '{{obj.date}}')"><i class="fa fa-reply" style="font-size:22px;color:#e60e08" aria-hidden="true"></i>&nbsp;Odgovori</a></div>
+                                                    <div class="comment_extra comment_likes"><a href="#id_tekst" onclick="copyText('{{user.username}}', '{{obj.tekst}}', '{{obj.date}}')"><i class="fa fa-reply" style="font-size:22px;color:#e60e08" aria-hidden="true"></i>&nbsp;Odgovori</a></div>
+                                                     <div class="comment_extra comment_reply">
+                                                        <a  data-toggle="dropdown" href="#"><i class="fa fa-exclamation-triangle " style="font-size:22px;color:#e60e08" aria-hidden="true"></i> Prijavi objavu </a>
+                                                         <!--sad ide neka forma i pop up da je to zaprimljeno-->
+                                                         <div class="dropdown-menu">
+                                                            <a href="#">Uvredljiv ili neprimjeren sadržaj</a><br>
+                                                            <a href="#">Povreda autorskih prava</a>
+                                                            <a href="#">Ostalo</a>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             {% endif %}
                                             </div>
@@ -163,6 +181,22 @@
 <script src="{% static 'plugins/colorbox/jquery.colorbox-min.js' %}"></script>
 <script src="{% static 'js/blog_single.js' %}"></script>
 <script src="{% static 'js/our_custom.js' %}"></script>
+
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+
 </body>
 </html>
 {% endblock %}

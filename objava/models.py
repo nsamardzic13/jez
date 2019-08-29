@@ -1,6 +1,7 @@
 from django.db import models
 from tema.models import Tema
 from django.contrib.auth.models import User
+from account.models import Student
 from django.utils import timezone
 import os
 
@@ -27,6 +28,8 @@ class Objava(models.Model):
     def isliked(self):
         return Objava_Likes.objects.filter(objava_id_id = self.objava_id).exists()
 
+    def getprofileimage(self):
+        return User.objects.get(username=self.username)
 
     def __str__(self):
         return self.objava_id
