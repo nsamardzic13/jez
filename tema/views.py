@@ -4,6 +4,7 @@ from tema.models import Tema
 from account.models import Moj_Kolegij
 from django.http import  HttpResponseRedirect
 from django.urls import reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 def teme_views(request, studij_id, kolegij_id, semestar_num):
@@ -38,6 +39,30 @@ def teme_views(request, studij_id, kolegij_id, semestar_num):
         context = {'kolegij_id': kolegij_id, 'studij_id': studij_id, 'semestar_num': semestar_num}
         return HttpResponseRedirect(reverse('tema:teme_homepage', kwargs=context))
 
-    context = {'kolegij_id': kolegij_id, 'studij_id': studij_id, 'moj_kolegij': moj_kolegij, 'sve_teme': sve_teme,
-               'form': form, 'semestar_num': semestar_num, }
+    paginator = Paginator(sve_teme, 1)
+    page = request.GET.get('page')
+
+    try:
+        items = paginator.page(page)
+    except PageNotAnInteger:
+        items = paginator.page(1)
+    except EmptyPage:
+        items = paginator.page(paginator.num_pages)
+
+    index = items.number - 1
+    max_index = len(paginator.page_range)
+    start_index = index - 5 if index >= 5 else 0
+    end_index = index + 5 if index <= max_index - 5 else max_index
+    page_range = paginator.page_range[start_index:end_index]
+
+    context = {
+        'kolegij_id': kolegij_id,
+        'studij_id': studij_id,
+        'moj_kolegij': moj_kolegij,
+        'sve_teme': sve_teme,
+        'form': form,
+        'semestar_num': semestar_num,
+        'items': items,
+        'page_range':page_range,
+    }
     return render(request, 'tema/predmet.html', context)
