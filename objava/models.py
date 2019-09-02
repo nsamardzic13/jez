@@ -62,3 +62,6 @@ class Objava_Likes(models.Model):
     objava_id = models.ForeignKey(Objava, on_delete=models.DO_NOTHING)
     username = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
+class Objava_Prijava(models.Model):
+    objava_id = models.ForeignKey(Objava, on_delete=models.DO_NOTHING)
+    username = models.ForeignKey(User, on_delete=models.DO_NOTHING)

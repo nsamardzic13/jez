@@ -3,7 +3,7 @@ from .forms import ObjavaForm, FilesObjavaForm
 from studij.models import Kolegij
 from account.models import Student
 from tema.models import Tema
-from objava.models import Objava, Objava_Likes, Objava_Files
+from objava.models import Objava, Objava_Likes, Objava_Files, Objava_Prijava
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib import messages
@@ -80,7 +80,7 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
     return render(request, 'objava/post.html', context)
 
 def like_view(request):
-    print(request.POST['html_objava'])
+    #print(request.POST['html_objava'])
     tmp_like = request.POST['html_like']
     active_user = User.objects.get(username= request.POST['html_user'])
     active_student = Student.objects.get(user_id=User.objects.get(username= request.POST['html_user']))
@@ -108,3 +108,21 @@ def like_view(request):
     semestar_num = request.POST['get_semestar_num']
     tema_id = request.POST['get_tema_id']
     return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id}))
+
+def report_view(request):
+    active_user = User.objects.get(username=request.POST['html_user'])
+
+    if not Objava_Prijava.objects.filter(objava_id = Objava.objects.get(objava_id = request.POST['html_objava']), username = active_user).exists():
+        Objava_Prijava.objects.create(objava_id = Objava.objects.get(objava_id = request.POST['html_objava']), username = active_user)
+
+    cnt = Objava_Prijava.objects.filter(objava_id = Objava.objects.get(objava_id = request.POST['html_objava'])).count()
+    if cnt > 0:
+        Objava.objects.filter(objava_id = request.POST['html_objava']).delete()
+
+    studij_id = request.POST['get_studij_id']
+    kolegij_id = request.POST['get_kolegij_id']
+    semestar_num = request.POST['get_semestar_num']
+    tema_id = request.POST['get_tema_id']
+    return HttpResponseRedirect(reverse('objava:objava_homepage',
+                                        kwargs={'studij_id': studij_id, 'kolegij_id': kolegij_id,
+                                                'semestar_num': semestar_num, 'tema_id': tema_id}))
