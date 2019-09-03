@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d993984f-5e6b-491f-a6db-443f308afced" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/templates/account/mypage.html" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/account/mypage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/objava/templates/objava/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/objava/templates/objava/post.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema/templates/tema/predmet.html" beforeDir="false" afterPath="$PROJECT_DIR$/tema/templates/tema/predmet.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tema/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tema/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -174,37 +174,41 @@
     <session id="-249473928">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.47" value="1" />
+          <entry key="project.open.time.50" value="1" />
+          <entry key="project.open.time.51" value="1" />
           <entry key="project.open.time.54" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.open.time.70" value="1" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="5" />
+          <entry key="html" value="8" />
           <entry key="py" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="5" />
+          <entry key="HTML" value="8" />
           <entry key="Python" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="339" />
+          <entry key="html" value="704" />
           <entry key="py" value="301" />
           <entry key="txt" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="339" />
+          <entry key="HTML" value="704" />
           <entry key="PLAIN_TEXT" value="20" />
           <entry key="Python" value="301" />
         </counts>
@@ -268,32 +272,41 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/objava/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="72" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/objava/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
+            <state relative-caret-position="502">
               <caret line="31" column="54" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
-                <marker date="1567106718451" expanded="true" signature="1073:1135" ph="..." />
+                <marker date="1567502759347" expanded="true" signature="1073:1135" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/account/templates/account/mypage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+            <state relative-caret-position="324">
+              <caret line="107" column="32" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/course.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-771">
+              <caret line="461" column="16" selection-start-line="461" selection-start-column="16" selection-end-line="505" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4775">
+              <caret line="245" lean-forward="true" selection-start-line="245" selection-end-line="263" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -301,14 +314,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/objava/templates/objava/post.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="108" column="50" selection-start-line="108" selection-start-column="50" selection-end-line="108" selection-end-column="50" />
+            <state relative-caret-position="3101">
+              <caret line="154" column="32" lean-forward="true" selection-start-line="154" selection-start-column="32" selection-end-line="154" selection-end-column="32" />
               <folding>
                 <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#0;n#form#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#a#0;n#div#3;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#7706#7742#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -317,59 +329,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tema/templates/tema/predmet.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2877">
-              <caret line="137" column="64" selection-start-line="137" selection-start-column="64" selection-end-line="137" selection-end-column="64" />
+            <state relative-caret-position="179">
+              <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="31" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tema/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" column="72" selection-start-line="6" selection-start-column="72" selection-end-line="6" selection-end-column="72" />
+            <state relative-caret-position="502">
+              <caret line="67" column="56" lean-forward="true" selection-start-line="67" selection-start-column="56" selection-end-line="67" selection-end-column="56" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/account/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="30" column="18" lean-forward="true" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/account/templates/account/settings.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="61">
-              <caret line="41" column="68" selection-start-line="41" selection-start-column="68" selection-end-line="41" selection-end-column="68" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/paginacija.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="1" selection-start-column="1" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jez/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -386,10 +359,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>courses now</find>
-      <find>form</find>
-      <find>counter_f</find>
-      <find>counter</find>
       <find>contact f</find>
       <find>col_</find>
       <find>counter_</find>
@@ -416,6 +385,10 @@
       <find>pagination</find>
       <find>comment</find>
       <find>ema</find>
+      <find>js/jquery-3.2.1.min.js</find>
+      <find>plugins/colorbox/jquery.colorbox-min.js</find>
+      <find>prijavi</find>
+      <find>js/blog_single.js</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -452,7 +425,6 @@
         <option value="$PROJECT_DIR$/account/views.py" />
         <option value="$PROJECT_DIR$/studij/templates/studij/semestri.html" />
         <option value="$PROJECT_DIR$/static/styles/course.css" />
-        <option value="$PROJECT_DIR$/account/templates/account/mypage.html" />
         <option value="$PROJECT_DIR$/static/js/our_custom.js" />
         <option value="$PROJECT_DIR$/objava/templates/objava/backup.html" />
         <option value="$PROJECT_DIR$/templates/about.html" />
@@ -463,7 +435,6 @@
         <option value="$PROJECT_DIR$/jez/urls.py" />
         <option value="$PROJECT_DIR$/donacije/urls.py" />
         <option value="$PROJECT_DIR$/donacije/templates/donacije/donacije.html" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/za_brucose/templates/za_brucose/homepage.html" />
         <option value="$PROJECT_DIR$/donacije/views.py" />
         <option value="$PROJECT_DIR$/objava/views.py" />
@@ -473,9 +444,11 @@
         <option value="$PROJECT_DIR$/objava/models.py" />
         <option value="$PROJECT_DIR$/account/templates/account/settings.html" />
         <option value="$PROJECT_DIR$/templates/paginacija.html" />
-        <option value="$PROJECT_DIR$/objava/templates/objava/post.html" />
         <option value="$PROJECT_DIR$/tema/templates/tema/predmet.html" />
         <option value="$PROJECT_DIR$/tema/views.py" />
+        <option value="$PROJECT_DIR$/objava/templates/objava/post.html" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/account/templates/account/mypage.html" />
       </list>
     </option>
   </component>
@@ -495,6 +468,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -528,6 +502,19 @@
             <path>
               <item name="jez" type="b2602c69:ProjectViewProjectNode" />
               <item name="jez" type="462c0819:PsiDirectoryNode" />
+              <item name="objava" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jez" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jez" type="462c0819:PsiDirectoryNode" />
+              <item name="objava" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="objava" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jez" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jez" type="462c0819:PsiDirectoryNode" />
               <item name="tema" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -542,6 +529,11 @@
               <item name="tema" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="tema" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jez" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jez" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jez" type="b2602c69:ProjectViewProjectNode" />
@@ -551,7 +543,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -563,15 +554,178 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Korisnik\Desktop\Dev\jez_new\kontakt\templates\kontakt" />
-      <recent name="C:\Users\Korisnik\Desktop\Dev\jez2\tema\templates\tema" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Korisnik\Desktop\Dev\jez2\media\profile_image" />
       <recent name="C:\Users\Korisnik\Desktop\Dev\jez2\account\templates\account" />
       <recent name="C:\Users\Korisnik\Desktop\Dev\jez2\templates" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Korisnik\Desktop\Dev\jez_new\kontakt\templates\kontakt" />
+      <recent name="C:\Users\Korisnik\Desktop\Dev\jez2\tema\templates\tema" />
+    </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/account/__pycache__/__init__.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/account/__pycache__/admin.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/account/__pycache__/forms.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/account/__pycache__/models.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/account/__pycache__/urls.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/account/__pycache__/views.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/account/migrations/__pycache__/0001_initial.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/account/migrations/__pycache__/__init__.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/jez/__pycache__/__init__.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/jez/__pycache__/settings.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/jez/__pycache__/urls.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/jez/__pycache__/views.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/jez/__pycache__/wsgi.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/__pycache__/__init__.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/__pycache__/admin.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/__pycache__/forms.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/__pycache__/models.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/__pycache__/urls.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/__pycache__/views.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/migrations/__pycache__/0001_initial.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/migrations/__pycache__/0002_objava_files_tema.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/migrations/__pycache__/__init__.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/models.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/templates/objava/post.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/templatetags/__pycache__/__init__.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/templatetags/__pycache__/extras.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/urls.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/objava/views.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/studij/__pycache__/__init__.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/studij/__pycache__/admin.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/studij/__pycache__/models.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/studij/__pycache__/urls.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/studij/__pycache__/views.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/studij/migrations/__pycache__/0001_initial.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/studij/migrations/__pycache__/__init__.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tema/__pycache__/__init__.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tema/__pycache__/admin.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tema/__pycache__/forms.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tema/__pycache__/models.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tema/__pycache__/urls.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tema/__pycache__/views.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tema/migrations/__pycache__/0001_initial.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tema/migrations/__pycache__/__init__.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tko_smo/__pycache__/__init__.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tko_smo/__pycache__/admin.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tko_smo/__pycache__/models.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tko_smo/__pycache__/urls.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tko_smo/__pycache__/views.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tko_smo/migrations/__pycache__/__init__.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/za_brucose/__pycache__/__init__.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/za_brucose/__pycache__/admin.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/za_brucose/__pycache__/models.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/za_brucose/__pycache__/urls.cpython-37.pyc</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/za_brucose/__pycache__/views.cpython-37.pyc</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -846,7 +1000,21 @@
       <option name="project" value="LOCAL" />
       <updated>1567107448772</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="minor code changes">
+      <created>1567107933960</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1567107933960</updated>
+    </task>
+    <task id="LOCAL-00029" summary="minor code changes">
+      <created>1567502824472</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1567502824472</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -854,7 +1022,7 @@
     <editor active="true" />
     <layout>
       <window_info x="22" y="144" width="229" height="705" id="Database" order="0" sideWeight="0.30212766" weight="0.24362417" />
-      <window_info active="true" x="33" y="316" width="288" height="705" id="Project" order="1" sideWeight="0.69787234" visible="true" weight="0.15436241" />
+      <window_info active="true" x="33" y="316" width="288" height="705" id="Project" order="1" sideWeight="0.69787234" visible="true" weight="0.1624161" />
       <window_info id="Structure" order="2" weight="0.1818792" />
       <window_info id="Favorites" order="3" weight="0.32885906" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1186,13 +1354,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="67" column="74" selection-start-line="67" selection-start-column="74" selection-end-line="67" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/za_brucose/templates/za_brucose/homepage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
@@ -1228,13 +1389,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/course.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8568">
-          <caret line="408" column="75" selection-start-line="408" selection-start-column="68" selection-end-line="408" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/courses.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7119">
@@ -1263,35 +1417,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jez/views.py">
+    <entry file="file://$PROJECT_DIR$/objava/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/account/templates/account/mypage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/objava/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="31" column="54" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
+        <state relative-caret-position="231">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
-            <marker date="1567106718451" expanded="true" signature="1073:1135" ph="..." />
+            <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/account/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="30" column="18" lean-forward="true" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+        <state relative-caret-position="504">
+          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
@@ -1300,7 +1439,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/account/templates/account/settings.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
+        <state relative-caret-position="861">
           <caret line="41" column="68" selection-start-line="41" selection-start-column="68" selection-end-line="41" selection-end-column="68" />
         </state>
       </provider>
@@ -1312,41 +1451,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/objava/templates/objava/post.html">
+    <entry file="file://$PROJECT_DIR$/jez/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="108" column="50" selection-start-line="108" selection-start-column="50" selection-end-line="108" selection-end-column="50" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#0;n#form#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#div#3;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#7706#7742#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/objava/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tema/templates/tema/predmet.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2877">
-          <caret line="137" column="64" selection-start-line="137" selection-start-column="64" selection-end-line="137" selection-end-column="64" />
+        <state relative-caret-position="84">
+          <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tema/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="72" selection-start-line="6" selection-start-column="72" selection-end-line="6" selection-end-column="72" />
+        <state relative-caret-position="502">
+          <caret line="67" column="56" lean-forward="true" selection-start-line="67" selection-start-column="56" selection-end-line="67" selection-end-column="56" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/objava/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="31" column="54" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+            <marker date="1567502759347" expanded="true" signature="1073:1135" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tema/templates/tema/predmet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="31" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/objava/templates/objava/post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3101">
+          <caret line="154" column="32" lean-forward="true" selection-start-line="154" selection-start-column="32" selection-end-line="154" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#0;n#form#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#3;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4775">
+          <caret line="245" lean-forward="true" selection-start-line="245" selection-end-line="263" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/course.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-771">
+          <caret line="461" column="16" selection-start-line="461" selection-start-column="16" selection-end-line="505" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/account/templates/account/mypage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="107" column="32" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
         </state>
       </provider>
     </entry>
