@@ -6,13 +6,19 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-
+<br><br><br><br>
 <div class="container login-container">
     <div class="row">
         <div class="col-md-6 login-form-1">
             <h3>Prijavi se</h3>
             <form action="{% url 'account:login' %}" method="post">
                 {% csrf_token %}
+                    <p>hej</p>
+                    {% for message in messages %}
+                        <p>hej</p>
+                        <p> {{message}}</p>
+
+                    {% endfor %}
 
                 <div class="form-group">
                  <input type="text" class="form-control" name="username" id="id_username" placeholder="Korisničko ime">

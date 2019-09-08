@@ -17,8 +17,10 @@ from account.forms import (
 from django.contrib import messages
 from .models import Kolegij
 from django.contrib.auth import update_session_auth_hash #za ponovnu prijavu nakon promjene lozinke!
-
+from django.core.exceptions import ValidationError
 def login_view(request):
+    form = AuthenticationForm()
+
     if request.method== 'POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
@@ -26,12 +28,17 @@ def login_view(request):
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
-                login(request, user)
-                request.session['username'] = username
+                if user.is_active:
+                    login(request, user)
+                    request.session['username'] = username
+                    messages.success(request, "lalal") #RADI
+                    return HttpResponseRedirect(reverse('account:mypage'))
 
-        return HttpResponseRedirect(reverse('account:mypage'))
-    form = AuthenticationForm()
-    return render(request, "account/login.html", {'form':form})
+                print("tu sam")
+                messages.info(request, "Pogresan username ili lozinka")
+
+    storage = messages.get_messages(request)
+    return render(request, "account/login.html", {'form': form, 'messages': storage})
 
 def settings_view(request):
     if request.user.is_authenticated:

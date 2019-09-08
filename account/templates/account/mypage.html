@@ -96,56 +96,62 @@
 		</nav>
 	</div>
 
-    {% block content %}
+{% block content %}
     <div class="course">
 		<div class="container">
 			<div class="row">
-
-				<!-- Course -->
+				<!--Popis mojih kolegija -->
 				<div class="col-lg-8">
-					<div class="course_container" id="container-1">
-						<!-- Course Tabs -->
+					<div class="course_container">
 						<br><br>
 						<div class="course_title">Pregled E-kolegija</div>
-						<div class="course_tabs_container">
-							<div class="tabs d-flex flex-row align-items-center justify-content-start">
-								<div class="tab" id="fragment-2">Moji kolegiji</div>
+						<div class="course_info d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+
+							<!-- Course Info Item -->
+							<div class="course_info_item">
+								<div class="course_info_title">Tvoj rating:</div>
+								<div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div>
 							</div>
 
+							<!-- Course Info Item -->
+							<div class="course_info_item">
+								<div class="course_info_title">Broj objava:</div>
+								<div class="course_info_text"><a href="#">12</a></div>
+							</div>
 
+						</div>
+
+						<!-- Course Tabs -->
+						<div class="course_tabs_container">
+							<div class="tabs d-flex flex-row align-items-center justify-content-start">
+								<div class="tab active">Moji kolegiji</div>
+							</div>
 							<div class="tab_panels">
-								<!-- Materijali -->
+								<!-- Description -->
 								<div class="tab_panel active">
-									<div class="tab_panel_content">
-										<div class="tab_panel_title"></div>
-											<!-- Popis svih omiljenih kolegija -->
-											{% for kolegij in svi_moji_kolegiji %}
-                                            <div class="dropdown_item">
-                                                <div class="dropdown_item_title">
-                                                    <a href="/studij/studijski_programi/studij={{kolegij.studij_id_id}}/semestar={{kolegij.semestar}}/kolegij={{kolegij.kolegij_id}}"><span>{{kolegij.kolegij_ime}}</span></a>
-                                                <div class="dropdown_item_text">
-                                                    <p>Tu može ići posljedna objava ili tako nešto</p>
-                                                </div>
-                                            </div>
-                                            {% endfor %}
-										</div>
+									<div class="tab_panel_title"></div>
+										<!-- Popis svih omiljenih kolegija -->
+										{% for kolegij in svi_moji_kolegiji %}
+										<div class="dropdown_item">
+											<div class="dropdown_item_title">
+												<a href="/studij/studijski_programi/studij={{kolegij.studij_id_id}}/semestar={{kolegij.semestar}}/kolegij={{kolegij.kolegij_id}}"><span>{{kolegij.kolegij_ime}}</span></a>
+												<div class="dropdown_item_text">
+													<p>Tu može ići posljedna objava ili tako nešto</p>
+												</div>
+											</div>
+										{% endfor %}
 									</div>
-									{% include "paginacija.html" %}
 								</div>
+								{% include "paginacija.html" %}
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4">
-					<div class="sidebar">
-						lalalala
-					</div>
-				</div>
-
 			</div>
 		</div>
 	</div>
-    {% endblock %}
+</div>
+{% endblock %}
 
 <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
