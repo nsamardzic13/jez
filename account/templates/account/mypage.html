@@ -127,7 +127,7 @@
 							<!-- Course Info Item -->
 							<div class="course_info_item">
 								<div class="course_info_title">Broj objava:</div>
-								<div class="course_info_text"><a href="#">10</a></div>
+								<div class="course_info_text"><a href="#">{{moje_objave}}</a></div>
 							</div>
 
 						</div>
@@ -142,15 +142,20 @@
 								<div class="tab_panel active">
 									<div class="tab_panel_title"></div>
 										<!-- Popis svih omiljenih kolegija -->
-										{% for kolegij in svi_moji_kolegiji %}
-										<div class="dropdown_item">
-											<div class="dropdown_item_title">
-												<a href="/studij/studijski_programi/studij={{kolegij.studij_id_id}}/semestar={{kolegij.semestar}}/kolegij={{kolegij.kolegij_id}}"><span>{{kolegij.kolegij_ime}}</span></a>
-												<div class="dropdown_item_text">
-													<p>Tu može ići posljedna objava ili tako nešto</p>
+										{% if svi_moji_kolegiji == 0 %}
+											<p> Trenutno nemate omiljenih kolegija, za dodavanje novih pregledajte <a href="{% url 'studij:homepage'%}">Arhivu kolegija</a></p>
+										{% else %}
+
+											{% for kolegij in svi_moji_kolegiji %}
+											<div class="dropdown_item">
+												<div class="dropdown_item_title">
+													<a href="/studij/studijski_programi/studij={{kolegij.studij_id_id}}/semestar={{kolegij.semestar}}/kolegij={{kolegij.kolegij_id}}"><span>{{kolegij.kolegij_ime}}</span></a>
+													<div class="dropdown_item_text">
+														<p>Tu može ići posljedna objava ili tako nešto</p>
+													</div>
 												</div>
-											</div>
-										{% endfor %}
+											{% endfor %}
+										{% endif %}
 									</div>
 								</div>
 								{% include "paginacija.html" %}

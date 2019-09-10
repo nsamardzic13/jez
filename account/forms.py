@@ -78,12 +78,6 @@ class EditStudentForm(forms.ModelForm):
         fields = ('studij_id', 'profile_image')
 
 
-class LoginForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ('username', 'password')
-
-
 
 
 

@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .forms import  LoginForm
 from .models import User
 from django.contrib.auth.forms import (
     UserCreationForm,
@@ -20,26 +19,26 @@ from .models import Kolegij
 from objava.models import Objava
 from django.contrib.auth import update_session_auth_hash #za ponovnu prijavu nakon promjene lozinke!
 
+
 def login_view(request):
-    form = LoginForm
+    form = AuthenticationForm
 
     if request.method == 'POST':
-        form = LoginForm(data=request.POST)
-
+        form = AuthenticationForm(data=request.POST)
+        #ova forma odma provjera postoji li user ili ne, ali ga ne ulogira!
+        #tj forma nije validna ako user ne postoji lollllll
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-
+            user = authenticate(request, username=form.cleaned_data.get('username'), password=form.cleaned_data.get('password'))
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    request.session['username'] = username
+                    request.session['username'] = form.cleaned_data.get('username')
                     return HttpResponseRedirect(reverse('account:mypage'))
                 else:
-                    messages.info(request, "Vaš račun je istekao ili je blokiran")
-            else:
-                messages.info(request, "Pogresan username ili lozinka")
+                     messages.info(request, "Vaš račun je istekao ili je blokiran")
+
+        else:
+            messages.info(request, "Pogresan username ili lozinka")
 
     storage = messages.get_messages(request)
     return render(request, "account/login.html", {'form': form, 'messages':storage})
@@ -104,9 +103,11 @@ def mypage_view(request):
     #ispis sve moje kolegije
     username = request.user.username
     svi_moji_kolegiji = Kolegij.objects.raw('select * from studij_kolegij, account_moj_kolegij where studij_kolegij.kolegij_id=account_moj_kolegij.kolegij_id and account_moj_kolegij.username= %s and studij_kolegij.studij_id_id=account_moj_kolegij.studij_id_id', [username])
-    #moje_objave= str(Objava.objects.all().filter(username=username))
-    #print(moje_objave)
-    context = {'svi_moji_kolegiji' : svi_moji_kolegiji}
+    moje_objave= Objava.objects.all().filter(username=request.user).count()
+    if len(list(svi_moji_kolegiji)) == 0:
+        svi_moji_kolegiji = 0
+
+    context = {'svi_moji_kolegiji' : svi_moji_kolegiji, 'moje_objave' : moje_objave}
     return render(request, "account/mypage.html", context)
 
 def logout_view(request):

@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from studij.models import Kolegij, Studij
-
+from objava.models import Objava
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     studij_id = models.ForeignKey(Studij, on_delete=models.CASCADE, default='pss')
@@ -10,6 +10,8 @@ class Student(models.Model):
     profile_image = models.ImageField(upload_to='profile_image', default='/profile_image/default.png')
     stars = models.SmallIntegerField(default=1)
 
+    def getobjavanum(self):
+        return str(Objava.objects.filter(username=self.user.username).count())
     def __str__(self):
         return self.user.username
 
