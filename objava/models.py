@@ -1,7 +1,6 @@
 from django.db import models
 from tema.models import Tema
 from django.contrib.auth.models import User
-from account.models import Student
 from django.utils import timezone
 import os
 

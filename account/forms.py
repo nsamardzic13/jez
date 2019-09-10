@@ -1,8 +1,11 @@
 from django import forms
 import re
 from studij.models import Studij
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from account.models import Student
+from django.contrib.auth import login, logout, authenticate
+from django.core.exceptions import ValidationError
 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
@@ -73,5 +76,14 @@ class EditStudentForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = ('studij_id', 'profile_image')
+
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'password')
+
+
+
 
 
