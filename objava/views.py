@@ -79,6 +79,7 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id, smjer_id)
         'tema_id': tema_id,
         'tema_ime': tema_ime,
         'end': max_index,
+        'smjer_id':smjer_id
     }
     return render(request, 'objava/post.html', context)
 
@@ -111,7 +112,8 @@ def like_view(request):
     kolegij_id = request.POST['get_kolegij_id']
     semestar_num = request.POST['get_semestar_num']
     tema_id = request.POST['get_tema_id']
-    return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id}))
+    smjer_id = request.POST['get_smjer_id']
+    return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id, 'smjer_id': smjer_id}))
 
 @login_required()
 def report_view(request):
