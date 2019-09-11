@@ -5,9 +5,10 @@ from account.models import Moj_Kolegij
 from django.http import  HttpResponseRedirect
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
-def teme_views(request, studij_id, kolegij_id, semestar_num):
+@login_required()
+def teme_views(request, studij_id, kolegij_id, semestar_num, smjer_id):
     username = request.session['username']
     moj_kolegij = Moj_Kolegij.objects.filter(username=username, kolegij_id=kolegij_id).exists()
 
@@ -23,20 +24,20 @@ def teme_views(request, studij_id, kolegij_id, semestar_num):
             nova_tema.kolegij_id = kolegij_id
             nova_tema.save()
 
-        context = {'kolegij_id': kolegij_id, 'studij_id': studij_id, 'semestar_num': semestar_num }
+        context = {'kolegij_id': kolegij_id, 'studij_id': studij_id, 'semestar_num': semestar_num, 'smjer_id':smjer_id}
         return HttpResponseRedirect(reverse('tema:teme_homepage', kwargs=context))
 
     if 'favorit' in request.POST:
         if moj_kolegij:
             #brisi me
-            Moj_Kolegij.objects.filter(username=username, kolegij_id=kolegij_id, studij_id_id=studij_id).delete()
+            Moj_Kolegij.objects.filter(username=username, kolegij_id=kolegij_id, studij_id=studij_id).delete()
 
         else:
             #dodaj me
-            favorit = Moj_Kolegij(username=username, kolegij_id= kolegij_id, studij_id_id=studij_id)
+            favorit = Moj_Kolegij(username=username, kolegij_id= kolegij_id, studij_id=studij_id)
             favorit.save()
 
-        context = {'kolegij_id': kolegij_id, 'studij_id': studij_id, 'semestar_num': semestar_num}
+        context = {'kolegij_id': kolegij_id, 'studij_id': studij_id, 'semestar_num': semestar_num, 'smjer_id':smjer_id}
         return HttpResponseRedirect(reverse('tema:teme_homepage', kwargs=context))
 
     paginator = Paginator(sve_teme, 1)
@@ -51,9 +52,11 @@ def teme_views(request, studij_id, kolegij_id, semestar_num):
 
     index = items.number - 1
     max_index = len(paginator.page_range)
+
     start_index = index - 5 if index >= 5 else 0
     end_index = index + 5 if index <= max_index - 5 else max_index
     page_range = paginator.page_range[start_index:end_index]
+
 
     context = {
         'kolegij_id': kolegij_id,
@@ -63,6 +66,8 @@ def teme_views(request, studij_id, kolegij_id, semestar_num):
         'form': form,
         'semestar_num': semestar_num,
         'items': items,
-        'page_range':page_range,
+        'page_range': page_range,
+        'end': max_index,
+        'smjer_id': smjer_id
     }
     return render(request, 'tema/predmet.html', context)

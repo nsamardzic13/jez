@@ -3,6 +3,10 @@
                                 <div class="col-6 offset-3 text-center pagination-set"
                                     <nav aria-label="">
                                         <ul class="pagination">
+                                            <li class="page-item">
+                                                <a href="?page=1" class="page-link" aria-label="Next">Prva</a>
+                                            </li>
+
                                             {% if items.has_previous %}
                                                 <li class="page-item">
                                                     <a href="?page={{items.previous_page_number}}" class="page-link"><<</a>
@@ -33,6 +37,10 @@
                                                         <a href="" class="page-link"><span>>></span></a>
                                                     </li>
                                             {% endif %}
+
+                                            <li class="page-item">
+                                                        <a href="?page={{end}}" class="page-link" aria-label="Next">Zadnja</a>
+                                            </li>
                                         </ul>
                                     </nav>
                                 </div>

@@ -14,7 +14,8 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
+@login_required()
+def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id, smjer_id):
     form = ObjavaForm()
     file_form = FilesObjavaForm()
     active_student = Student.objects.get(user_id = request.user)
@@ -25,7 +26,7 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
         if form.is_valid(): #ako imam tekst ne znaci da imam i files
             objava = form.save(commit=False)
             objava.username = request.user
-            kol = Kolegij.objects.get(kolegij_id=kolegij_id, studij_id=studij_id)
+            kol = Kolegij.objects.get(kolegij_id=kolegij_id, studij_id=studij_id, smjer_id=smjer_id)
             objava.kolegij_id = kol.kolegij_id
             objava.tema = Tema.objects.get(tema_id = tema_id)
             objava.save()
@@ -38,7 +39,8 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
                     file_instance = Objava_Files(attachment=f, objava=objava, tema_id=tema_id)
                     file_instance.save()
 
-        return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id}))
+        #tu dodati da se prešalta na zadnju
+        return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id, 'smjer_id':smjer_id}))
 
     sve_objave = Objava.objects.all().filter(tema_id=tema_id).order_by('objava_id')
 
@@ -75,10 +77,12 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id):
         'studij_id': studij_id,
         'semestar_num': semestar_num,
         'tema_id': tema_id,
-        'tema_ime': tema_ime
+        'tema_ime': tema_ime,
+        'end': max_index,
     }
     return render(request, 'objava/post.html', context)
 
+@login_required()
 def like_view(request):
     #print(request.POST['html_objava'])
     tmp_like = request.POST['html_like']
@@ -109,6 +113,7 @@ def like_view(request):
     tema_id = request.POST['get_tema_id']
     return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id}))
 
+@login_required()
 def report_view(request):
     active_user = User.objects.get(username=request.POST['html_user'])
 

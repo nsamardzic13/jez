@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+
 from .models import User
 from django.contrib.auth.forms import (
     UserCreationForm,
@@ -43,6 +45,7 @@ def login_view(request):
     storage = messages.get_messages(request)
     return render(request, "account/login.html", {'form': form, 'messages':storage})
 
+@login_required()
 def settings_view(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -57,10 +60,11 @@ def settings_view(request):
         else:
             form = EditUserForm(instance=request.user)
             student_form = EditStudentForm(instance=request.user.student)
-            student_form.fields['studij_id'].widget.attrs = {'class': 'form-control'}
+            student_form.fields['studij'].widget.attrs = {'class': 'form-control'}
             context = {'form': form, 'student_form': student_form}
             return render(request, "account/settings.html", context)
 
+@login_required()
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(data=request.POST, user=request.user)
@@ -83,26 +87,25 @@ def signup_view(request):
 
         if form.is_valid() and student_form.is_valid():
             user = form.save() #prvo spremim podatke iz forme u DJANGO USER MODEL
+            print(student_form.cleaned_data.get('studij'))
             student = student_form.save(commit=False) #želim spremiti u studenta al prvo pohranim podatke (commit - false) i onda nadodam podatke iz usera)
             student.user = user
             student.save()
-            successful_submit = True
+            return render(request, "account/success.html")
 
     else:
-        successful_submit = False
         form = RegistrationForm()
         student_form = StudentProfileForm()
-        student_form.fields['studij_id'].widget.attrs = {'class': 'form-control'}
+        student_form.fields['studij'].widget.attrs = {'class': 'form-control'}
 
-    context = {'form' : form, 'student_form' : student_form, 'successful_submit': successful_submit}
+    context = {'form' : form, 'student_form' : student_form,}
     return render(request, "account/signup.html", context)
 
 
-
+@login_required()
 def mypage_view(request):
-    #ispis sve moje kolegije
     username = request.user.username
-    svi_moji_kolegiji = Kolegij.objects.raw('select * from studij_kolegij, account_moj_kolegij where studij_kolegij.kolegij_id=account_moj_kolegij.kolegij_id and account_moj_kolegij.username= %s and studij_kolegij.studij_id_id=account_moj_kolegij.studij_id_id', [username])
+    svi_moji_kolegiji = Kolegij.objects.raw('select * from studij_kolegij, account_moj_kolegij where studij_kolegij.kolegij_id=account_moj_kolegij.kolegij_id and account_moj_kolegij.username= %s and studij_kolegij.studij_id=account_moj_kolegij.studij_id', [username])
     moje_objave= Objava.objects.all().filter(username=request.user).count()
     if len(list(svi_moji_kolegiji)) == 0:
         svi_moji_kolegiji = 0

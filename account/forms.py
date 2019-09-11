@@ -23,20 +23,24 @@ class RegistrationForm(UserCreationForm):
         email_base, provider = email.split("@")
         domain, extension = provider.split(".")
 
+        check_email = User.objects.all().filter(email=email)
+
+        if check_email.exists():
+            raise forms.ValidationError("Korisnik s ovim email-om već postoji!")
         if not domain == "riteh":
             raise forms.ValidationError("Potrebno je koristiti riteh mail adresu!")
         return email
 
     def clean_ime(self):
         ime = self.cleaned_data['ime']
-        if not re.match("^[a-zA-Z0-9_]*$", ime):
+        if not re.match("^[abcdčćdđefghijklmnoprstštuvzžxyz]", ime):
             raise forms.ValidationError("Neispravan oblik imena!")
         return ime
 
     def clean_prezime(self):
         prezime = self.cleaned_data['prezime']
 
-        if not re.match("^[a-zA-Z0-9_]*$", prezime):
+        if not re.match("^[abcdčćdđefghijklmnoprstštuvzžxyz]", prezime):
             raise forms.ValidationError("Neispravan oblik prezimena!")
         return prezime
 
@@ -55,7 +59,7 @@ class RegistrationForm(UserCreationForm):
 class StudentProfileForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ('studij_id',)
+        fields = ('studij',)
 
 class EditUserForm(UserChangeForm):
 
@@ -75,7 +79,7 @@ class EditUserForm(UserChangeForm):
 class EditStudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ('studij_id', 'profile_image')
+        fields = ('studij', 'profile_image')
 
 
 

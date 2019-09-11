@@ -26,19 +26,25 @@
 
 				<div class="col-lg-8">
 					<div class="course_container">
-						<div class="course_title">{{studij_ime}}</div>
+						<div class="course_title">{{smjer_ime}}</div>
 							<div class="tab_panel active">
 								<div class="tab_panel_content">
 									<div class="tab_panel_title">Semestri</div>
 									<div class="tab_panel_content">
 										<!-- Dropdowns semestri -->
 
-                                       {% for i in 6|times %}
+                                       {% for i in 7|times %}
                                           <ul class="dropdowns">
                                                <li class="has_children">
                                                    <div class="dropdown_item">
-                                                       <div class="dropdown_item_title">
-														   <span>{{i | add}}. semestar</span>
+
+													   <div class="dropdown_item_title">
+														   {% if i == 6  %}
+														   		<span>Izborni predmeti</span>
+														   {% else %}
+														   		<span>{{i | add}}. semestar</span>
+														   {% endif %}
+
 													   </div>
                                                    </div>
 												   {% for kolegij in kolegiji %}
@@ -49,8 +55,8 @@
 																   <div class="dropdown_item">
 																	   <div class="dropdown_item_title">
 
-																			<span>
-																				<a href="/studij/studijski_programi/studij={{studij_id}}/semestar={{i | add}}/kolegij={{kolegij.kolegij_id}}">{{kolegij.kolegij_ime}}</a>
+																		   	<span>
+																				<a href="/studij/studijski_programi/studij={{kolegij.studij_id}}/smjer={{kolegij.smjer_id}}/semestar={{i | add}}/kolegij={{kolegij.kolegij_id}}">{{kolegij.kolegij_ime}}</a>
 																			</span>
 
 																	   </div>

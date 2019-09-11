@@ -23,7 +23,6 @@
    <div class="course">
 		<div class="container">
 			<div class="row">
-
 				<div class="col-lg-8">
 					<div class="course_container">
 						<div class="course_title">Arhiva kolegija</div><br>
@@ -45,9 +44,23 @@
 													{% csrf_token %}
 													{% for studij in predd %}
 													<li>
+														{% if studij.smjerovi_postoje %}
+															<li class="has_children">
+																<div class="dropdown_item">
+																	<div class="dropdown_item_title"><span>{{studij.studij_ime}}</span></div>
+																</div>
+																{% for smjer in studij.getsmjerovi %}
+																<div class="dropdown_item">
+																	<div class="dropdown_item_title"><span><a href="/studij/studijski_programi/studij={{studij.studij_id}}/smjer={{smjer.smjer_id}}">{{smjer.smjer_ime}}</a></span></div>
+																</div>
+															{% endfor %}
+															</li>
+														{% else %}
 														<div class="dropdown_item">
-															<div class="dropdown_item_title"><span><a href="/studij/studijski_programi/studij={{studij.studij_id}}">{{studij.studij_ime}}</a></span></div>
+																<div class="dropdown_item_title"><span><a href="/studij/studijski_programi/studij={{studij.studij_id}}/smjer=!{{studij.studij_id}}">{{studij.studij_ime}}</a></span></div>
 														</div>
+														{% endif %}
+
 													</li>
 													{% endfor %}
 												</ul>
@@ -60,29 +73,40 @@
 													{% csrf_token %}
 													{% for studij in dipl %}
 													<li>
-														<div class="dropdown_item">
-															<div class="dropdown_item_title"><span><a href="/studij/studijski_programi/studij={{studij.studij_id}}">{{studij.studij_ime}}</a></span></div>
-														</div>
-													</li>
-													{% endfor %}
-												</ul>
-											</li>
-										</ul>
-									</div>
+														{% if studij.smjerovi_postoje %}
+															<li class="has_children">
+																<div class="dropdown_item">
+																	<div class="dropdown_item_title"><span>{{studij.studij_ime}}</span></div>
+																</div>
+																<ul>
+																	{% for smjer in studij.getsmjerovi %}
+																		<li>
+																			<div class="dropdown_item">
+																				<div class="dropdown_item_title"><span><a href="/studij/studijski_programi/studij={{studij.studij_id}}/smjer={{smjer.smjer_id}}">{{smjer.smjer_ime}}</a></span></div>
+																			</div>
+																		</li>
+																	{% endfor %}
+																</ul>
+																{% else %}
+																	<div class="dropdown_item">
+																			<div class="dropdown_item_title"><span><a href="/studij/studijski_programi/studij={{studij.studij_id}}/smjer=!{{studij.studij_id}}">{{studij.studij_ime}}</a></span></div>
+																	</div>
+															</li>
+													{% endif %}
+												{% endfor %}
+											</ul>
+										</li>
+									</ul>
 								</div>
-							</div>
-									</div>
-								</div>
-
 							</div>
 						</div>
 					</div>
 				</div>
-
-				</div>
 			</div>
 		</div>
+	</div>
 </div>
+
 
 
 
