@@ -33,14 +33,14 @@ class RegistrationForm(UserCreationForm):
 
     def clean_ime(self):
         ime = self.cleaned_data['ime']
-        if not re.match("^[abcdčćdđefghijklmnoprstštuvzžxyz]", ime):
+        if not re.match("^[qwertzuiopšđasdfghjklčćžyxcvbnmQWERTZUIOPŠĐASDFGHJKLČĆŽYXCVBNM]", ime):
             raise forms.ValidationError("Neispravan oblik imena!")
         return ime
 
     def clean_prezime(self):
         prezime = self.cleaned_data['prezime']
 
-        if not re.match("^[abcdčćdđefghijklmnoprstštuvzžxyz]", prezime):
+        if not re.match("^[qwertzuiopšđasdfghjklčćžyxcvbnmQWERTZUIOPŠĐASDFGHJKLČĆŽYXCVBNM]", prezime):
             raise forms.ValidationError("Neispravan oblik prezimena!")
         return prezime
 
