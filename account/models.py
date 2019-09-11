@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from studij.models import Kolegij, Studij
+from studij.models import Kolegij, Studij, Smjer
 from objava.models import Objava
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -16,5 +16,6 @@ class Student(models.Model):
 
 class Moj_Kolegij(models.Model):
     studij = models.ForeignKey(Studij, on_delete=models.CASCADE, default='pss')
+    smjer = models.ForeignKey(Smjer, on_delete=models.CASCADE)
     username = models.CharField(max_length=150)
     kolegij_id = models.CharField(max_length=10)

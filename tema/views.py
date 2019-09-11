@@ -30,17 +30,17 @@ def teme_views(request, studij_id, kolegij_id, semestar_num, smjer_id):
     if 'favorit' in request.POST:
         if moj_kolegij:
             #brisi me
-            Moj_Kolegij.objects.filter(username=username, kolegij_id=kolegij_id, studij_id=studij_id).delete()
+            Moj_Kolegij.objects.filter(username=username, kolegij_id=kolegij_id, studij_id=studij_id, smjer_id=smjer_id).delete()
 
         else:
             #dodaj me
-            favorit = Moj_Kolegij(username=username, kolegij_id= kolegij_id, studij_id=studij_id)
+            favorit = Moj_Kolegij(username=username, kolegij_id= kolegij_id, studij_id=studij_id, smjer_id=smjer_id)
             favorit.save()
 
         context = {'kolegij_id': kolegij_id, 'studij_id': studij_id, 'semestar_num': semestar_num, 'smjer_id':smjer_id}
         return HttpResponseRedirect(reverse('tema:teme_homepage', kwargs=context))
 
-    paginator = Paginator(sve_teme, 1)
+    paginator = Paginator(sve_teme, 10)
     page = request.GET.get('page')
 
     try:
