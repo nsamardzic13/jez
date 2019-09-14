@@ -1,7 +1,14 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from .tokens import account_activation_token
+from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 
 from .models import User
 from django.contrib.auth.forms import (
@@ -84,23 +91,49 @@ def signup_view(request):
     if request.method == 'POST':
         form = RegistrationForm(data=request.POST)
         student_form = StudentProfileForm(request.POST)
-
+        print('aa')
+        print(form.is_valid())
+        print(student_form.is_valid())
         if form.is_valid() and student_form.is_valid():
-            user = form.save() #prvo spremim podatke iz forme u DJANGO USER MODEL
+            print('prosao sam')
+            user = form.save(commit = False) #prvo spremim podatke iz forme u DJANGO USER MODEL
+            user.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            mail_subject = 'Aktiviraj svoj racun'
+            message = render_to_string('account/acc_activate.html',
+                                       {'user':user, 'domain':current_site.domain,
+                                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                                        'token':account_activation_token.make_token(user)})
+            to_email = form.cleaned_data.get('email')
+            email = EmailMessage(mail_subject, message, to=[to_email])
+            email.send()
             print(student_form.cleaned_data.get('studij'))
             student = student_form.save(commit=False) #želim spremiti u studenta al prvo pohranim podatke (commit - false) i onda nadodam podatke iz usera)
             student.user = user
             student.save()
-            return render(request, "account/success.html")
+            return HttpResponse('Confirm')
 
-    else:
-        form = RegistrationForm()
-        student_form = StudentProfileForm()
-        student_form.fields['studij'].widget.attrs = {'class': 'form-control'}
-
+    form = RegistrationForm()
+    student_form = StudentProfileForm()
+    student_form.fields['studij'].widget.attrs = {'class': 'form-control'}
     context = {'form' : form, 'student_form' : student_form,}
     return render(request, "account/signup.html", context)
 
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        # return redirect('home')
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('Activation link is invalid!')
 
 @login_required()
 def mypage_view(request):

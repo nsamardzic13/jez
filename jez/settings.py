@@ -146,3 +146,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL='/account/login/'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'nikola.samardzic1997@gmail.com'
+EMAIL_HOST_PASSWORD = 'trinaest13'
+EMAIL_PORT = 587
