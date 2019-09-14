@@ -11,6 +11,6 @@ urlpatterns = [
     path('signup/', views.signup_view, name="signup"), #signup form
     path('logout/', views.logout_view, name="logout"), #logout
     path('mypage/', views.mypage_view, name="mypage"), #mypage,
-    path('activate/<uid>/<token>', views.activate, name='activate'),
+    path('activate/<str:uidb64>/<str:token>', views.activate, name="activate"),
 
 ]

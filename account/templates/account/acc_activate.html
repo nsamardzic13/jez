@@ -1,5 +1,5 @@
 {% autoescape off %}
-    Hi {{ user.username }},
-    Please click on the link to confirm your registration,
+    Pozdrav {{ user.username }},
+    Klikni na link kako bi aktivirao svoj račun:
     http://{{ domain }}{% url 'account:activate' uidb64=uid token=token %}
 {% endautoescape %}
