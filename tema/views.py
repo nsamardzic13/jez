@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required()
 def teme_views(request, studij_id, kolegij_id, semestar_num, smjer_id):
-    username = request.session['username']
+    username = request.user
     moj_kolegij = Moj_Kolegij.objects.filter(username=username, kolegij_id=kolegij_id).exists()
 
     #ispis svih postojecih tema i dodavanje novih
