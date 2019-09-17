@@ -10,6 +10,7 @@ from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.conf import settings
+from .models import Student, User
 
 from .models import User
 from django.contrib.auth.forms import (
@@ -39,8 +40,9 @@ def login_view(request):
         #tj forma nije validna ako user ne postoji lollllll
         if form.is_valid():
             user = authenticate(request, username=form.cleaned_data.get('username'), password=form.cleaned_data.get('password'))
+            active_student = Student.objects.get(user = User.objects.get(username = form.cleaned_data.get('username')))
             if user is not None:
-                if user.is_active:
+                if user.is_active and active_student.email_ver is False:
                     login(request, user)
                     request.session['username'] = form.cleaned_data.get('username')
                     return HttpResponseRedirect(reverse('account:mypage'))

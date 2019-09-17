@@ -122,14 +122,17 @@ def report_view(request):
     if not Objava_Prijava.objects.filter(objava_id = Objava.objects.get(objava_id = request.POST['html_objava']), username = active_user).exists():
         Objava_Prijava.objects.create(objava_id = Objava.objects.get(objava_id = request.POST['html_objava']), username = active_user)
 
-    cnt = Objava_Prijava.objects.filter(objava_id = Objava.objects.get(objava_id = request.POST['html_objava'])).count()
-    if cnt > 0:
-        Objava.objects.filter(objava_id = request.POST['html_objava']).delete()
+    cnt = Objava_Prijava.objects.filter(username = active_user).count()
+    if cnt > 15:
+        active_student = Student.objects.get(user = active_user)
+        active_student.email_ver = True
+        active_student.save()
 
     studij_id = request.POST['get_studij_id']
     kolegij_id = request.POST['get_kolegij_id']
     semestar_num = request.POST['get_semestar_num']
     tema_id = request.POST['get_tema_id']
+    smjer_id = request.POST['get_smjer_id']
     return HttpResponseRedirect(reverse('objava:objava_homepage',
                                         kwargs={'studij_id': studij_id, 'kolegij_id': kolegij_id,
-                                                'semestar_num': semestar_num, 'tema_id': tema_id}))
+                                                'semestar_num': semestar_num, 'tema_id': tema_id, 'smjer_id' : smjer_id}))
