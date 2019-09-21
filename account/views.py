@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -153,7 +154,7 @@ def resetpass_view(request, uidb64, token):
         password2 = request.POST["id_password2"]
         if password == password2 and User.objects.filter(username = usr).exists():
             usr_obj = User.objects.get(username = usr)
-            usr_obj.password = password
+            usr_obj.set_password(password)
             usr_obj.save()
         return redirect("account:login")
 
