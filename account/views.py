@@ -94,11 +94,7 @@ def signup_view(request):
     if request.method == 'POST':
         form = RegistrationForm(data=request.POST)
         student_form = StudentProfileForm(request.POST)
-        print('aa')
-        print(form.is_valid())
-        print(student_form.is_valid())
         if form.is_valid() and student_form.is_valid():
-            print('prosao sam')
             user = form.save(commit = False) #prvo spremim podatke iz forme u DJANGO USER MODEL
             user.is_active = False
             user.save()
@@ -112,7 +108,6 @@ def signup_view(request):
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(mail_subject, message, to=[to_email])
             email.send()
-            print(student_form.cleaned_data.get('studij'))
             student = student_form.save(commit=False) #želim spremiti u studenta al prvo pohranim podatke (commit - false) i onda nadodam podatke iz usera)
             student.user = user
             student.save()
@@ -123,6 +118,47 @@ def signup_view(request):
     student_form.fields['studij'].widget.attrs = {'class': 'form-control'}
     context = {'form' : form, 'student_form' : student_form,}
     return render(request, "account/signup.html", context)
+
+def forgotpass_view(request):
+    if request.method == 'POST':
+        email_html = request.POST["email_post"]
+        if User.objects.filter(email = email_html).exists():
+            user = User.objects.get(email = email_html)
+            current_site = get_current_site(request)
+            mail_subject = 'Zaboravljena lozinka'
+            print(urlsafe_base64_encode(force_bytes(user.pk)))
+            print(account_activation_token.make_token(user))
+            message = render_to_string('account/resetpass.html',
+                                       {'user': user, 'domain': current_site.domain,
+                                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                                        # 'uid': 'test',
+                                        'token': account_activation_token.make_token(user)})
+            to_email = email_html
+            email = EmailMessage(mail_subject, message, to=[to_email])
+            email.send()
+            return HttpResponse('Confirm')
+
+    return render(request, "account/forgotpass.html")
+
+def resetpass_view(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+        account_activation_token.check_token(user, token)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        return HttpResponse('Link is invalid!')
+    if request.method == 'POST':
+        usr = request.POST["user_html"]
+        password = request.POST["id_password"]
+        password2 = request.POST["id_password2"]
+        if password == password2 and User.objects.filter(username = usr).exists():
+            usr_obj = User.objects.get(username = usr)
+            usr_obj.password = password
+            usr_obj.save()
+        return redirect("account:login")
+
+    return render(request, "account/newpass.html", {'user':user.username, 'uidb64':uidb64, 'token':token})
+
 
 def activate(request, uidb64, token):
     try:
