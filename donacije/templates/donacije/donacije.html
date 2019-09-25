@@ -1,6 +1,37 @@
 {% extends 'index.html' %}
-
+{% load static %}
 {% block content %}
-    <br><br><br><br><br>
-    <h1>Neki lijepi tekst</h1>
+    <div class="about">
+		<div class="container">
+            <br><br><br><br><br>
+			<div class="row">
+				<div class="col">
+					<div class="section_title_container float-left">
+						<h2 class="section_title">Od čega Jež živi?</h2>
+					</div>
+				</div>
+			</div>
+            <div class="about_item_text">
+                <p>par riječi o načinu finaciranja ježa i neki inspirativni bulšit</p>
+            </div>
+		</div>
+	</div>
+    <div class="feature">
+		<div class="feature_background" style="background-image:url({% static 'images/courses_background.jpg' %})"></div>
+		<div class="container">
+			<div class="row ">
+				<div class="col justify-content-sm-start">
+					<div class="section_title_container float-left">
+						<h2 class="section_title">Info za donaciju</h2>
+						<div class="section_subtitle">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fe</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fe</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fe</p>
+                    </div>
+				</div>
+			</div>
+
+		</div>
+	</div>
 {% endblock %}
