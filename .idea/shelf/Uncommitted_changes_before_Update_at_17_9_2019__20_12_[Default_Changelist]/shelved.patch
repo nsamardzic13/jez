@@ -1,0 +1,1394 @@
+Index: account/templates/account/mypage.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% load static %}\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n<title>Jež</title>\r\n<meta charset=\"UTF-8\">\r\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n<meta name=\"description\" content=\"Jez project\">\r\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n\r\n{% include \"links.html\" %}\r\n</head>\r\n<body>\r\n\r\n<div class=\"super_container\">\r\n\t<header class=\"header\">\r\n\t\t<div class=\"header_container\">\r\n\t\t\t<div class=\"container\">\r\n\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<div class=\"col\">\r\n\t\t\t\t\t\t<div class=\"header_content d-flex flex-row align-items-center justify-content-start\">\r\n\t\t\t\t\t\t\t<div class=\"logo_container\">\r\n\t\t\t\t\t\t\t\t<a href=\"{% url 'account:mypage' %}\">\r\n\t\t\t\t\t\t\t\t\t<img src=\"{% static 'images/jez.png' %}\" class=\"rounded-circle img-fluid img-thumbnail\" style=\"height:80px;\" alt=\"JezLogo\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"logo_text\">Jež</div>\r\n\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<nav class=\"main_nav_contaner ml-auto\">\r\n\t\t\t\t\t\t\t\t<ul class=\"main_nav\">\r\n\t\t\t\t\t\t\t\t\t<li class=\"active\"><a href=\"{% url 'homepage' %}\">Početna</a></li>\r\n                                    <li>\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"{% url 'studij:homepage'%}\">Arhiva kolegija</a>\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t <a href=\"{% url 'account:mypage' %}\">{{user.username}}</a><br>\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t<li class=\"dropdown\">\r\n\t\t\t\t\t\t\t\t\t\t<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">\r\n\t\t\t\t\t\t\t\t\t\t<span class=\"caret\"></span></a>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"dropdown-menu\">\r\n                                            <span class=\"fa fa-gear\" style=\"font-size:30px;color:blue \"></span>\r\n\t\t\t\t\t\t\t\t\t\t  \t<a href=\"{% url 'account:settings'%}\">Postavke</a><br>\r\n                                            <span class=\"fa fa-sign-out\" style=\"font-size:30px;color:blue \"></span>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"{% url 'account:logout' %}\">Odjavi se</a>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n      \t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t</ul>\r\n                                <div class=\"hamburger menu_mm\">\r\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-bars menu_mm\" aria-hidden=\"true\"></i>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</nav>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</header>\r\n\r\n\r\n\t<div class=\"menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400\">\r\n\t\t<div class=\"menu_close_container\"><div class=\"menu_close\"><div></div><div></div></div></div>\r\n\t\t<!--<div class=\"search\">-->\r\n\t\t\t<!--<form action=\"#\" class=\"header_search_form menu_mm\">-->\r\n\t\t\t\t<!--<input type=\"search\" class=\"search_input menu_mm\" placeholder=\"Search\" required=\"required\">-->\r\n\t\t\t\t<!--<button class=\"header_search_button d-flex flex-column align-items-center justify-content-center menu_mm\">-->\r\n\t\t\t\t\t<!--<i class=\"fa fa-search menu_mm\" aria-hidden=\"true\"></i>-->\r\n\t\t\t\t<!--</button>-->\r\n\t\t\t<!--</form>-->\r\n\t\t<!--</div>-->\r\n\t\t<nav class=\"menu_nav\">\r\n\t\t\t<ul class=\"menu_mm\">\r\n\t\t\t\t<li class=\"menu_mm\"><a href=\"{% url 'homepage' %}\">Početna</a></li>\r\n                <li class=\"menu_mm\"><a href=\"{% url 'studij:homepage'%}\">Arhiva kolegija</a></li>\r\n                <li class=\"menu_mm\"><a href=\"{% url 'account:mypage' %}\">Moj profil</a></li>\r\n\t\t\t\t<li class=\"menu_mm\"><a href=\"{% url 'account:settings'%}\">Postavke</a></li>\r\n\t\t\t\t<li class=\"menu_mm\"><a href=\"{% url 'account:logout' %}\">Odjavi se</a></li>\r\n\r\n\t\t\t</ul>\r\n\t\t</nav>\r\n\t</div>\r\n\r\n{% block content %}\r\n    <div class=\"course\">\r\n\t\t<div class=\"container\">\r\n\t\t\t<div class=\"row\">\r\n\t\t\t\t<!--Popis mojih kolegija -->\r\n\t\t\t\t<div class=\"col-lg-8\">\r\n\t\t\t\t\t<div class=\"course_container\">\r\n\t\t\t\t\t\t<br><br>\r\n\t\t\t\t\t\t<div class=\"course_title\">Pregled E-kolegija</div>\r\n\t\t\t\t\t\t<div class=\"course_info d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start\">\r\n\r\n\t\t\t\t\t\t\t<!-- Course Info Item -->\r\n\t\t\t\t\t\t\t<div class=\"course_info_item\">\r\n\t\t\t\t\t\t\t\t<div class=\"course_info_title\">Tvoj rating:</div>\r\n\t\t\t\t\t\t\t\t{% if user.student.stars == 1 %}\r\n\t\t\t\t\t\t\t\t\t<div class=\"rating_r rating_r_1\"><i></i><i></i><i></i><i></i><i></i></div>\r\n\t\t\t\t\t\t\t\t{% elif user.student.stars == 2 %}\r\n\t\t\t\t\t\t\t\t\t<div class=\"rating_r rating_r_2\"><i></i><i></i><i></i><i></i><i></i></div>\r\n\t\t\t\t\t\t\t\t{% elif user.student.stars == 3 %}\r\n\t\t\t\t\t\t\t\t\t<div class=\"rating_r rating_r_3\"><i></i><i></i><i></i><i></i><i></i></div>\r\n\t\t\t\t\t\t\t\t{% elif user.student.stars == 4 %}\r\n\t\t\t\t\t\t\t\t\t<div class=\"rating_r rating_r_4\"><i></i><i></i><i></i><i></i><i></i></div>\r\n\r\n\t\t\t\t\t\t\t\t{% else %}\r\n\t\t\t\t\t\t\t\t\t<div class=\"rating_r rating_r_5\"><i></i><i></i><i></i><i></i><i></i></div>\r\n\t\t\t\t\t\t\t\t{% endif %}\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<!-- Course Info Item -->\r\n\t\t\t\t\t\t\t<div class=\"course_info_item\">\r\n\t\t\t\t\t\t\t\t<div class=\"course_info_title\">Broj objava:</div>\r\n\t\t\t\t\t\t\t\t<div class=\"course_info_text\"><a href=\"#\">{{moje_objave}}</a></div>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t<!-- Course Tabs -->\r\n\t\t\t\t\t\t<div class=\"course_tabs_container\">\r\n\t\t\t\t\t\t\t<div class=\"tabs d-flex flex-row align-items-center justify-content-start\">\r\n\t\t\t\t\t\t\t\t<div class=\"tab active\">Moji kolegiji</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"tab_panels\">\r\n\t\t\t\t\t\t\t\t<!-- Description -->\r\n\t\t\t\t\t\t\t\t<div class=\"tab_panel active\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"tab_panel_title\"></div>\r\n\t\t\t\t\t\t\t\t\t\t<!-- Popis svih omiljenih kolegija -->\r\n\t\t\t\t\t\t\t\t\t\t{% if svi_moji_kolegiji == 0 %}\r\n\t\t\t\t\t\t\t\t\t\t\t<p> Trenutno nemate omiljenih kolegija, za dodavanje novih pregledajte <a href=\"{% url 'studij:homepage'%}\">Arhivu kolegija</a></p>\r\n\t\t\t\t\t\t\t\t\t\t{% else %}\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t{% for kolegij in svi_moji_kolegiji %}\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"dropdown_item\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"dropdown_item_title\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"/studij/studijski_programi/studij={{kolegij.studij_id}}/smjer={{kolegij.smjer_id}}/semestar={{kolegij.semestar}}/kolegij={{kolegij.kolegij_id}}\"><span>{{kolegij.kolegij_ime}}</span></a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"dropdown_item_text\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p>Tu može ići posljedna objava ili tako nešto</p>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t{% endfor %}\r\n\t\t\t\t\t\t\t\t\t\t{% endif %}\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t{% include \"paginacija.html\" %}\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n\r\n{% endblock %}\r\n\r\n\r\n\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- account/templates/account/mypage.html	(revision 13bd4adf28e9390220d977e9c5c8006126529855)
++++ account/templates/account/mypage.html	(date 1568268901811)
+@@ -86,7 +86,7 @@
+ 				<!--Popis mojih kolegija -->
+ 				<div class="col-lg-8">
+ 					<div class="course_container">
+-						<br><br>
++						<br><br><br><br>
+ 						<div class="course_title">Pregled E-kolegija</div>
+ 						<div class="course_info d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+ 
+Index: templates/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% load static %}\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n<title>Jež</title>\r\n{% include \"links.html\" %}\r\n</head>\r\n<body>\r\n\r\n<div class=\"super_container\">\r\n\r\n\t<!-- Header -->\r\n\r\n\t<header class=\"header\">\r\n\t\t\t\r\n\t\t{% if not user.is_authenticated %}\r\n\t\t<div class=\"top_bar\">\r\n\t\t\t<div class=\"top_bar_container\">\r\n\t\t\t\t<div class=\"container\">\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col\">\r\n\t\t\t\t\t\t\t<div class=\"top_bar_content d-flex flex-row align-items-center justify-content-start\">\r\n\t\t\t\t\t\t\t\t<ul class=\"top_bar_contact_list\">\r\n\t\t\t\t\t\t\t\t\t<li><div class=\"question\">Imaš pitanje?</div></li>\r\n\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-envelope-o\" aria-hidden=\"true\"></i>\r\n\t\t\t\t\t\t\t\t\t\t<div>info.jez@gmail.com</div>\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t<div class=\"top_bar_login ml-auto\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"login_button\"><a href=\"{% url 'account:login' %}\">Prijavi se</a></div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\t\t\t\t\r\n\t\t</div>\r\n\t\t{% endif %}\r\n\t\t<!-- Header Content -->\r\n\r\n\t\t<div class=\"header_container\">\r\n\t\t\t<div class=\"container\">\r\n\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<div class=\"col\">\r\n\t\t\t\t\t\t<div class=\"header_content d-flex flex-row align-items-center justify-content-start\">\r\n\t\t\t\t\t\t\t<div class=\"logo_container\">\r\n\t\t\t\t\t\t\t\t<a href=\"#\">\r\n\t\t\t\t\t\t\t\t\t<img src=\"{% static 'images/jez.png' %}\" class=\"rounded-circle img-fluid img-thumbnail\" style=\"height:80px;\" alt=\"JezLogo\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"logo_text\">Jež</div>\r\n\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<nav class=\"main_nav_contaner ml-auto\">\r\n\t\t\t\t\t\t\t\t<ul class=\"main_nav\">\r\n\t\t\t\t\t\t\t\t\t<li class=\"active\"><a href=\"{% url 'homepage' %}\">Početna</a></li>\r\n\t\t\t\t\t\t\t\t\t<li> <a href=\"{% url 'tko_smo:homepage'%}\">Tko smo?</a></li>\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"{% url 'za_brucose:homepage'%}\">Za brucose</a></li>\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"{% url 'kontakt:kontakt'%}\">Kontakt</a></li>\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"{% url 'donacije:donacije'%}\">Doniraj</a></li>\r\n\t\t\t\t\t\t\t\t\t{% if not user.is_authenticated %}\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"{% url 'account:signup'%}\">Registriraj se</a></li>\r\n\t\t\t\t\t\t\t\t\t{% else %}\r\n\t\t\t\t\t\t\t\t\t<li class=\"dropdown\">\r\n\t\t\t\t\t\t\t\t\t\t<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">{{user.get_username }}\r\n\t\t\t\t\t\t\t\t\t\t<span class=\"caret\"></span></a>\r\n\t\t\t\t\t\t\t\t\t\t<ul class=\"dropdown-menu\">\r\n\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"{% url 'account:mypage' %}\">Moj profil</a></li><br>\r\n\t\t\t\t\t\t\t\t\t\t  \t<li><a href=\"{% url 'account:settings'%}\">Postavke</a></li><br>\r\n\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"{% url 'account:logout' %}\">Odjavi se</a></li><br>\r\n\t\t\t\t\t\t\t\t\t\t</ul>\r\n      \t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t{% endif %}\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t<div class=\"hamburger menu_mm\">\r\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-bars menu_mm\" aria-hidden=\"true\"></i>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</nav>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\r\n\t</header>\r\n\r\n\t<div class=\"menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400\">\r\n\t\t<div class=\"menu_close_container\"><div class=\"menu_close\"><div></div><div></div></div></div>\r\n\t\t<!--<div class=\"search\">-->\r\n\t\t\t<!--<form action=\"#\" class=\"header_search_form menu_mm\">-->\r\n\t\t\t\t<!--<input type=\"search\" class=\"search_input menu_mm\" placeholder=\"Search\" required=\"required\">-->\r\n\t\t\t\t<!--<button class=\"header_search_button d-flex flex-column align-items-center justify-content-center menu_mm\">-->\r\n\t\t\t\t\t<!--<i class=\"fa fa-search menu_mm\" aria-hidden=\"true\"></i>-->\r\n\t\t\t\t<!--</button>-->\r\n\t\t\t<!--</form>-->\r\n\t\t<!--</div>-->\r\n\t\t<nav class=\"menu_nav\">\r\n\t\t\t<ul class=\"menu_mm\">\r\n\t\t\t\t<li class=\"menu_mm\"><a href=\"{% url 'tko_smo:homepage'%}\">Tko smo?</a></li>\r\n\t\t\t\t<li class=\"menu_mm\"><a href=\"{% url 'za_brucose:homepage'%}\">Za brucose</a></li>\r\n\t\t\t\t<li class=\"menu_mm\"><a href=\"{% url 'kontakt:kontakt'%}\">Kontakt</a></li>\r\n\t\t\t\t<li class=\"menu_mm\"><a href=\"{% url 'donacije:donacije'%}\">Doniraj</a></li>\r\n\t\t\t\t{% if not user.is_authenticated %}\r\n\t\t\t\t\t<li class=\"menu_mm\"><a href=\"{% url 'account:signup'%}\">Registriraj se</a></li>\r\n\t\t\t\t\t<li class=\"menu_mm\"><a href=\"{% url 'account:login' %}\">Prijavi se</a></li>\r\n\t\t\t\t{% else %}\r\n\t\t\t\t\t<li class=\"menu_mm\"><a href=\"{% url 'account:mypage' %}\">Moj profil</a></li>\r\n\t\t\t\t\t<li class=\"menu_mm\"><a href=\"{% url 'account:settings'%}\">Postavke</a></li>\r\n\t\t\t\t\t<li class=\"menu_mm\"><a href=\"{% url 'account:logout' %}\">Odjavi se</a></li>\r\n\r\n\t\t\t\t{% endif %}\r\n\t\t\t</ul>\r\n\t\t</nav>\r\n\t</div>\r\n\r\n\r\n\t{% block content %}\r\n\t<!-- Home -->\r\n\r\n\t<div class=\"home\">\r\n\t\t<div class=\"home_slider_container\">\r\n\t\t\t<br><br><br><br>\r\n\t\t\t<!-- Home Slider, maknuti strelice -->\r\n\t\t\t<div class=\"owl-carousel owl-theme home_slider\">\r\n\t\t\t\t<!-- Home Slider Item -->\r\n\t\t\t\t<div class=\"owl-item\">\r\n\t\t\t\t\t<div class=\"home_slider_background\" style=\"background-image:url({% static 'images/home_slider_1.jpg' %})\"></div>\r\n\t\t\t\t\t<div class=\"home_slider_content\">\r\n\t\t\t\t\t\t<div class=\"container\">\r\n\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t<div class=\"col text-center\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"home_slider_title\">Lorem ipsum dolor sit</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"home_slider_subtitle\">Neki tekst</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\r\n\t\t<!-- Home Slider Nav -->\r\n\r\n\t\t<!--<div class=\"home_slider_nav home_slider_prev\"><i class=\"fa fa-angle-left\" aria-hidden=\"true\"></i></div>-->\r\n\t\t<!--<div class=\"home_slider_nav home_slider_next\"><i class=\"fa fa-angle-right\" aria-hidden=\"true\"></i></div>-->\r\n\t</div>\r\n\r\n\t<!-- Features -->\r\n\t<br><br><br><br><br>\r\n\t<div class=\"features\">\r\n\t\t<div class=\"container\">\r\n\t\t\t<div class=\"row\">\r\n\t\t\t\t<div class=\"col\">\r\n\t\t\t\t\t<div class=\"section_title_container text-center\">\r\n\t\t\t\t\t\t<h2 class=\"section_title\">Welcome To Jež E-Learning</h2>\r\n\t\t\t\t\t\t<div class=\"section_subtitle\"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"row features_row\">\r\n\t\t\t\t\r\n\t\t\t\t<!-- Features Item -->\r\n\t\t\t\t<div class=\"col-lg-3 feature_col\">\r\n\t\t\t\t\t<div class=\"feature text-center trans_400\">\r\n\t\t\t\t\t\t<div class=\"feature_icon\"><img src=\"images/icon_1.png\" alt=\"\"></div>\r\n\t\t\t\t\t\t<h3 class=\"feature_title\">The Experts</h3>\r\n\t\t\t\t\t\t<div class=\"feature_text\"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\r\n\t\t\t\t<!-- Features Item -->\r\n\t\t\t\t<div class=\"col-lg-3 feature_col\">\r\n\t\t\t\t\t<div class=\"feature text-center trans_400\">\r\n\t\t\t\t\t\t<div class=\"feature_icon\"><img src=\"images/icon_2.png\" alt=\"\"></div>\r\n\t\t\t\t\t\t<h3 class=\"feature_title\">Book & Library</h3>\r\n\t\t\t\t\t\t<div class=\"feature_text\"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\r\n\t\t\t\t<!-- Features Item -->\r\n\t\t\t\t<div class=\"col-lg-3 feature_col\">\r\n\t\t\t\t\t<div class=\"feature text-center trans_400\">\r\n\t\t\t\t\t\t<div class=\"feature_icon\"><img src=\"images/icon_3.png\" alt=\"\"></div>\r\n\t\t\t\t\t\t<h3 class=\"feature_title\">Best Courses</h3>\r\n\t\t\t\t\t\t<div class=\"feature_text\"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\r\n\t\t\t\t<!-- Features Item -->\r\n\t\t\t\t<div class=\"col-lg-3 feature_col\">\r\n\t\t\t\t\t<div class=\"feature text-center trans_400\">\r\n\t\t\t\t\t\t<div class=\"feature_icon\"><img src=\"images/icon_4.png\" alt=\"\"></div>\r\n\t\t\t\t\t\t<h3 class=\"feature_title\">Award & Reward</h3>\r\n\t\t\t\t\t\t<div class=\"feature_text\"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\r\n\t<!-- Footer -->\r\n\r\n\t<footer class=\"footer\">\r\n\t\t<div class=\"footer_background\" style=\"background-image:url(images/footer_background.png)\"></div>\r\n\t\t<div class=\"container\">\r\n\t\t\t<div class=\"row footer_row\">\r\n\t\t\t\t<div class=\"col\">\r\n\t\t\t\t\t<div class=\"footer_content\">\r\n\t\t\t\t\t\t<div class=\"row\">\r\n\r\n\t\t\t\t\t\t\t<div class=\"col-lg-3 footer_col\">\r\n\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t<!-- Footer About -->\r\n\t\t\t\t\t\t\t\t<div class=\"footer_section footer_about\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"footer_logo_container\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"{% url 'homepage' %}\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"logo_text\">Jež</div>\r\n\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"footer_about_text\">\r\n\t\t\t\t\t\t\t\t\t\t<p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"footer_social\">\r\n\t\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\"><i class=\"fa fa-google-plus\" aria-hidden=\"true\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t\t\t<li><a href=\"#\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></a></li>\r\n\t\t\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"row copyright_row\">\r\n\t\t\t\t<div class=\"col\">\r\n\t\t\t\t\t<div class=\"copyright d-flex flex-lg-row flex-column align-items-center justify-content-start\">\r\n\t\t\t\t\t\t<div class=\"cr_text\"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->\r\nCopyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class=\"fa fa-heart-o\" aria-hidden=\"true\"></i> by <a href=\"https://colorlib.com\" target=\"_blank\">Colorlib</a>\r\n<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>\r\n\t\t\t\t\t\t<div class=\"ml-lg-auto cr_links\">\r\n\t\t\t\t\t\t\t<ul class=\"cr_list\">\r\n\t\t\t\t\t\t\t\t<li><a href=\"#\">Copyright</a></li>\r\n\t\t\t\t\t\t\t\t<li><a href=\"#\">Uvjeti korištenja</a></li>\r\n\t\t\t\t\t\t\t\t<li><a href=\"#\">Politika privatnosti</a></li>\r\n\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</footer>\r\n</div>\r\n<script src=\"{% static 'js/jquery-3.2.1.min.js' %}\"></script>\r\n<script src=\"{% static 'styles/bootstrap4/popper.js' %}\"></script>\r\n<script src=\"{% static 'styles/bootstrap4/bootstrap.min.js' %}\"></script>\r\n<script src=\"{% static 'plugins/greensock/TweenMax.min.js' %}\"></script>\r\n<script src=\"{% static 'plugins/greensock/TimelineMax.min.js' %}\"></script>\r\n<script src=\"{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}\"></script>\r\n<script src=\"{% static 'plugins/greensock/animation.gsap.min.js' %}\"></script>\r\n<script src=\"{% static 'plugins/greensock/ScrollToPlugin.min.js' %}\"></script>\r\n<script src=\"{% static 'plugins/easing/easing.js' %}\"></script>\r\n<script src=\"{% static 'plugins/parallax-js-master/parallax.min.js' %}\"></script>\r\n\r\n<script src=\"{% static 'js/jquery-3.2.1.min.js' %}\"></script>\r\n<script src=\"{% static 'styles/bootstrap4/popper.js' %}\"></script>\r\n<script src=\"{% static 'styles/bootstrap4/bootstrap.min.js' %}\"></script>\r\n<script src=\"{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}\"></script>\r\n<script src=\"{% static 'plugins/easing/easing.js' %}\"></script>\r\n<script src=\"{% static 'plugins/parallax-js-master/parallax.min.js' %}\"></script>\r\n<script src=\"{% static 'plugins/colorbox/jquery.colorbox-min.js' %}\"></script>\r\n<script src=\"{% static 'js/course.js' %}\"></script>\r\n<script src=\"{% static 'js/our_custom.js' %}\"></script>\r\n{% endblock content %}\r\n\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- templates/index.html	(revision 13bd4adf28e9390220d977e9c5c8006126529855)
++++ templates/index.html	(date 1568383907575)
+@@ -3,7 +3,17 @@
+ <html lang="en">
+ <head>
+ <title>Jež</title>
+-{% include "links.html" %}
++<meta charset="utf-8">
++<meta http-equiv="X-UA-Compatible" content="IE=edge">
++<meta name="description" content="Jez project">
++<meta name="viewport" content="width=device-width, initial-scale=1">
++<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
++<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
++<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
++<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
++<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
++<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
++<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+ </head>
+ <body>
+ 
+@@ -12,7 +22,7 @@
+ 	<!-- Header -->
+ 
+ 	<header class="header">
+-			
++
+ 		{% if not user.is_authenticated %}
+ 		<div class="top_bar">
+ 			<div class="top_bar_container">
+@@ -34,7 +44,7 @@
+ 						</div>
+ 					</div>
+ 				</div>
+-			</div>				
++			</div>
+ 		</div>
+ 		{% endif %}
+ 		<!-- Header Content -->
+@@ -85,14 +95,6 @@
+ 
+ 	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+ 		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+-		<!--<div class="search">-->
+-			<!--<form action="#" class="header_search_form menu_mm">-->
+-				<!--<input type="search" class="search_input menu_mm" placeholder="Search" required="required">-->
+-				<!--<button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">-->
+-					<!--<i class="fa fa-search menu_mm" aria-hidden="true"></i>-->
+-				<!--</button>-->
+-			<!--</form>-->
+-		<!--</div>-->
+ 		<nav class="menu_nav">
+ 			<ul class="menu_mm">
+ 				<li class="menu_mm"><a href="{% url 'tko_smo:homepage'%}">Tko smo?</a></li>
+@@ -115,21 +117,23 @@
+ 
+ 	{% block content %}
+ 	<!-- Home -->
++	<br><br><br><br><br><br>
++	<div class="home" style="height: 400px">
++		<div class="home_slider_container" style="height: 400px;">
+ 
+-	<div class="home">
+-		<div class="home_slider_container">
+-			<br><br><br><br>
+-			<!-- Home Slider, maknuti strelice -->
+-			<div class="owl-carousel owl-theme home_slider">
++			<!-- Home Slider -->
++			<div class="owl-carousel owl-theme home_slider" style="height: 400px">
++
+ 				<!-- Home Slider Item -->
+-				<div class="owl-item">
+-					<div class="home_slider_background" style="background-image:url({% static 'images/home_slider_1.jpg' %})"></div>
++				<div class="owl-item" style="height: 370px;">
++					<div class="home_slider_background" style="background-image:url({% static 'images/learning.jpg' %})"></div>
+ 					<div class="home_slider_content">
+ 						<div class="container">
+ 							<div class="row">
+-								<div class="col text-center">
+-									<div class="home_slider_title">Lorem ipsum dolor sit</div>
+-									<div class="home_slider_subtitle">Neki tekst</div>
++								<div class="col float-sm-left">
++									<div class="home_slider_title"><i>Lorem ipsum dolor sit</i></div>
++									<div class="home_slider_subtitle"><i>Lorem ipsum dolor sit</i></div>
++
+ 								</div>
+ 							</div>
+ 						</div>
+@@ -139,30 +143,27 @@
+ 		</div>
+ 
+ 		<!-- Home Slider Nav -->
+-
+-		<!--<div class="home_slider_nav home_slider_prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>-->
+-		<!--<div class="home_slider_nav home_slider_next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>-->
+ 	</div>
+ 
+ 	<!-- Features -->
+-	<br><br><br><br><br>
++
+ 	<div class="features">
+ 		<div class="container">
+ 			<div class="row">
+ 				<div class="col">
+ 					<div class="section_title_container text-center">
+-						<h2 class="section_title">Welcome To Jež E-Learning</h2>
++						<h2 class="section_title">Welcome To Unicat E-Learning</h2>
+ 						<div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 			<div class="row features_row">
+-				
++
+ 				<!-- Features Item -->
+ 				<div class="col-lg-3 feature_col">
+ 					<div class="feature text-center trans_400">
+-						<div class="feature_icon"><img src="images/icon_1.png" alt=""></div>
+-						<h3 class="feature_title">The Experts</h3>
++						<div class="feature_icon"><img src="{% static 'images/icon_1.png' %}" alt=""></div>
++						<h3 class="feature_title">Strojarstvo</h3>
+ 						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+ 					</div>
+ 				</div>
+@@ -170,8 +171,8 @@
+ 				<!-- Features Item -->
+ 				<div class="col-lg-3 feature_col">
+ 					<div class="feature text-center trans_400">
+-						<div class="feature_icon"><img src="images/icon_2.png" alt=""></div>
+-						<h3 class="feature_title">Book & Library</h3>
++						<div class="feature_icon"><img src="{% static 'images/bulb.png' %}" style="height: 70px" alt=""></div>
++						<h3 class="feature_title">Elektrotehnika</h3>
+ 						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+ 					</div>
+ 				</div>
+@@ -179,8 +180,8 @@
+ 				<!-- Features Item -->
+ 				<div class="col-lg-3 feature_col">
+ 					<div class="feature text-center trans_400">
+-						<div class="feature_icon"><img src="images/icon_3.png" alt=""></div>
+-						<h3 class="feature_title">Best Courses</h3>
++						<div class="feature_icon"><img src="{% static 'images/icon_3.png' %}" alt=""></div>
++						<h3 class="feature_title">Računarstvo</h3>
+ 						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+ 					</div>
+ 				</div>
+@@ -188,8 +189,8 @@
+ 				<!-- Features Item -->
+ 				<div class="col-lg-3 feature_col">
+ 					<div class="feature text-center trans_400">
+-						<div class="feature_icon"><img src="images/icon_4.png" alt=""></div>
+-						<h3 class="feature_title">Award & Reward</h3>
++						<div class="feature_icon"><img src="{% static 'images/anchor.png' %}" style="height: 70px" alt=""></div>
++						<h3 class="feature_title">Brodogradnja</h3>
+ 						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+ 					</div>
+ 				</div>
+@@ -198,6 +199,119 @@
+ 		</div>
+ 	</div>
+ 
++	<div class="news">
++		<div class="container">
++			<div class="row">
++				<div class="col">
++					<div class="section_title_container text-center">
++						<h2 class="section_title">Latest News</h2>
++						<div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
++					</div>
++				</div>
++			</div>
++			<div class="row news_row">
++				<div class="col-lg-7 news_col">
++
++					<!-- News Post Large -->
++					<div class="news_post_large_container">
++						<div class="news_post_large">
++							<div class="news_post_image"><img src="{% static 'images/news_1.jpg' %}" alt=""></div>
++							<div class="news_post_large_title"><a href="blog_single.html">Here’s What You Need to Know About Online Testing for the ACT and SAT</a></div>
++							<div class="news_post_meta">
++								<ul>
++									<li><a href="#">admin</a></li>
++									<li><a href="#">november 11, 2017</a></li>
++								</ul>
++							</div>
++							<div class="news_post_text">
++								<p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take. Can America learn anything from other nations...</p>
++							</div>
++							<div class="news_post_link"><a href="blog_single.html">read more</a></div>
++						</div>
++					</div>
++				</div>
++
++				<div class="col-lg-5 news_col">
++					<div class="news_posts_small">
++
++						<!-- News Posts Small -->
++						<div class="news_post_small">
++							<div class="news_post_small_title"><a href="blog_single.html">Home-based business insurance issue (Spring 2017 - 2018)</a></div>
++							<div class="news_post_meta">
++								<ul>
++									<li><a href="#">admin</a></li>
++									<li><a href="#">november 11, 2017</a></li>
++								</ul>
++							</div>
++						</div>
++
++						<!-- News Posts Small -->
++						<div class="news_post_small">
++							<div class="news_post_small_title"><a href="blog_single.html">2018 Fall Issue: Credit Card Comparison Site Survey (Summer 2018)</a></div>
++							<div class="news_post_meta">
++								<ul>
++									<li><a href="#">admin</a></li>
++									<li><a href="#">november 11, 2017</a></li>
++								</ul>
++							</div>
++						</div>
++
++						<!-- News Posts Small -->
++						<div class="news_post_small">
++							<div class="news_post_small_title"><a href="blog_single.html">Cuentas de cheques gratuitas una encuesta de Consumer Action</a></div>
++							<div class="news_post_meta">
++								<ul>
++									<li><a href="#">admin</a></li>
++									<li><a href="#">november 11, 2017</a></li>
++								</ul>
++							</div>
++						</div>
++
++						<!-- News Posts Small -->
++						<div class="news_post_small">
++							<div class="news_post_small_title"><a href="blog_single.html">Troubled borrowers have fewer repayment or forgiveness options</a></div>
++							<div class="news_post_meta">
++								<ul>
++									<li><a href="#">admin</a></li>
++									<li><a href="#">november 11, 2017</a></li>
++								</ul>
++							</div>
++						</div>
++
++					</div>
++				</div>
++			</div>
++		</div>
++	</div>
++
++	<!-- Newsletter -->
++
++	<div class="newsletter">
++		<div class="newsletter_background parallax-window" data-parallax="scroll" data-image-src="images/newsletter.jpg" data-speed="0.8"></div>
++		<div class="container">
++			<div class="row">
++				<div class="col">
++					<div class="newsletter_container d-flex flex-lg-row flex-column align-items-center justify-content-start">
++
++						<!-- Newsletter Content -->
++						<div class="newsletter_content text-lg-left text-center">
++							<div class="newsletter_title">sign up for news and offers</div>
++							<div class="newsletter_subtitle">Subcribe to lastest smartphones news & great deals we offer</div>
++						</div>
++
++						<!-- Newsletter Form -->
++						<div class="newsletter_form_container ml-lg-auto">
++							<form action="#" id="newsletter_form" class="newsletter_form d-flex flex-row align-items-center justify-content-center">
++								<input type="email" class="newsletter_input" placeholder="Your Email" required="required">
++								<button type="submit" class="newsletter_button">subscribe</button>
++							</form>
++						</div>
++
++					</div>
++				</div>
++			</div>
++		</div>
++	</div>
+ 
+ 	<!-- Footer -->
+ 
+@@ -210,13 +324,12 @@
+ 						<div class="row">
+ 
+ 							<div class="col-lg-3 footer_col">
+-					
++
+ 								<!-- Footer About -->
+ 								<div class="footer_section footer_about">
+ 									<div class="footer_logo_container">
+-
+-										<a href="{% url 'homepage' %}">
+-											<div class="logo_text">Jež</div>
++										<a href="#">
++											<div class="footer_logo_text">Unic<span>at</span></div>
+ 										</a>
+ 									</div>
+ 									<div class="footer_about_text">
+@@ -227,10 +340,63 @@
+ 											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+ 											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+ 											<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
++											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
++										</ul>
++									</div>
++								</div>
++
++							</div>
++
++							<div class="col-lg-3 footer_col">
++
++								<!-- Footer Contact -->
++								<div class="footer_section footer_contact">
++									<div class="footer_title">Contact Us</div>
++									<div class="footer_contact_info">
++										<ul>
++											<li>Email: Info.deercreative@gmail.com</li>
++											<li>Phone:  +(88) 111 555 666</li>
++											<li>40 Baria Sreet 133/2 New York City, United States</li>
++										</ul>
++									</div>
++								</div>
++
++							</div>
++
++							<div class="col-lg-3 footer_col">
++
++								<!-- Footer links -->
++								<div class="footer_section footer_links">
++									<div class="footer_title">Contact Us</div>
++									<div class="footer_links_container">
++										<ul>
++											<li><a href="index.html">Home</a></li>
++											<li><a href="about.html">About</a></li>
++											<li><a href="contact.html">Contact</a></li>
++											<li><a href="#">Features</a></li>
++											<li><a href="courses.html">Courses</a></li>
++											<li><a href="#">Events</a></li>
++											<li><a href="#">Gallery</a></li>
++											<li><a href="#">FAQs</a></li>
+ 										</ul>
+ 									</div>
+ 								</div>
++
++							</div>
++
++							<div class="col-lg-3 footer_col clearfix">
++
++								<!-- Footer links -->
++								<div class="footer_section footer_mobile">
++									<div class="footer_title">Mobile</div>
++									<div class="footer_mobile_content">
++										<div class="footer_image"><a href="#"><img src="images/mobile_1.png" alt=""></a></div>
++										<div class="footer_image"><a href="#"><img src="images/mobile_2.png" alt=""></a></div>
++									</div>
++								</div>
++
+ 							</div>
++
+ 						</div>
+ 					</div>
+ 				</div>
+@@ -244,9 +410,9 @@
+ <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+ 						<div class="ml-lg-auto cr_links">
+ 							<ul class="cr_list">
+-								<li><a href="#">Copyright</a></li>
+-								<li><a href="#">Uvjeti korištenja</a></li>
+-								<li><a href="#">Politika privatnosti</a></li>
++								<li><a href="#">Copyright notification</a></li>
++								<li><a href="#">Terms of Use</a></li>
++								<li><a href="#">Privacy Policy</a></li>
+ 							</ul>
+ 						</div>
+ 					</div>
+@@ -255,6 +421,9 @@
+ 		</div>
+ 	</footer>
+ </div>
++
++
++{% endblock content %}
+ <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+ <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+ <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+@@ -263,9 +432,20 @@
+ <script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+ <script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+ <script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
++<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+ <script src="{% static 'plugins/easing/easing.js' %}"></script>
+ <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+-
++<script src="{% static 'js/custom.js' %}"></script>
++<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
++<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
++<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
++<script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
++<script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
++<script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
++<script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
++<script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
++<script src="{% static 'plugins/easing/easing.js' %}"></script>
++<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+ <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+ <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+ <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+@@ -275,7 +455,9 @@
+ <script src="{% static 'plugins/colorbox/jquery.colorbox-min.js' %}"></script>
+ <script src="{% static 'js/course.js' %}"></script>
+ <script src="{% static 'js/our_custom.js' %}"></script>
+-{% endblock content %}
++
++</body>
++</html>
+ 
+ </body>
+ </html>
+\ No newline at end of file
+Index: templates/links.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% load static %}\r\n\r\n\r\n<!--JS FILES-->\r\n<script src=\"{% static 'js/jquery-3.2.1.min.js' %}\"></script>\r\n<script src=\"{% static 'styles/bootstrap4/popper.js' %}\"></script>\r\n<script src=\"{% static 'styles/bootstrap4/bootstrap.min.js' %}\"></script>\r\n<script src=\"{% static 'plugins/greensock/TweenMax.min.js' %}\"></script>\r\n<script src=\"{% static 'plugins/greensock/TimelineMax.min.js' %}\"></script>\r\n<script src=\"{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}\"></script>\r\n<script src=\"{% static 'plugins/greensock/animation.gsap.min.js' %}\"></script>\r\n<script src=\"{% static 'plugins/greensock/ScrollToPlugin.min.js' %}\"></script>\r\n<script src=\"{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}\"></script>\r\n<script src=\"{% static 'plugins/easing/easing.js' %}\"></script>\r\n<script src=\"{% static 'plugins/parallax-js-master/parallax.min.js' %}\"></script>\r\n<script src=\"{% static 'js/custom.js' %}\"></script>\r\n<script src=\"{% static 'plugins/colorbox/jquery.colorbox-min.js' %}\"></script>\r\n<script src=\"{% static 'js/blog_single.js' %}\"></script>\r\n<script src=\"{% static 'js/our_custom.js' %}\"></script>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<!--BOOTSTRAP SRANJA-->\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"{% static 'styles/bootstrap4/bootstrap.min.css' %}\">\r\n<link href=\"{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}\" rel=\"stylesheet\" type=\"text/css\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}\">\r\n\r\n\r\n<!--STYLES-->\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"{% static 'styles/main_styles.css' %}\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"{% static 'styles/responsive.css' %}\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"{% static 'styles/style_login.css' %}\">\r\n<link href=\"{% static 'plugins/colorbox/colorbox.css' %}\" rel=\"stylesheet\" type=\"text/css\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"{% static 'styles/course.css' %}\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"{% static 'styles/course_responsive.css' %}\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"{% static 'styles/bootstrap4/bootstrap.min.css' %}\">
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- templates/links.html	(revision 13bd4adf28e9390220d977e9c5c8006126529855)
++++ templates/links.html	(date 1568272615399)
+@@ -1,6 +1,6 @@
+ {% load static %}
+ 
+-
++<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1">
+ <!--JS FILES-->
+ <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+ <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+Index: account/views.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from django.shortcuts import render, redirect\r\nfrom django.http import HttpResponseRedirect\r\nfrom django.urls import reverse\r\nfrom django.contrib.auth.decorators import login_required\r\n\r\nfrom .models import User\r\nfrom django.contrib.auth.forms import (\r\n    UserCreationForm,\r\n    AuthenticationForm,\r\n    PasswordChangeForm\r\n)\r\nfrom django.contrib.auth import login, logout, authenticate\r\nfrom account.forms import (\r\n    RegistrationForm,\r\n    StudentProfileForm,\r\n    EditUserForm,\r\n    EditStudentForm,\r\n)\r\nfrom django.contrib import messages\r\nfrom .models import Kolegij\r\nfrom objava.models import Objava\r\nfrom django.contrib.auth import update_session_auth_hash #za ponovnu prijavu nakon promjene lozinke!\r\n\r\n\r\ndef login_view(request):\r\n    form = AuthenticationForm()\r\n\r\n    if request.method == 'POST':\r\n        form = AuthenticationForm(data=request.POST)\r\n        #ova forma odma provjera postoji li user ili ne, ali ga ne ulogira!\r\n        #tj forma nije validna ako user ne postoji lollllll\r\n        if form.is_valid():\r\n            user = authenticate(request, username=form.cleaned_data.get('username'), password=form.cleaned_data.get('password'))\r\n            if user is not None:\r\n                if user.is_active:\r\n                    login(request, user)\r\n                    request.session['username'] = form.cleaned_data.get('username')\r\n                    return HttpResponseRedirect(reverse('account:mypage'))\r\n                else:\r\n                     messages.info(request, \"Vaš račun je istekao ili je blokiran\")\r\n\r\n        else:\r\n            messages.info(request, \"Pogresan username ili lozinka\")\r\n\r\n    storage = messages.get_messages(request)\r\n    return render(request, \"account/login.html\", {'form': form, 'messages':storage})\r\n\r\n@login_required()\r\ndef settings_view(request):\r\n    if request.user.is_authenticated:\r\n        if request.method == 'POST':\r\n            form = EditUserForm(request.POST, instance=request.user)\r\n            student_form = EditStudentForm(request.POST, request.FILES, instance=request.user.student)\r\n            if form.is_valid() and student_form.is_valid():\r\n                user_form = form.save()\r\n                student = student_form.save(commit=False)\r\n                student.user = user_form\r\n                student.save()\r\n                return redirect('account:settings')\r\n        else:\r\n            form = EditUserForm(instance=request.user)\r\n            student_form = EditStudentForm(instance=request.user.student)\r\n            student_form.fields['studij'].widget.attrs = {'class': 'form-control'}\r\n            context = {'form': form, 'student_form': student_form}\r\n            return render(request, \"account/settings.html\", context)\r\n\r\n@login_required()\r\ndef change_password(request):\r\n    if request.method == 'POST':\r\n        form = PasswordChangeForm(data=request.POST, user=request.user)\r\n\r\n        if form.is_valid():\r\n            form.save()\r\n            update_session_auth_hash(request, form.user)\r\n            #jedno kad se promjeni lozinka django automatski odjavi usera jer se promjene podaci\r\n            return redirect('account:mypage')\r\n            #neka poruka uspješna promjena blabla\r\n    else:\r\n        form = PasswordChangeForm(user=request.user)\r\n        context = {'form' : form}\r\n        return render(request, 'account/change_password.html', context)\r\n\r\ndef signup_view(request):\r\n    if request.method == 'POST':\r\n        form = RegistrationForm(data=request.POST)\r\n        student_form = StudentProfileForm(request.POST)\r\n\r\n        if form.is_valid() and student_form.is_valid():\r\n            user = form.save() #prvo spremim podatke iz forme u DJANGO USER MODEL\r\n            print(student_form.cleaned_data.get('studij'))\r\n            student = student_form.save(commit=False) #želim spremiti u studenta al prvo pohranim podatke (commit - false) i onda nadodam podatke iz usera)\r\n            student.user = user\r\n            student.save()\r\n            return render(request, \"account/success.html\")\r\n\r\n    else:\r\n        form = RegistrationForm()\r\n        student_form = StudentProfileForm()\r\n        student_form.fields['studij'].widget.attrs = {'class': 'form-control'}\r\n\r\n    context = {'form' : form, 'student_form' : student_form,}\r\n    return render(request, \"account/signup.html\", context)\r\n\r\n\r\n@login_required()\r\ndef mypage_view(request):\r\n    username = request.user.username\r\n    svi_moji_kolegiji = Kolegij.objects.raw('select distinct * from studij_kolegij, studij_smjer, account_moj_kolegij where studij_smjer.smjer_id = account_moj_kolegij.smjer_id and studij_kolegij.kolegij_id=account_moj_kolegij.kolegij_id and account_moj_kolegij.username= %s and studij_kolegij.studij_id=account_moj_kolegij.studij_id', [username])\r\n    moje_objave= Objava.objects.all().filter(username=request.user).count()\r\n    if len(list(svi_moji_kolegiji)) == 0:\r\n        svi_moji_kolegiji = 0\r\n\r\n    context = {'svi_moji_kolegiji' : svi_moji_kolegiji, 'moje_objave' : moje_objave}\r\n    return render(request, \"account/mypage.html\", context)\r\n\r\ndef logout_view(request):\r\n    logout(request)\r\n    return redirect('homepage')
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- account/views.py	(revision 13bd4adf28e9390220d977e9c5c8006126529855)
++++ account/views.py	(date 1568269578484)
+@@ -2,6 +2,7 @@
+ from django.http import HttpResponseRedirect
+ from django.urls import reverse
+ from django.contrib.auth.decorators import login_required
++from .models import Moj_Kolegij
+ 
+ from .models import User
+ from django.contrib.auth.forms import (
+@@ -105,8 +106,11 @@
+ @login_required()
+ def mypage_view(request):
+     username = request.user.username
+-    svi_moji_kolegiji = Kolegij.objects.raw('select distinct * from studij_kolegij, studij_smjer, account_moj_kolegij where studij_smjer.smjer_id = account_moj_kolegij.smjer_id and studij_kolegij.kolegij_id=account_moj_kolegij.kolegij_id and account_moj_kolegij.username= %s and studij_kolegij.studij_id=account_moj_kolegij.studij_id', [username])
++    svi_moji_kolegiji = Moj_Kolegij.objects.all().filter(username=username)
++
++    svi_moji_kolegiji = Kolegij.objects.raw('select * from studij_kolegij, account_moj_kolegij where account_moj_kolegij.username=%s and studij_kolegij.studij_id=account_moj_kolegij.studij_id and studij_kolegij.smjer_id=account_moj_kolegij.smjer_id and studij_kolegij.kolegij_id=account_moj_kolegij.kolegij_id', [username])
+     moje_objave= Objava.objects.all().filter(username=request.user).count()
++
+     if len(list(svi_moji_kolegiji)) == 0:
+         svi_moji_kolegiji = 0
+ 
+Index: studij/models.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from django.db import models\r\n#from compositekey import db\r\n\r\n# Create your models here.\r\nclass Studij(models.Model):\r\n    studij_id = models.CharField(max_length=10, primary_key=True)\r\n    studij_ime = models.CharField(max_length=60)\r\n\r\n    def smjerovi_postoje(self):\r\n        nema_smjerova_tag =  \"!\" + self.studij_id\r\n        smjer_flag = Smjer.objects.all().filter(smjer_id=nema_smjerova_tag)\r\n\r\n        if smjer_flag.exists():\r\n            return False #za navedeni studij ne postoje nikakvi smjerovi jer u tablici ima !pssr npr\r\n\r\n        return True\r\n\r\n    def __str__(self):\r\n        return self.studij_ime\r\n\r\n    def getsmjerovi(self):\r\n        return Smjer.objects.all().filter(studij_id=self.studij_id)\r\n\r\n\r\n\r\nclass Smjer(models.Model):\r\n    smjer_id = models.CharField(max_length=10, primary_key=True)\r\n    smjer_ime= models.CharField(max_length=60)\r\n    studij = models.ForeignKey(Studij, on_delete=models.CASCADE, default='pss')\r\n\r\n\r\nclass Kolegij(models.Model):\r\n    dummy_id = models.AutoField(primary_key=True)\r\n    kolegij_id = models.CharField(max_length=10)\r\n    kolegij_ime = models.CharField(max_length=60)\r\n    semestar = models.SmallIntegerField()\r\n    studij = models.ForeignKey(Studij, on_delete=models.CASCADE)\r\n    smjer = models.ForeignKey(Smjer, on_delete=models.CASCADE)\r\n\r\n\r\n    def __str__(self):\r\n        return self.kolegij_ime\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- studij/models.py	(revision 13bd4adf28e9390220d977e9c5c8006126529855)
++++ studij/models.py	(date 1568742388190)
+@@ -11,7 +11,7 @@
+         smjer_flag = Smjer.objects.all().filter(smjer_id=nema_smjerova_tag)
+ 
+         if smjer_flag.exists():
+-            return False #za navedeni studij ne postoje nikakvi smjerovi jer u tablici ima !pssr npr
++                 return False  # za navedeni studij ne postoje nikakvi smjerovi jer u tablici ima !pssr npr
+ 
+         return True
+ 
+Index: objava/views.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from django.shortcuts import render, redirect\r\nfrom .forms import ObjavaForm, FilesObjavaForm\r\nfrom studij.models import Kolegij\r\nfrom account.models import Student\r\nfrom tema.models import Tema\r\nfrom objava.models import Objava, Objava_Likes, Objava_Files, Objava_Prijava\r\nfrom django.contrib.auth.models import User\r\nfrom django.core.exceptions import ValidationError\r\nfrom django.contrib import messages\r\nfrom django.http import  HttpResponseRedirect\r\nfrom django.urls import reverse\r\nfrom django.core.paginator import Paginator, EmptyPage, PageNotAnInteger\r\nfrom django.contrib.auth.decorators import login_required\r\n\r\n# Create your views here.\r\n\r\n@login_required()\r\ndef objava_view(request, studij_id, semestar_num, kolegij_id, tema_id, smjer_id):\r\n    form = ObjavaForm()\r\n    file_form = FilesObjavaForm()\r\n    active_student = Student.objects.get(user_id = request.user)\r\n    tema = Tema.objects.get(tema_id=tema_id)\r\n    tema_ime=tema.tema_ime\r\n    if request.method == 'POST':\r\n        form = ObjavaForm(data=request.POST)\r\n        if form.is_valid(): #ako imam tekst ne znaci da imam i files\r\n            objava = form.save(commit=False)\r\n            objava.username = request.user\r\n            kol = Kolegij.objects.get(kolegij_id=kolegij_id, studij_id=studij_id, smjer_id=smjer_id)\r\n            objava.kolegij_id = kol.kolegij_id\r\n            objava.tema = Tema.objects.get(tema_id = tema_id)\r\n            objava.save()\r\n\r\n\r\n            file_form = FilesObjavaForm(request.POST, request.FILES)\r\n            if file_form.is_valid():\r\n                files = request.FILES.getlist('attachment')  # field name in model\r\n                for f in files:\r\n                    file_instance = Objava_Files(attachment=f, objava=objava, tema_id=tema_id)\r\n                    file_instance.save()\r\n\r\n        #tu dodati da se prešalta na zadnju\r\n        return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id, 'smjer_id':smjer_id}))\r\n\r\n    sve_objave = Objava.objects.all().filter(tema_id=tema_id).order_by('objava_id')\r\n\r\n    # ide paginacijica hehe\r\n    paginator = Paginator(sve_objave, 4)\r\n    page = request.GET.get('page')\r\n\r\n    try:\r\n        items = paginator.page(page)\r\n    except PageNotAnInteger:\r\n        items = paginator.page(1)\r\n    except EmptyPage:\r\n        items = paginator.page(paginator.num_pages)\r\n\r\n    index = items.number - 1\r\n    max_index = len(paginator.page_range)\r\n    start_index = index - 5 if index >= 5 else 0\r\n    end_index = index + 5 if index <= max_index - 5 else max_index\r\n    page_range = paginator.page_range[start_index:end_index]\r\n\r\n\r\n    svi_lajkovi = Objava_Likes.objects.all()\r\n    user_likes = list(Objava_Likes.objects.filter(username_id=request.user.id).values_list('objava_id', flat=True))\r\n    context = {\r\n        'form': form,\r\n        'file_form': file_form,\r\n        'sve_objave': sve_objave,\r\n        'svi_lajkovi': svi_lajkovi,\r\n        'user_likes': user_likes,\r\n        'student': active_student,\r\n        'kolegij_id': kolegij_id,\r\n        'page_range': page_range,\r\n        'items': items,\r\n        'studij_id': studij_id,\r\n        'semestar_num': semestar_num,\r\n        'tema_id': tema_id,\r\n        'tema_ime': tema_ime,\r\n        'end': max_index,\r\n        'smjer_id':smjer_id\r\n    }\r\n    return render(request, 'objava/post.html', context)\r\n\r\n@login_required()\r\ndef like_view(request):\r\n    #print(request.POST['html_objava'])\r\n    tmp_like = request.POST['html_like']\r\n    active_user = User.objects.get(username= request.POST['html_user'])\r\n    active_student = Student.objects.get(user_id=User.objects.get(username= request.POST['html_user']))\r\n    if tmp_like == \"html_like\":\r\n        Objava_Likes.objects.create(objava_id = Objava.objects.get(objava_id = request.POST['html_objava']), username = active_user)\r\n    if tmp_like == \"html_dislike\":\r\n        Objava_Likes.objects.filter(objava_id=Objava.objects.get(objava_id=request.POST['html_objava']), username= active_user).delete()\r\n\r\n    likes_cnt = Objava_Likes.objects.filter(username = active_user).count()\r\n    if likes_cnt > 30:\r\n        if likes_cnt > 70:\r\n            if likes_cnt > 100:\r\n                if likes_cnt > 150:\r\n                    active_student.stars = 5\r\n                active_student.stars = 4\r\n            active_student.stars = 3\r\n        active_student.stars = 2\r\n    else:\r\n        active_student.stars = 1\r\n\r\n    active_student.save()\r\n\r\n    studij_id = request.POST['get_studij_id']\r\n    kolegij_id = request.POST['get_kolegij_id']\r\n    semestar_num = request.POST['get_semestar_num']\r\n    tema_id = request.POST['get_tema_id']\r\n    smjer_id = request.POST['get_smjer_id']\r\n    return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id, 'smjer_id': smjer_id}))\r\n\r\n@login_required()\r\ndef report_view(request):\r\n    active_user = User.objects.get(username=request.POST['html_user'])\r\n\r\n    if not Objava_Prijava.objects.filter(objava_id = Objava.objects.get(objava_id = request.POST['html_objava']), username = active_user).exists():\r\n        Objava_Prijava.objects.create(objava_id = Objava.objects.get(objava_id = request.POST['html_objava']), username = active_user)\r\n\r\n    cnt = Objava_Prijava.objects.filter(objava_id = Objava.objects.get(objava_id = request.POST['html_objava'])).count()\r\n    if cnt > 0:\r\n        Objava.objects.filter(objava_id = request.POST['html_objava']).delete()\r\n\r\n    studij_id = request.POST['get_studij_id']\r\n    kolegij_id = request.POST['get_kolegij_id']\r\n    semestar_num = request.POST['get_semestar_num']\r\n    tema_id = request.POST['get_tema_id']\r\n    return HttpResponseRedirect(reverse('objava:objava_homepage',\r\n                                        kwargs={'studij_id': studij_id, 'kolegij_id': kolegij_id,\r\n                                                'semestar_num': semestar_num, 'tema_id': tema_id}))
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- objava/views.py	(revision 13bd4adf28e9390220d977e9c5c8006126529855)
++++ objava/views.py	(date 1568384681051)
+@@ -21,6 +21,7 @@
+     active_student = Student.objects.get(user_id = request.user)
+     tema = Tema.objects.get(tema_id=tema_id)
+     tema_ime=tema.tema_ime
++
+     if request.method == 'POST':
+         form = ObjavaForm(data=request.POST)
+         if form.is_valid(): #ako imam tekst ne znaci da imam i files
+@@ -31,9 +32,9 @@
+             objava.tema = Tema.objects.get(tema_id = tema_id)
+             objava.save()
+ 
+-
+             file_form = FilesObjavaForm(request.POST, request.FILES)
+             if file_form.is_valid():
++                print("validna forma")
+                 files = request.FILES.getlist('attachment')  # field name in model
+                 for f in files:
+                     file_instance = Objava_Files(attachment=f, objava=objava, tema_id=tema_id)
+Index: account/models.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from django.db import models\r\nfrom django.utils import timezone\r\nfrom django.contrib.auth.models import User\r\nfrom studij.models import Kolegij, Studij, Smjer\r\nfrom objava.models import Objava\r\nclass Student(models.Model):\r\n    user = models.OneToOneField(User, on_delete=models.CASCADE)\r\n    email_ver = models.BooleanField(default=False)\r\n    profile_image = models.ImageField(upload_to='profile_image', default='/profile_image/default.png')\r\n    stars = models.SmallIntegerField(default=1)\r\n    studij = models.ForeignKey(Studij, on_delete=models.CASCADE)\r\n    def getobjavanum(self):\r\n        return str(Objava.objects.filter(username=self.user.username).count())\r\n    def __str__(self):\r\n        return self.user.username\r\n\r\nclass Moj_Kolegij(models.Model):\r\n    studij = models.ForeignKey(Studij, on_delete=models.CASCADE, default='pss')\r\n    smjer = models.ForeignKey(Smjer, on_delete=models.CASCADE)\r\n    username = models.CharField(max_length=150)\r\n    kolegij_id = models.CharField(max_length=10)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- account/models.py	(revision 13bd4adf28e9390220d977e9c5c8006126529855)
++++ account/models.py	(date 1568742027291)
+@@ -9,6 +9,7 @@
+     profile_image = models.ImageField(upload_to='profile_image', default='/profile_image/default.png')
+     stars = models.SmallIntegerField(default=1)
+     studij = models.ForeignKey(Studij, on_delete=models.CASCADE)
++
+     def getobjavanum(self):
+         return str(Objava.objects.filter(username=self.user.username).count())
+     def __str__(self):
+@@ -18,4 +19,10 @@
+     studij = models.ForeignKey(Studij, on_delete=models.CASCADE, default='pss')
+     smjer = models.ForeignKey(Smjer, on_delete=models.CASCADE)
+     username = models.CharField(max_length=150)
+-    kolegij_id = models.CharField(max_length=10)
+\ No newline at end of file
++    kolegij_id = models.CharField(max_length=10)
++
++
++
++
++
++
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"d993984f-5e6b-491f-a6db-443f308afced\" name=\"Default Changelist\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/account/views.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/account/views.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/objava/templates/objava/post.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/objava/templates/objava/post.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/objava/views.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/objava/views.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"EXCLUDED_CONVERTED_TO_IGNORED\" value=\"true\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"CoverageDataManager\">\r\n    <SUITE FILE_PATH=\"coverage/jez$__init__.coverage\" NAME=\"__init__ Coverage Results\" MODIFIED=\"1564833623350\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/tester_user/migrations\" />\r\n    <SUITE FILE_PATH=\"coverage/jez$forms.coverage\" NAME=\"forms Coverage Results\" MODIFIED=\"1567004662731\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/account\" />\r\n  </component>\r\n  <component name=\"DatabaseView\">\r\n    <option name=\"SHOW_INTERMEDIATE\" value=\"true\" />\r\n    <option name=\"GROUP_DATA_SOURCES\" value=\"true\" />\r\n    <option name=\"GROUP_SCHEMA\" value=\"true\" />\r\n    <option name=\"GROUP_CONTENTS\" value=\"false\" />\r\n    <option name=\"SORT_POSITIONED\" value=\"false\" />\r\n    <option name=\"SHOW_EMPTY_GROUPS\" value=\"false\" />\r\n    <option name=\"AUTO_SCROLL_FROM_SOURCE\" value=\"false\" />\r\n    <option name=\"HIDDEN_KINDS\">\r\n      <set />\r\n    </option>\r\n    <expand>\r\n      <path>\r\n        <item name=\"Database\" type=\"3277223f:DatabaseStructure$DbRootGroup\" />\r\n        <item name=\"jez_database@localhost\" type=\"feb32156:DbDataSourceImpl\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"Database\" type=\"3277223f:DatabaseStructure$DbRootGroup\" />\r\n        <item name=\"jez_database@localhost\" type=\"feb32156:DbDataSourceImpl\" />\r\n        <item name=\"databases\" type=\"d4e8921:DatabaseStructure$FamilyGroup\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"Database\" type=\"3277223f:DatabaseStructure$DbRootGroup\" />\r\n        <item name=\"jez_database@localhost\" type=\"feb32156:DbDataSourceImpl\" />\r\n        <item name=\"databases\" type=\"d4e8921:DatabaseStructure$FamilyGroup\" />\r\n        <item name=\"jez_database: database\" type=\"6d9b600a:PostgresImplModel$Database\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"Database\" type=\"3277223f:DatabaseStructure$DbRootGroup\" />\r\n        <item name=\"jez_database@localhost\" type=\"feb32156:DbDataSourceImpl\" />\r\n        <item name=\"databases\" type=\"d4e8921:DatabaseStructure$FamilyGroup\" />\r\n        <item name=\"jez_database: database\" type=\"6d9b600a:PostgresImplModel$Database\" />\r\n        <item name=\"schemas\" type=\"d4e8921:DatabaseStructure$FamilyGroup\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"Database\" type=\"3277223f:DatabaseStructure$DbRootGroup\" />\r\n        <item name=\"jez_database@localhost\" type=\"feb32156:DbDataSourceImpl\" />\r\n        <item name=\"databases\" type=\"d4e8921:DatabaseStructure$FamilyGroup\" />\r\n        <item name=\"jez_database: database\" type=\"6d9b600a:PostgresImplModel$Database\" />\r\n        <item name=\"schemas\" type=\"d4e8921:DatabaseStructure$FamilyGroup\" />\r\n        <item name=\"public: schema\" type=\"a16502c0:PostgresImplModel$Schema\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"Database\" type=\"3277223f:DatabaseStructure$DbRootGroup\" />\r\n        <item name=\"jez_database@localhost\" type=\"feb32156:DbDataSourceImpl\" />\r\n        <item name=\"databases\" type=\"d4e8921:DatabaseStructure$FamilyGroup\" />\r\n        <item name=\"jez_database: database\" type=\"6d9b600a:PostgresImplModel$Database\" />\r\n        <item name=\"schemas\" type=\"d4e8921:DatabaseStructure$FamilyGroup\" />\r\n        <item name=\"public: schema\" type=\"a16502c0:PostgresImplModel$Schema\" />\r\n        <item name=\"tables\" type=\"d4e8921:DatabaseStructure$FamilyGroup\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ExecutionTargetDialog\">\r\n    <checked>\r\n      <node key=\"6756c5fa-b8b9-4640-9d2a-62cfb8730588\" />\r\n    </checked>\r\n  </component>\r\n  <component name=\"FUSProjectUsageTrigger\">\r\n    <session id=\"-1065322973\">\r\n      <usages-collector id=\"statistics.lifecycle.project\">\r\n        <counts>\r\n          <entry key=\"project.closed\" value=\"26\" />\r\n          <entry key=\"project.open.time.0\" value=\"1\" />\r\n          <entry key=\"project.open.time.12\" value=\"2\" />\r\n          <entry key=\"project.open.time.13\" value=\"1\" />\r\n          <entry key=\"project.open.time.15\" value=\"2\" />\r\n          <entry key=\"project.open.time.16\" value=\"1\" />\r\n          <entry key=\"project.open.time.18\" value=\"1\" />\r\n          <entry key=\"project.open.time.26\" value=\"1\" />\r\n          <entry key=\"project.open.time.28\" value=\"1\" />\r\n          <entry key=\"project.open.time.3\" value=\"1\" />\r\n          <entry key=\"project.open.time.37\" value=\"1\" />\r\n          <entry key=\"project.open.time.40\" value=\"1\" />\r\n          <entry key=\"project.open.time.42\" value=\"2\" />\r\n          <entry key=\"project.open.time.43\" value=\"1\" />\r\n          <entry key=\"project.open.time.45\" value=\"2\" />\r\n          <entry key=\"project.open.time.49\" value=\"2\" />\r\n          <entry key=\"project.open.time.51\" value=\"1\" />\r\n          <entry key=\"project.open.time.57\" value=\"1\" />\r\n          <entry key=\"project.open.time.58\" value=\"1\" />\r\n          <entry key=\"project.open.time.59\" value=\"1\" />\r\n          <entry key=\"project.open.time.61\" value=\"1\" />\r\n          <entry key=\"project.open.time.62\" value=\"1\" />\r\n          <entry key=\"project.open.time.73\" value=\"1\" />\r\n          <entry key=\"project.open.time.88\" value=\"1\" />\r\n          <entry key=\"project.open.time.93\" value=\"1\" />\r\n          <entry key=\"project.open.time.95\" value=\"1\" />\r\n          <entry key=\"project.opened\" value=\"30\" />\r\n        </counts>\r\n      </usages-collector>\r\n      <usages-collector id=\"statistics.file.extensions.open\">\r\n        <counts>\r\n          <entry key=\"account_moj_kolegij\" value=\"3\" />\r\n          <entry key=\"account_moji_kolegiji\" value=\"5\" />\r\n          <entry key=\"account_student\" value=\"9\" />\r\n          <entry key=\"account_student_kolegij\" value=\"1\" />\r\n          <entry key=\"account_ucenik\" value=\"7\" />\r\n          <entry key=\"auth_group\" value=\"2\" />\r\n          <entry key=\"auth_user\" value=\"6\" />\r\n          <entry key=\"css\" value=\"14\" />\r\n          <entry key=\"django_content_type\" value=\"1\" />\r\n          <entry key=\"html\" value=\"130\" />\r\n          <entry key=\"jpg\" value=\"3\" />\r\n          <entry key=\"js\" value=\"1\" />\r\n          <entry key=\"lala\" value=\"1\" />\r\n          <entry key=\"objava_objava\" value=\"12\" />\r\n          <entry key=\"objava_objava_files\" value=\"6\" />\r\n          <entry key=\"png\" value=\"4\" />\r\n          <entry key=\"py\" value=\"281\" />\r\n          <entry key=\"sql\" value=\"11\" />\r\n          <entry key=\"studij_kolegij\" value=\"4\" />\r\n          <entry key=\"studij_studij\" value=\"5\" />\r\n          <entry key=\"tema_tema\" value=\"3\" />\r\n        </counts>\r\n      </usages-collector>\r\n      <usages-collector id=\"statistics.file.types.open\">\r\n        <counts>\r\n          <entry key=\"CSS\" value=\"14\" />\r\n          <entry key=\"Database Element\" value=\"64\" />\r\n          <entry key=\"HTML\" value=\"130\" />\r\n          <entry key=\"Image\" value=\"7\" />\r\n          <entry key=\"JavaScript\" value=\"1\" />\r\n          <entry key=\"PLAIN_TEXT\" value=\"1\" />\r\n          <entry key=\"Python\" value=\"281\" />\r\n          <entry key=\"SQL\" value=\"1\" />\r\n          <entry key=\"Scratch\" value=\"10\" />\r\n        </counts>\r\n      </usages-collector>\r\n      <usages-collector id=\"statistics.file.extensions.edit\">\r\n        <counts>\r\n          <entry key=\"cell\" value=\"337\" />\r\n          <entry key=\"css\" value=\"164\" />\r\n          <entry key=\"dummy\" value=\"6\" />\r\n          <entry key=\"html\" value=\"9532\" />\r\n          <entry key=\"lala\" value=\"3\" />\r\n          <entry key=\"py\" value=\"20070\" />\r\n          <entry key=\"sql\" value=\"262\" />\r\n          <entry key=\"txt\" value=\"440\" />\r\n        </counts>\r\n      </usages-collector>\r\n      <usages-collector id=\"statistics.file.types.edit\">\r\n        <counts>\r\n          <entry key=\"CSS\" value=\"164\" />\r\n          <entry key=\"DjangoUrlPath\" value=\"1\" />\r\n          <entry key=\"HTML\" value=\"9532\" />\r\n          <entry key=\"PLAIN_TEXT\" value=\"449\" />\r\n          <entry key=\"Python\" value=\"20068\" />\r\n          <entry key=\"SQL\" value=\"2\" />\r\n          <entry key=\"Scratch\" value=\"598\" />\r\n        </counts>\r\n      </usages-collector>\r\n    </session>\r\n    <session id=\"-249473928\">\r\n      <usages-collector id=\"statistics.lifecycle.project\">\r\n        <counts>\r\n          <entry key=\"project.closed\" value=\"17\" />\r\n          <entry key=\"project.open.time.13\" value=\"2\" />\r\n          <entry key=\"project.open.time.14\" value=\"1\" />\r\n          <entry key=\"project.open.time.15\" value=\"2\" />\r\n          <entry key=\"project.open.time.2\" value=\"1\" />\r\n          <entry key=\"project.open.time.20\" value=\"1\" />\r\n          <entry key=\"project.open.time.23\" value=\"1\" />\r\n          <entry key=\"project.open.time.39\" value=\"1\" />\r\n          <entry key=\"project.open.time.47\" value=\"1\" />\r\n          <entry key=\"project.open.time.50\" value=\"2\" />\r\n          <entry key=\"project.open.time.51\" value=\"1\" />\r\n          <entry key=\"project.open.time.54\" value=\"1\" />\r\n          <entry key=\"project.open.time.56\" value=\"1\" />\r\n          <entry key=\"project.open.time.67\" value=\"1\" />\r\n          <entry key=\"project.open.time.70\" value=\"1\" />\r\n          <entry key=\"project.open.time.75\" value=\"2\" />\r\n          <entry key=\"project.open.time.79\" value=\"1\" />\r\n          <entry key=\"project.opened\" value=\"20\" />\r\n        </counts>\r\n      </usages-collector>\r\n      <usages-collector id=\"statistics.file.extensions.open\">\r\n        <counts>\r\n          <entry key=\"account_moj_kolegij\" value=\"5\" />\r\n          <entry key=\"account_student\" value=\"2\" />\r\n          <entry key=\"auth_user\" value=\"7\" />\r\n          <entry key=\"css\" value=\"2\" />\r\n          <entry key=\"django_session\" value=\"1\" />\r\n          <entry key=\"html\" value=\"50\" />\r\n          <entry key=\"objava_objava\" value=\"1\" />\r\n          <entry key=\"py\" value=\"64\" />\r\n          <entry key=\"studij_kolegij\" value=\"10\" />\r\n          <entry key=\"studij_smjer\" value=\"10\" />\r\n          <entry key=\"studij_studij\" value=\"7\" />\r\n        </counts>\r\n      </usages-collector>\r\n      <usages-collector id=\"statistics.file.types.open\">\r\n        <counts>\r\n          <entry key=\"CSS\" value=\"2\" />\r\n          <entry key=\"Database Element\" value=\"43\" />\r\n          <entry key=\"HTML\" value=\"50\" />\r\n          <entry key=\"Python\" value=\"64\" />\r\n        </counts>\r\n      </usages-collector>\r\n      <usages-collector id=\"statistics.file.extensions.edit\">\r\n        <counts>\r\n          <entry key=\"cell\" value=\"1024\" />\r\n          <entry key=\"html\" value=\"3290\" />\r\n          <entry key=\"py\" value=\"5242\" />\r\n          <entry key=\"txt\" value=\"179\" />\r\n        </counts>\r\n      </usages-collector>\r\n      <usages-collector id=\"statistics.file.types.edit\">\r\n        <counts>\r\n          <entry key=\"HTML\" value=\"3290\" />\r\n          <entry key=\"PLAIN_TEXT\" value=\"179\" />\r\n          <entry key=\"Python\" value=\"5242\" />\r\n          <entry key=\"Scratch\" value=\"1024\" />\r\n        </counts>\r\n      </usages-collector>\r\n    </session>\r\n    <session id=\"-1403098355\">\r\n      <usages-collector id=\"statistics.file.extensions.edit\">\r\n        <counts>\r\n          <entry key=\"cell\" value=\"252\" />\r\n          <entry key=\"css\" value=\"26\" />\r\n          <entry key=\"html\" value=\"1124\" />\r\n          <entry key=\"js\" value=\"2\" />\r\n          <entry key=\"py\" value=\"662\" />\r\n          <entry key=\"txt\" value=\"64\" />\r\n        </counts>\r\n      </usages-collector>\r\n      <usages-collector id=\"statistics.file.types.edit\">\r\n        <counts>\r\n          <entry key=\"CSS\" value=\"26\" />\r\n          <entry key=\"HTML\" value=\"1124\" />\r\n          <entry key=\"JavaScript\" value=\"2\" />\r\n          <entry key=\"PLAIN_TEXT\" value=\"64\" />\r\n          <entry key=\"Python\" value=\"662\" />\r\n          <entry key=\"Scratch\" value=\"252\" />\r\n        </counts>\r\n      </usages-collector>\r\n      <usages-collector id=\"statistics.lifecycle.project\">\r\n        <counts>\r\n          <entry key=\"project.closed\" value=\"5\" />\r\n          <entry key=\"project.open.time.20\" value=\"1\" />\r\n          <entry key=\"project.open.time.21\" value=\"1\" />\r\n          <entry key=\"project.open.time.23\" value=\"1\" />\r\n          <entry key=\"project.open.time.64\" value=\"1\" />\r\n          <entry key=\"project.opened\" value=\"4\" />\r\n        </counts>\r\n      </usages-collector>\r\n      <usages-collector id=\"statistics.file.extensions.open\">\r\n        <counts>\r\n          <entry key=\"css\" value=\"7\" />\r\n          <entry key=\"html\" value=\"44\" />\r\n          <entry key=\"js\" value=\"2\" />\r\n          <entry key=\"py\" value=\"29\" />\r\n          <entry key=\"studij_kolegij\" value=\"1\" />\r\n          <entry key=\"studij_studij\" value=\"1\" />\r\n        </counts>\r\n      </usages-collector>\r\n      <usages-collector id=\"statistics.file.types.open\">\r\n        <counts>\r\n          <entry key=\"CSS\" value=\"7\" />\r\n          <entry key=\"Database Element\" value=\"2\" />\r\n          <entry key=\"HTML\" value=\"44\" />\r\n          <entry key=\"JavaScript\" value=\"2\" />\r\n          <entry key=\"Python\" value=\"29\" />\r\n        </counts>\r\n      </usages-collector>\r\n    </session>\r\n  </component>\r\n  <component name=\"FavoritesManager\">\r\n    <favorites_list name=\"jez\" />\r\n  </component>\r\n  <component name=\"FileEditorManager\">\r\n    <leaf SIDE_TABS_SIZE_LIMIT_KEY=\"300\">\r\n      <file pinned=\"false\" current-in-tab=\"false\">\r\n        <entry file=\"file://$PROJECT_DIR$/account/templates/account/settings.html\">\r\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n            <state relative-caret-position=\"168\">\r\n              <caret line=\"8\" lean-forward=\"true\" selection-start-line=\"8\" selection-end-line=\"8\" />\r\n            </state>\r\n          </provider>\r\n        </entry>\r\n      </file>\r\n      <file pinned=\"false\" current-in-tab=\"false\">\r\n        <entry file=\"file://$PROJECT_DIR$/studij/models.py\">\r\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n            <state relative-caret-position=\"441\">\r\n              <caret line=\"21\" column=\"67\" lean-forward=\"true\" selection-start-line=\"20\" selection-start-column=\"3\" selection-end-line=\"21\" selection-end-column=\"67\" />\r\n            </state>\r\n          </provider>\r\n        </entry>\r\n      </file>\r\n      <file pinned=\"false\" current-in-tab=\"false\">\r\n        <entry file=\"file://$PROJECT_DIR$/account/views.py\">\r\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n            <state relative-caret-position=\"376\">\r\n              <caret line=\"110\" column=\"14\" lean-forward=\"true\" selection-start-line=\"110\" selection-start-column=\"14\" selection-end-line=\"110\" selection-end-column=\"14\" />\r\n              <folding>\r\n                <element signature=\"e#0#45#0\" expanded=\"true\" />\r\n              </folding>\r\n            </state>\r\n          </provider>\r\n        </entry>\r\n      </file>\r\n      <file pinned=\"false\" current-in-tab=\"true\">\r\n        <entry file=\"file://$PROJECT_DIR$/objava/views.py\">\r\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n            <state relative-caret-position=\"273\">\r\n              <caret line=\"81\" column=\"27\" selection-start-line=\"81\" selection-start-column=\"27\" selection-end-line=\"81\" selection-end-column=\"27\" />\r\n            </state>\r\n          </provider>\r\n        </entry>\r\n      </file>\r\n      <file pinned=\"false\" current-in-tab=\"false\">\r\n        <entry file=\"file://$PROJECT_DIR$/objava/templates/objava/post.html\">\r\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n            <state relative-caret-position=\"231\">\r\n              <caret line=\"91\" column=\"127\" lean-forward=\"true\" selection-start-line=\"88\" selection-start-column=\"65\" selection-end-line=\"91\" selection-end-column=\"127\" />\r\n            </state>\r\n          </provider>\r\n        </entry>\r\n      </file>\r\n      <file pinned=\"false\" current-in-tab=\"false\">\r\n        <entry file=\"das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/account_moj_kolegij\">\r\n          <provider selected=\"true\" editor-type-id=\"com.intellij.database.editor.DatabaseTableFileEditorProvider\">\r\n            <state>\r\n              <filtering enabled=\"true\" />\r\n            </state>\r\n          </provider>\r\n        </entry>\r\n      </file>\r\n      <file pinned=\"false\" current-in-tab=\"false\">\r\n        <entry file=\"das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/studij_kolegij\">\r\n          <provider selected=\"true\" editor-type-id=\"com.intellij.database.editor.DatabaseTableFileEditorProvider\">\r\n            <state>\r\n              <filtering enabled=\"true\" />\r\n            </state>\r\n          </provider>\r\n        </entry>\r\n      </file>\r\n      <file pinned=\"false\" current-in-tab=\"false\">\r\n        <entry file=\"file://$PROJECT_DIR$/account/forms.py\">\r\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n            <state relative-caret-position=\"537\">\r\n              <caret line=\"37\" column=\"18\" lean-forward=\"true\" selection-start-line=\"37\" selection-start-column=\"18\" selection-end-line=\"37\" selection-end-column=\"18\" />\r\n            </state>\r\n          </provider>\r\n        </entry>\r\n      </file>\r\n    </leaf>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n        <option value=\"HTML File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"FindInProjectRecents\">\r\n    <findStrings>\r\n      <find>content</find>\r\n      <find>Od</find>\r\n      <find>page</find>\r\n      <find>pagination</find>\r\n      <find>comment</find>\r\n      <find>ema</find>\r\n      <find>js/jquery-3.2.1.min.js</find>\r\n      <find>plugins/colorbox/jquery.colorbox-min.js</find>\r\n      <find>prijavi</find>\r\n      <find>js/blog_single.js</find>\r\n      <find>bt</find>\r\n      <find>tvoj</find>\r\n      <find>exampleModal</find>\r\n      <find>arhiva</find>\r\n      <find>arhivu</find>\r\n      <find>studij</find>\r\n      <find>get</find>\r\n      <find>studij_ime</find>\r\n      <find>studij_id</find>\r\n      <find>kol</find>\r\n      <find>includ</find>\r\n      <find>styles/main_styles.css</find>\r\n      <find>plugins/greensock/TweenMax.min.js</find>\r\n      <find>styles/responsive.css</find>\r\n      <find>styles/course.css</find>\r\n      <find>js/course.js</find>\r\n      <find>logo</find>\r\n      <find>image</find>\r\n      <find>imag</find>\r\n      <find>Jež</find>\r\n    </findStrings>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"UPDATE_TYPE\" value=\"MERGE\" />\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"IdeDocumentHistory\">\r\n    <option name=\"CHANGED_PATHS\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/objava/forms.py\" />\r\n        <option value=\"$PROJECT_DIR$/templates/homepage.html\" />\r\n        <option value=\"$PROJECT_DIR$/account/urls.py\" />\r\n        <option value=\"$PROJECT_DIR$/jez/views.py\" />\r\n        <option value=\"$PROJECT_DIR$/account/templates/account/style.css\" />\r\n        <option value=\"$PROJECT_DIR$/static/styles/main_styles.css\" />\r\n        <option value=\"$PROJECT_DIR$/static/styles/style_login.css\" />\r\n        <option value=\"$PROJECT_DIR$/templates/backup.html\" />\r\n        <option value=\"$PROJECT_DIR$/account/templates/account/change_password.html\" />\r\n        <option value=\"$PROJECT_DIR$/studij/templates/studij/kolegiji.html\" />\r\n        <option value=\"$PROJECT_DIR$/studij/templates/studij/backup.html\" />\r\n        <option value=\"$PROJECT_DIR$/objava/templatetags/extras.py\" />\r\n        <option value=\"$PROJECT_DIR$/static/styles/course.css\" />\r\n        <option value=\"$PROJECT_DIR$/static/js/our_custom.js\" />\r\n        <option value=\"$PROJECT_DIR$/objava/templates/objava/backup.html\" />\r\n        <option value=\"$PROJECT_DIR$/templates/about.html\" />\r\n        <option value=\"$PROJECT_DIR$/tko_smo/templates/tko_smo/homepage.html\" />\r\n        <option value=\"$PROJECT_DIR$/kontakt/urls.py\" />\r\n        <option value=\"$PROJECT_DIR$/kontakt/views.py\" />\r\n        <option value=\"$PROJECT_DIR$/kontakt/templates/kontakt.html\" />\r\n        <option value=\"$PROJECT_DIR$/jez/urls.py\" />\r\n        <option value=\"$PROJECT_DIR$/donacije/urls.py\" />\r\n        <option value=\"$PROJECT_DIR$/donacije/templates/donacije/donacije.html\" />\r\n        <option value=\"$PROJECT_DIR$/za_brucose/templates/za_brucose/homepage.html\" />\r\n        <option value=\"$PROJECT_DIR$/donacije/views.py\" />\r\n        <option value=\"$PROJECT_DIR$/jez/wsgi.py\" />\r\n        <option value=\"$PROJECT_DIR$/jez/Procfile.py\" />\r\n        <option value=\"$PROJECT_DIR$/account/templates/account/settings.html\" />\r\n        <option value=\"$PROJECT_DIR$/objava/models.py\" />\r\n        <option value=\"$PROJECT_DIR$/account/templates/account/login.html\" />\r\n        <option value=\"$PROJECT_DIR$/account/templates/account/success.html\" />\r\n        <option value=\"$PROJECT_DIR$/templates/paginacija.html\" />\r\n        <option value=\"$PROJECT_DIR$/account/templates/account/signup.html\" />\r\n        <option value=\"$PROJECT_DIR$/studij/urls.py\" />\r\n        <option value=\"$PROJECT_DIR$/studij/models.py\" />\r\n        <option value=\"$PROJECT_DIR$/studij/views.py\" />\r\n        <option value=\"$PROJECT_DIR$/tema/urls.py\" />\r\n        <option value=\"$PROJECT_DIR$/objava/urls.py\" />\r\n        <option value=\"$PROJECT_DIR$/account/forms.py\" />\r\n        <option value=\"$PROJECT_DIR$/account/models.py\" />\r\n        <option value=\"$PROJECT_DIR$/tema/views.py\" />\r\n        <option value=\"$PROJECT_DIR$/studij/templates/studij/homepage.html\" />\r\n        <option value=\"$PROJECT_DIR$/templates/links.html\" />\r\n        <option value=\"$PROJECT_DIR$/studij/templates/studij/semestri.html\" />\r\n        <option value=\"$PROJECT_DIR$/tema/templates/tema/predmet.html\" />\r\n        <option value=\"$PROJECT_DIR$/jez/settings.py\" />\r\n        <option value=\"$PROJECT_DIR$/account/templates/account/mypage.html\" />\r\n        <option value=\"$PROJECT_DIR$/templates/index.html\" />\r\n        <option value=\"$PROJECT_DIR$/account/views.py\" />\r\n        <option value=\"$PROJECT_DIR$/objava/templates/objava/post.html\" />\r\n        <option value=\"$PROJECT_DIR$/objava/views.py\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"JsBuildToolGruntFileManager\" detection-done=\"true\" sorting=\"DEFINITION_ORDER\" />\r\n  <component name=\"JsBuildToolPackageJson\" detection-done=\"true\" sorting=\"DEFINITION_ORDER\" />\r\n  <component name=\"JsGulpfileManager\">\r\n    <detection-done>true</detection-done>\r\n    <sorting>DEFINITION_ORDER</sorting>\r\n  </component>\r\n  <component name=\"ProjectFrameBounds\" extendedState=\"1\">\r\n    <option name=\"x\" value=\"1\" />\r\n    <option name=\"y\" value=\"10\" />\r\n    <option name=\"width\" value=\"1930\" />\r\n    <option name=\"height\" value=\"1090\" />\r\n  </component>\r\n  <component name=\"ProjectView\">\r\n    <navigator proportions=\"\" version=\"1\">\r\n      <foldersAlwaysOnTop value=\"true\" />\r\n    </navigator>\r\n    <panes>\r\n      <pane id=\"ProjectPane\">\r\n        <subPane>\r\n          <expand>\r\n            <path>\r\n              <item name=\"jez\" type=\"b2602c69:ProjectViewProjectNode\" />\r\n              <item name=\"jez\" type=\"462c0819:PsiDirectoryNode\" />\r\n            </path>\r\n            <path>\r\n              <item name=\"jez\" type=\"b2602c69:ProjectViewProjectNode\" />\r\n              <item name=\"jez\" type=\"462c0819:PsiDirectoryNode\" />\r\n              <item name=\"objava\" type=\"462c0819:PsiDirectoryNode\" />\r\n            </path>\r\n            <path>\r\n              <item name=\"jez\" type=\"b2602c69:ProjectViewProjectNode\" />\r\n              <item name=\"jez\" type=\"462c0819:PsiDirectoryNode\" />\r\n              <item name=\"objava\" type=\"462c0819:PsiDirectoryNode\" />\r\n              <item name=\"templates\" type=\"462c0819:PsiDirectoryNode\" />\r\n            </path>\r\n            <path>\r\n              <item name=\"jez\" type=\"b2602c69:ProjectViewProjectNode\" />\r\n              <item name=\"jez\" type=\"462c0819:PsiDirectoryNode\" />\r\n              <item name=\"objava\" type=\"462c0819:PsiDirectoryNode\" />\r\n              <item name=\"templates\" type=\"462c0819:PsiDirectoryNode\" />\r\n              <item name=\"objava\" type=\"462c0819:PsiDirectoryNode\" />\r\n            </path>\r\n            <path>\r\n              <item name=\"jez\" type=\"b2602c69:ProjectViewProjectNode\" />\r\n              <item name=\"External Libraries\" type=\"cb654da1:ExternalLibrariesNode\" />\r\n            </path>\r\n          </expand>\r\n          <select />\r\n        </subPane>\r\n      </pane>\r\n      <pane id=\"Scope\" />\r\n    </panes>\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"DatabaseDriversLRU\" value=\"postgresql\" />\r\n    <property name=\"DefaultHtmlFileTemplate\" value=\"HTML File\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"database.console.LAST_STATE\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"preferences.pluginManager\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Korisnik\\Desktop\\Dev\\jez_new\\kontakt\\templates\\kontakt\" />\r\n      <recent name=\"C:\\Users\\Korisnik\\Desktop\\Dev\\jez2\\tema\\templates\\tema\" />\r\n    </key>\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Korisnik\\Desktop\\Dev\\jez2\\media\\profile_image\" />\r\n      <recent name=\"C:\\Users\\Korisnik\\Desktop\\Dev\\jez2\\account\\templates\\account\" />\r\n      <recent name=\"C:\\Users\\Korisnik\\Desktop\\Dev\\jez2\\templates\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunDashboard\">\r\n    <option name=\"ruleStates\">\r\n      <list>\r\n        <RuleState>\r\n          <option name=\"name\" value=\"ConfigurationTypeDashboardGroupingRule\" />\r\n        </RuleState>\r\n        <RuleState>\r\n          <option name=\"name\" value=\"StatusDashboardGroupingRule\" />\r\n        </RuleState>\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"JavaScript Debug.post.html\">\r\n    <configuration name=\"post.html\" type=\"JavascriptDebugType\" factoryName=\"JavaScript Debug\" temporary=\"true\" nameIsGenerated=\"true\" uri=\"http://localhost:63342/jez/objava/templates/objava/post.html\">\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"__init__\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\">\r\n      <module name=\"jez\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/tester_user/migrations\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/tester_user/migrations/__init__.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"forms\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\">\r\n      <module name=\"jez\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/account\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/account/forms.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Python.__init__\" />\r\n      <item itemvalue=\"Python.forms\" />\r\n      <item itemvalue=\"JavaScript Debug.post.html\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"JavaScript Debug.post.html\" />\r\n        <item itemvalue=\"Python.forms\" />\r\n        <item itemvalue=\"Python.__init__\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"d993984f-5e6b-491f-a6db-443f308afced\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1563885275806</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1563885275806</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"??\">\r\n      <created>1563895619033</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1563895619033</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"added default user profile pic\">\r\n      <created>1564937572383</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1564937572383</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"initial profile page for student\">\r\n      <created>1564937840041</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1564937840041</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"??\">\r\n      <created>1564937926006</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1564937926006</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"inital student page\">\r\n      <created>1564937987840</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1564937987840</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"media settings adjusted\">\r\n      <created>1564938029385</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1564938029385</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"minor changes\">\r\n      <created>1564938066896</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1564938066896</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"nesto ne dela\">\r\n      <created>1565114085245</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1565114085245</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"sitnice\">\r\n      <created>1565341641215</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1565341641215</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"settings\">\r\n      <created>1565374389215</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1565374389215</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"settings\">\r\n      <created>1565598337504</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1565598337504</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"multiple files upload\">\r\n      <created>1565798495356</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1565798495356</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"settings\">\r\n      <created>1565798580147</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1565798580148</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"multiple files upload/download, image display\">\r\n      <created>1565803104714</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1565803104714</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"password change done\">\r\n      <created>1565858585270</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1565858585270</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"password change done\">\r\n      <created>1565873986047</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1565873986047</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"frontend eto nas lala\">\r\n      <created>1566116487856</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1566116487856</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"...\">\r\n      <created>1566117120934</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1566117120934</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"registration and login templates done\">\r\n      <created>1566117963420</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1566117963420</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"mypage\">\r\n      <created>1566122722297</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1566122722298</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"account templates almost done\">\r\n      <created>1566209505130</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1566209505131</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"subject landing page\">\r\n      <created>1566664963770</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1566664963770</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"arhiva kolegija\">\r\n      <created>1566669817987</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1566669817987</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"arhiva kolegija\">\r\n      <created>1566992311789</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1566992311790</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00025\" summary=\"nis bitno\">\r\n      <created>1567006205794</created>\r\n      <option name=\"number\" value=\"00025\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1567006205794</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00026\" summary=\"pagination done\">\r\n      <created>1567065171473</created>\r\n      <option name=\"number\" value=\"00026\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1567065171474</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00027\" summary=\"minor code changes\">\r\n      <created>1567107448772</created>\r\n      <option name=\"number\" value=\"00027\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1567107448772</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00028\" summary=\"minor code changes\">\r\n      <created>1567107933960</created>\r\n      <option name=\"number\" value=\"00028\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1567107933960</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00029\" summary=\"minor code changes\">\r\n      <created>1567502824472</created>\r\n      <option name=\"number\" value=\"00029\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1567502824472</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00030\" summary=\"mypage template\">\r\n      <created>1567506298614</created>\r\n      <option name=\"number\" value=\"00030\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1567506298614</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00031\" summary=\"account/views.py bug not fixed\">\r\n      <created>1567946328328</created>\r\n      <option name=\"number\" value=\"00031\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00031\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1567946328329</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00032\" summary=\"login bug fixed\">\r\n      <created>1568126076535</created>\r\n      <option name=\"number\" value=\"00032\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00032\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1568126076536</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00033\" summary=\"login bug2 fixed &amp;&amp; mypage bug fixed\">\r\n      <created>1568129847217</created>\r\n      <option name=\"number\" value=\"00033\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00033\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1568129847217</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00034\" summary=\"major changes\">\r\n      <created>1568192223984</created>\r\n      <option name=\"number\" value=\"00034\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00034\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1568192223984</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00035\" summary=\"upper-case bug fixed\">\r\n      <created>1568193359259</created>\r\n      <option name=\"number\" value=\"00035\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00035\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1568193359259</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00036\" summary=\"frontend bugs fixed\">\r\n      <created>1568209955672</created>\r\n      <option name=\"number\" value=\"00036\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00036\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1568209955672</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"37\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"ToolWindowManager\">\r\n    <frame x=\"2\" y=\"8\" width=\"1544\" height=\"872\" extended-state=\"0\" />\r\n    <editor active=\"true\" />\r\n    <layout>\r\n      <window_info x=\"22\" y=\"144\" width=\"229\" height=\"705\" id=\"Database\" order=\"0\" sideWeight=\"0.30212766\" weight=\"0.21293801\" />\r\n      <window_info active=\"true\" x=\"33\" y=\"316\" width=\"288\" height=\"705\" id=\"Project\" order=\"1\" sideWeight=\"0.69787234\" visible=\"true\" weight=\"0.1509434\" />\r\n      <window_info id=\"Structure\" order=\"2\" weight=\"0.1818792\" />\r\n      <window_info id=\"Favorites\" order=\"3\" weight=\"0.32885906\" />\r\n      <window_info anchor=\"bottom\" id=\"Message\" order=\"0\" />\r\n      <window_info anchor=\"bottom\" id=\"Find\" order=\"1\" weight=\"0.61229944\" />\r\n      <window_info anchor=\"bottom\" id=\"Run\" order=\"2\" weight=\"0.48794326\" />\r\n      <window_info anchor=\"bottom\" id=\"Debug\" order=\"3\" weight=\"0.4\" />\r\n      <window_info anchor=\"bottom\" id=\"Cvs\" order=\"4\" weight=\"0.25\" />\r\n      <window_info anchor=\"bottom\" id=\"Inspection\" order=\"5\" weight=\"0.4\" />\r\n      <window_info anchor=\"bottom\" id=\"TODO\" order=\"6\" />\r\n      <window_info anchor=\"bottom\" id=\"Docker\" order=\"7\" show_stripe_button=\"false\" />\r\n      <window_info anchor=\"bottom\" id=\"Version Control\" order=\"8\" weight=\"0.30780143\" />\r\n      <window_info anchor=\"bottom\" id=\"Database Changes\" order=\"9\" />\r\n      <window_info anchor=\"bottom\" id=\"Event Log\" order=\"10\" side_tool=\"true\" />\r\n      <window_info anchor=\"bottom\" id=\"Terminal\" order=\"11\" visible=\"true\" weight=\"0.32882273\" />\r\n      <window_info anchor=\"bottom\" id=\"Python Console\" order=\"12\" weight=\"0.32907802\" />\r\n      <window_info anchor=\"bottom\" id=\"Database Console\" order=\"13\" weight=\"0.42269504\" />\r\n      <window_info anchor=\"right\" id=\"Commander\" internal_type=\"SLIDING\" order=\"0\" type=\"SLIDING\" weight=\"0.4\" />\r\n      <window_info anchor=\"right\" id=\"Ant Build\" order=\"1\" weight=\"0.25\" />\r\n      <window_info anchor=\"right\" content_ui=\"combo\" id=\"Hierarchy\" order=\"2\" weight=\"0.25\" />\r\n      <window_info anchor=\"right\" id=\"SciView\" order=\"3\" weight=\"0.3295302\" />\r\n    </layout>\r\n    <layout-to-restore>\r\n      <window_info x=\"22\" y=\"144\" width=\"229\" height=\"705\" id=\"Database\" order=\"0\" sideWeight=\"0.30212766\" weight=\"0.19798657\" />\r\n      <window_info x=\"33\" y=\"316\" width=\"288\" height=\"705\" id=\"Project\" order=\"1\" sideWeight=\"0.69787234\" visible=\"true\" weight=\"0.12751678\" />\r\n      <window_info id=\"Structure\" order=\"2\" weight=\"0.1818792\" />\r\n      <window_info id=\"Favorites\" order=\"3\" weight=\"0.32942432\" />\r\n      <window_info anchor=\"bottom\" id=\"Message\" order=\"0\" />\r\n      <window_info anchor=\"bottom\" id=\"Find\" order=\"1\" weight=\"0.61229944\" />\r\n      <window_info anchor=\"bottom\" id=\"Run\" order=\"2\" weight=\"0.48794326\" />\r\n      <window_info anchor=\"bottom\" id=\"Debug\" order=\"3\" weight=\"0.4\" />\r\n      <window_info anchor=\"bottom\" id=\"Cvs\" order=\"4\" weight=\"0.25\" />\r\n      <window_info anchor=\"bottom\" id=\"Inspection\" order=\"5\" weight=\"0.4\" />\r\n      <window_info anchor=\"bottom\" id=\"TODO\" order=\"6\" />\r\n      <window_info anchor=\"bottom\" id=\"Docker\" order=\"7\" show_stripe_button=\"false\" />\r\n      <window_info anchor=\"bottom\" id=\"Version Control\" order=\"8\" weight=\"0.30780143\" />\r\n      <window_info anchor=\"bottom\" id=\"Database Changes\" order=\"9\" />\r\n      <window_info anchor=\"bottom\" id=\"Event Log\" order=\"10\" side_tool=\"true\" />\r\n      <window_info active=\"true\" anchor=\"bottom\" id=\"Terminal\" order=\"11\" visible=\"true\" weight=\"0.1035461\" />\r\n      <window_info anchor=\"bottom\" id=\"Python Console\" order=\"12\" />\r\n      <window_info anchor=\"bottom\" id=\"Database Console\" order=\"13\" weight=\"0.42269504\" />\r\n      <window_info anchor=\"right\" id=\"Commander\" internal_type=\"SLIDING\" order=\"0\" type=\"SLIDING\" weight=\"0.4\" />\r\n      <window_info anchor=\"right\" id=\"Ant Build\" order=\"1\" weight=\"0.25\" />\r\n      <window_info anchor=\"right\" content_ui=\"combo\" id=\"Hierarchy\" order=\"2\" weight=\"0.25\" />\r\n      <window_info anchor=\"right\" id=\"SciView\" order=\"3\" weight=\"0.3295302\" />\r\n    </layout-to-restore>\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"1\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ORDER\">\r\n      <list>\r\n        <option value=\"0\" />\r\n        <option value=\"2\" />\r\n        <option value=\"3\" />\r\n        <option value=\"1\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"RECENTLY_FILTERED_USER_GROUPS\">\r\n                <collection />\r\n              </option>\r\n              <option name=\"RECENTLY_FILTERED_BRANCH_GROUPS\">\r\n                <collection />\r\n              </option>\r\n              <option name=\"COLUMN_ORDER\">\r\n                <list>\r\n                  <option value=\"0\" />\r\n                  <option value=\"1\" />\r\n                  <option value=\"2\" />\r\n                  <option value=\"3\" />\r\n                </list>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsContentAnnotationSettings\">\r\n    <option name=\"myLimit\" value=\"2678400000\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"media settings adjusted\" />\r\n    <MESSAGE value=\"minor changes\" />\r\n    <MESSAGE value=\"nesto ne dela\" />\r\n    <MESSAGE value=\"sitnice\" />\r\n    <MESSAGE value=\"multiple files upload\" />\r\n    <MESSAGE value=\"settings\" />\r\n    <MESSAGE value=\"multiple files upload/download, image display\" />\r\n    <MESSAGE value=\"password change done\" />\r\n    <MESSAGE value=\"frontend eto nas lala\" />\r\n    <MESSAGE value=\"...\" />\r\n    <MESSAGE value=\"registration and login templates done\" />\r\n    <MESSAGE value=\"mypage\" />\r\n    <MESSAGE value=\"account templates almost done\" />\r\n    <MESSAGE value=\"subject landing page\" />\r\n    <MESSAGE value=\"arhiva kolegija\" />\r\n    <MESSAGE value=\"nis bitno\" />\r\n    <MESSAGE value=\"pagination done\" />\r\n    <MESSAGE value=\"minor code changes\" />\r\n    <MESSAGE value=\"mypage template\" />\r\n    <MESSAGE value=\"account/views.py bug not fixed\" />\r\n    <MESSAGE value=\"login bug fixed\" />\r\n    <MESSAGE value=\"login bug2 fixed &amp;&amp; mypage bug fixed\" />\r\n    <MESSAGE value=\"major changes\" />\r\n    <MESSAGE value=\"upper-case bug fixed\" />\r\n    <MESSAGE value=\"frontend bugs fixed\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"frontend bugs fixed\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" suspend=\"THREAD\" type=\"python-line\">\r\n          <url>file://$USER_HOME$/Anaconda3/envs/jez/Lib/site-packages/django/forms/models.py</url>\r\n          <line>442</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" suspend=\"THREAD\" type=\"python-line\">\r\n          <url>file://$PROJECT_DIR$/tema/views.py</url>\r\n          <option name=\"timeStamp\" value=\"2\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" suspend=\"THREAD\" type=\"python-line\">\r\n          <url>file://$PROJECT_DIR$/account/models.py</url>\r\n          <option name=\"timeStamp\" value=\"3\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"editorHistoryManager\">\r\n    <entry file=\"file://$PROJECT_DIR$/donacije/urls.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"126\">\r\n          <caret line=\"6\" column=\"43\" selection-start-line=\"6\" selection-start-column=\"43\" selection-end-line=\"6\" selection-end-column=\"43\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/kontakt/urls.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"147\">\r\n          <caret line=\"7\" column=\"1\" lean-forward=\"true\" selection-start-line=\"7\" selection-start-column=\"1\" selection-end-line=\"7\" selection-end-column=\"1\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/za_brucose/templates/za_brucose/homepage.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"63\">\r\n          <caret line=\"3\" column=\"24\" selection-start-line=\"3\" selection-start-column=\"24\" selection-end-line=\"3\" selection-end-column=\"24\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/donacije/views.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"126\">\r\n          <caret line=\"6\" column=\"36\" selection-start-line=\"6\" selection-start-column=\"36\" selection-end-line=\"6\" selection-end-column=\"36\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/kontakt/views.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state>\r\n          <caret selection-end-line=\"6\" selection-end-column=\"49\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/static/js/our_custom.js\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"63\">\r\n          <caret line=\"3\" selection-start-line=\"3\" selection-end-line=\"3\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/templates/courses.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"7119\">\r\n          <caret line=\"339\" column=\"121\" selection-start-line=\"339\" selection-start-column=\"45\" selection-end-line=\"339\" selection-end-column=\"121\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/jez/wsgi.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"294\">\r\n          <caret line=\"16\" selection-start-line=\"16\" selection-end-line=\"16\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/jez/Procfile.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"42\">\r\n          <caret line=\"2\" column=\"10\" selection-start-line=\"2\" selection-start-column=\"10\" selection-end-line=\"2\" selection-end-column=\"10\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/templates/course.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"12180\">\r\n          <caret line=\"580\" column=\"10\" selection-start-line=\"154\" selection-start-column=\"4\" selection-end-line=\"580\" selection-end-column=\"10\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/static/styles/style_login.css\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\" />\r\n    </entry>\r\n    <entry file=\"das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/objava_objava\">\r\n      <provider selected=\"true\" editor-type-id=\"com.intellij.database.editor.DatabaseTableFileEditorProvider\">\r\n        <state>\r\n          <filtering enabled=\"true\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/jez/urls.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"546\">\r\n          <caret line=\"30\" column=\"39\" selection-start-line=\"30\" selection-start-column=\"39\" selection-end-line=\"30\" selection-end-column=\"39\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/kontakt/templates/kontakt/kontakt.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"105\">\r\n          <caret line=\"5\" column=\"14\" lean-forward=\"true\" selection-start-line=\"5\" selection-start-column=\"14\" selection-end-line=\"5\" selection-end-column=\"14\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/account/urls.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"147\">\r\n          <caret line=\"9\" column=\"16\" selection-start-line=\"9\" selection-start-column=\"10\" selection-end-line=\"9\" selection-end-column=\"16\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/templates/paginacija.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state>\r\n          <caret column=\"17\" lean-forward=\"true\" selection-start-column=\"17\" selection-end-column=\"17\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/django_session\">\r\n      <provider selected=\"true\" editor-type-id=\"com.intellij.database.editor.DatabaseTableFileEditorProvider\">\r\n        <state>\r\n          <filtering enabled=\"true\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/studij/forms.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\" />\r\n    </entry>\r\n    <entry file=\"file://$USER_HOME$/Anaconda3/envs/jez/Lib/site-packages/django/forms/models.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"1146\">\r\n          <caret line=\"265\" selection-start-line=\"265\" selection-end-line=\"265\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/account_student\">\r\n      <provider selected=\"true\" editor-type-id=\"com.intellij.database.editor.DatabaseTableFileEditorProvider\">\r\n        <state>\r\n          <filtering enabled=\"true\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/auth_user\">\r\n      <provider selected=\"true\" editor-type-id=\"com.intellij.database.editor.DatabaseTableFileEditorProvider\">\r\n        <state>\r\n          <filtering enabled=\"true\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/donacije/templates/donacije/donacije.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"84\">\r\n          <caret line=\"4\" column=\"30\" lean-forward=\"true\" selection-start-line=\"4\" selection-start-column=\"30\" selection-end-line=\"4\" selection-end-column=\"30\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/objava/models.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state>\r\n          <caret column=\"28\" lean-forward=\"true\" selection-start-column=\"28\" selection-end-column=\"28\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/tema/urls.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"231\">\r\n          <caret line=\"11\" column=\"80\" selection-start-line=\"11\" selection-start-column=\"80\" selection-end-line=\"11\" selection-end-column=\"80\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/objava/urls.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"126\">\r\n          <caret line=\"6\" column=\"53\" selection-start-line=\"6\" selection-start-column=\"53\" selection-end-line=\"6\" selection-end-column=\"53\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/studij/urls.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"168\">\r\n          <caret line=\"8\" column=\"89\" lean-forward=\"true\" selection-start-line=\"8\" selection-start-column=\"89\" selection-end-line=\"8\" selection-end-column=\"89\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/studij/templates/studij/kolegiji.html\" />\r\n    <entry file=\"file://$PROJECT_DIR$/studij/views.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"441\">\r\n          <caret line=\"24\" column=\"23\" selection-start-line=\"24\" selection-start-column=\"23\" selection-end-line=\"24\" selection-end-column=\"23\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/account/models.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"336\">\r\n          <caret line=\"20\" column=\"48\" selection-start-line=\"20\" selection-start-column=\"48\" selection-end-line=\"20\" selection-end-column=\"48\" />\r\n          <folding>\r\n            <element signature=\"e#0#28#0\" expanded=\"true\" />\r\n            <marker date=\"1568195361459\" expanded=\"true\" signature=\"576:660\" ph=\"...\" />\r\n          </folding>\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/studij_studij\">\r\n      <provider selected=\"true\" editor-type-id=\"com.intellij.database.editor.DatabaseTableFileEditorProvider\">\r\n        <state>\r\n          <filtering enabled=\"true\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/tema/views.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"189\">\r\n          <caret line=\"33\" lean-forward=\"true\" selection-start-line=\"33\" selection-end-line=\"33\" />\r\n          <folding>\r\n            <element signature=\"e#0#45#0\" expanded=\"true\" />\r\n          </folding>\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/account/templates/account/signup.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"-321\">\r\n          <caret line=\"64\" column=\"40\" lean-forward=\"true\" selection-start-line=\"64\" selection-start-column=\"40\" selection-end-line=\"64\" selection-end-column=\"40\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/account/templates/account/success.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"126\">\r\n          <caret line=\"6\" column=\"14\" lean-forward=\"true\" selection-start-line=\"6\" selection-start-column=\"14\" selection-end-line=\"6\" selection-end-column=\"14\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/account/templates/account/login.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"138\">\r\n          <caret line=\"36\" selection-start-line=\"36\" selection-end-line=\"36\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/templates/links.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"84\">\r\n          <caret line=\"4\" column=\"41\" selection-start-line=\"4\" selection-start-column=\"28\" selection-end-line=\"4\" selection-end-column=\"41\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/account/templates/account/mypage.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"483\">\r\n          <caret line=\"23\" column=\"157\" selection-start-line=\"23\" selection-start-column=\"157\" selection-end-line=\"23\" selection-end-column=\"157\" />\r\n          <folding>\r\n            <element signature=\"n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top\" expanded=\"true\" />\r\n          </folding>\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/studij/templates/studij/semestri.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"1554\">\r\n          <caret line=\"74\" selection-start-line=\"74\" selection-end-line=\"74\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/tema/templates/tema/predmet.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"126\">\r\n          <caret line=\"6\" selection-start-line=\"6\" selection-end-line=\"6\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/jez/settings.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"924\">\r\n          <caret line=\"44\" selection-start-line=\"44\" selection-end-line=\"44\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/jez/views.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"84\">\r\n          <caret line=\"4\" column=\"33\" selection-start-line=\"4\" selection-start-column=\"33\" selection-end-line=\"4\" selection-end-column=\"33\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/templates/index.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"1176\">\r\n          <caret line=\"56\" column=\"61\" lean-forward=\"true\" selection-start-line=\"56\" selection-start-column=\"61\" selection-end-line=\"56\" selection-end-column=\"61\" />\r\n          <folding>\r\n            <element signature=\"n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top\" expanded=\"true\" />\r\n            <element signature=\"n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top\" expanded=\"true\" />\r\n          </folding>\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/account/templates/account/settings.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"168\">\r\n          <caret line=\"8\" lean-forward=\"true\" selection-start-line=\"8\" selection-end-line=\"8\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/studij_smjer\">\r\n      <provider selected=\"true\" editor-type-id=\"com.intellij.database.editor.DatabaseTableFileEditorProvider\">\r\n        <state>\r\n          <filtering enabled=\"true\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/studij/templates/studij/homepage.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"644\">\r\n          <caret line=\"76\" column=\"74\" lean-forward=\"true\" selection-start-line=\"76\" selection-start-column=\"74\" selection-end-line=\"76\" selection-end-column=\"74\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/studij/models.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"441\">\r\n          <caret line=\"21\" column=\"67\" lean-forward=\"true\" selection-start-line=\"20\" selection-start-column=\"3\" selection-end-line=\"21\" selection-end-column=\"67\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/account/forms.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"537\">\r\n          <caret line=\"37\" column=\"18\" lean-forward=\"true\" selection-start-line=\"37\" selection-start-column=\"18\" selection-end-line=\"37\" selection-end-column=\"18\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/account_moj_kolegij\">\r\n      <provider selected=\"true\" editor-type-id=\"com.intellij.database.editor.DatabaseTableFileEditorProvider\">\r\n        <state>\r\n          <filtering enabled=\"true\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/studij_kolegij\">\r\n      <provider selected=\"true\" editor-type-id=\"com.intellij.database.editor.DatabaseTableFileEditorProvider\">\r\n        <state>\r\n          <filtering enabled=\"true\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/account/views.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"376\">\r\n          <caret line=\"110\" column=\"14\" lean-forward=\"true\" selection-start-line=\"110\" selection-start-column=\"14\" selection-end-line=\"110\" selection-end-column=\"14\" />\r\n          <folding>\r\n            <element signature=\"e#0#45#0\" expanded=\"true\" />\r\n          </folding>\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/objava/templates/objava/post.html\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"231\">\r\n          <caret line=\"91\" column=\"127\" lean-forward=\"true\" selection-start-line=\"88\" selection-start-column=\"65\" selection-end-line=\"91\" selection-end-column=\"127\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n    <entry file=\"file://$PROJECT_DIR$/objava/views.py\">\r\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\r\n        <state relative-caret-position=\"273\">\r\n          <caret line=\"81\" column=\"27\" selection-start-line=\"81\" selection-start-column=\"27\" selection-end-line=\"81\" selection-end-column=\"27\" />\r\n        </state>\r\n      </provider>\r\n    </entry>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 13bd4adf28e9390220d977e9c5c8006126529855)
++++ .idea/workspace.xml	(date 1568743917428)
+@@ -3,9 +3,15 @@
+   <component name="ChangeListManager">
+     <list default="true" id="d993984f-5e6b-491f-a6db-443f308afced" name="Default Changelist" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/account/templates/account/mypage.html" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/account/mypage.html" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/objava/templates/objava/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/objava/templates/objava/post.html" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/objava/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/objava/views.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/static/images/icon_2.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/static/images/icon_4.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/studij/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/studij/models.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/templates/links.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/links.html" afterDir="false" />
+     </list>
+     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+     <option name="SHOW_DIALOG" value="false" />
+@@ -174,63 +180,76 @@
+     <session id="-249473928">
+       <usages-collector id="statistics.lifecycle.project">
+         <counts>
+-          <entry key="project.closed" value="17" />
++          <entry key="project.closed" value="23" />
++          <entry key="project.open.time.117" value="1" />
+           <entry key="project.open.time.13" value="2" />
+           <entry key="project.open.time.14" value="1" />
+           <entry key="project.open.time.15" value="2" />
+           <entry key="project.open.time.2" value="1" />
+-          <entry key="project.open.time.20" value="1" />
++          <entry key="project.open.time.20" value="2" />
+           <entry key="project.open.time.23" value="1" />
+           <entry key="project.open.time.39" value="1" />
++          <entry key="project.open.time.40" value="1" />
++          <entry key="project.open.time.45" value="1" />
+           <entry key="project.open.time.47" value="1" />
++          <entry key="project.open.time.49" value="1" />
+           <entry key="project.open.time.50" value="2" />
+           <entry key="project.open.time.51" value="1" />
+           <entry key="project.open.time.54" value="1" />
++          <entry key="project.open.time.55" value="1" />
+           <entry key="project.open.time.56" value="1" />
+           <entry key="project.open.time.67" value="1" />
++          <entry key="project.open.time.68" value="1" />
+           <entry key="project.open.time.70" value="1" />
+           <entry key="project.open.time.75" value="2" />
+           <entry key="project.open.time.79" value="1" />
+-          <entry key="project.opened" value="20" />
++          <entry key="project.open.time.96" value="1" />
++          <entry key="project.opened" value="28" />
+         </counts>
+       </usages-collector>
+       <usages-collector id="statistics.file.extensions.open">
+         <counts>
+-          <entry key="account_moj_kolegij" value="5" />
++          <entry key="account_moj_kolegij" value="9" />
+           <entry key="account_student" value="2" />
+           <entry key="auth_user" value="7" />
+-          <entry key="css" value="2" />
++          <entry key="css" value="3" />
+           <entry key="django_session" value="1" />
+-          <entry key="html" value="50" />
+-          <entry key="objava_objava" value="1" />
+-          <entry key="py" value="64" />
+-          <entry key="studij_kolegij" value="10" />
+-          <entry key="studij_smjer" value="10" />
+-          <entry key="studij_studij" value="7" />
++          <entry key="html" value="58" />
++          <entry key="objava_objava" value="2" />
++          <entry key="objava_objava_files" value="3" />
++          <entry key="objava_objava_likes" value="1" />
++          <entry key="objava_objava_prijava" value="1" />
++          <entry key="py" value="74" />
++          <entry key="sql" value="2" />
++          <entry key="studij_kolegij" value="15" />
++          <entry key="studij_smjer" value="12" />
++          <entry key="studij_studij" value="9" />
+         </counts>
+       </usages-collector>
+       <usages-collector id="statistics.file.types.open">
+         <counts>
+-          <entry key="CSS" value="2" />
+-          <entry key="Database Element" value="43" />
+-          <entry key="HTML" value="50" />
+-          <entry key="Python" value="64" />
++          <entry key="CSS" value="3" />
++          <entry key="Database Element" value="62" />
++          <entry key="HTML" value="58" />
++          <entry key="Python" value="74" />
++          <entry key="Scratch" value="2" />
+         </counts>
+       </usages-collector>
+       <usages-collector id="statistics.file.extensions.edit">
+         <counts>
+-          <entry key="cell" value="1024" />
+-          <entry key="html" value="3290" />
+-          <entry key="py" value="5242" />
+-          <entry key="txt" value="179" />
++          <entry key="cell" value="1153" />
++          <entry key="html" value="3919" />
++          <entry key="py" value="5616" />
++          <entry key="sql" value="201" />
++          <entry key="txt" value="191" />
+         </counts>
+       </usages-collector>
+       <usages-collector id="statistics.file.types.edit">
+         <counts>
+-          <entry key="HTML" value="3290" />
+-          <entry key="PLAIN_TEXT" value="179" />
+-          <entry key="Python" value="5242" />
+-          <entry key="Scratch" value="1024" />
++          <entry key="HTML" value="3919" />
++          <entry key="PLAIN_TEXT" value="191" />
++          <entry key="Python" value="5616" />
++          <entry key="Scratch" value="1354" />
+         </counts>
+       </usages-collector>
+     </session>
+@@ -292,76 +311,50 @@
+   <component name="FileEditorManager">
+     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+       <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/account/templates/account/settings.html">
++        <entry file="file://$PROJECT_DIR$/account/models.py">
+           <provider selected="true" editor-type-id="text-editor">
+             <state relative-caret-position="168">
+-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/studij/models.py">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="441">
+-              <caret line="21" column="67" lean-forward="true" selection-start-line="20" selection-start-column="3" selection-end-line="21" selection-end-column="67" />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/account/views.py">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="376">
+-              <caret line="110" column="14" lean-forward="true" selection-start-line="110" selection-start-column="14" selection-end-line="110" selection-end-column="14" />
++              <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+               <folding>
+-                <element signature="e#0#45#0" expanded="true" />
++                <element signature="e#0#28#0" expanded="true" />
++                <marker date="1568742027291" expanded="true" signature="577:661" ph="..." />
+               </folding>
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file pinned="false" current-in-tab="true">
+-        <entry file="file://$PROJECT_DIR$/objava/views.py">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="273">
+-              <caret line="81" column="27" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
+             </state>
+           </provider>
+         </entry>
+       </file>
+       <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/objava/templates/objava/post.html">
++        <entry file="file://$PROJECT_DIR$/account/views.py">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="231">
+-              <caret line="91" column="127" lean-forward="true" selection-start-line="88" selection-start-column="65" selection-end-line="91" selection-end-column="127" />
++            <state relative-caret-position="1932">
++              <caret line="114" column="29" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
+             </state>
+           </provider>
+         </entry>
+       </file>
+       <file pinned="false" current-in-tab="false">
+-        <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/account_moj_kolegij">
+-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+-            <state>
+-              <filtering enabled="true" />
++        <entry file="file://$PROJECT_DIR$/studij/views.py">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="441">
++              <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+             </state>
+           </provider>
+         </entry>
+       </file>
+       <file pinned="false" current-in-tab="false">
+-        <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/studij_kolegij">
+-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+-            <state>
+-              <filtering enabled="true" />
++        <entry file="file://$PROJECT_DIR$/studij/templates/studij/homepage.html">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="777">
++              <caret line="37" column="70" selection-start-line="37" selection-start-column="70" selection-end-line="37" selection-end-column="70" />
+             </state>
+           </provider>
+         </entry>
+       </file>
+-      <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/account/forms.py">
++      <file pinned="false" current-in-tab="true">
++        <entry file="file://$PROJECT_DIR$/studij/models.py">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="537">
+-              <caret line="37" column="18" lean-forward="true" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
++            <state relative-caret-position="219">
++              <caret line="14" selection-start-line="14" selection-end-line="14" />
+             </state>
+           </provider>
+         </entry>
+@@ -378,14 +371,6 @@
+   </component>
+   <component name="FindInProjectRecents">
+     <findStrings>
+-      <find>content</find>
+-      <find>Od</find>
+-      <find>page</find>
+-      <find>pagination</find>
+-      <find>comment</find>
+-      <find>ema</find>
+-      <find>js/jquery-3.2.1.min.js</find>
+-      <find>plugins/colorbox/jquery.colorbox-min.js</find>
+       <find>prijavi</find>
+       <find>js/blog_single.js</find>
+       <find>bt</find>
+@@ -408,6 +393,14 @@
+       <find>image</find>
+       <find>imag</find>
+       <find>Jež</find>
++      <find>Preg</find>
++      <find>moji</find>
++      <find>ba</find>
++      <find>backg</find>
++      <find>home slide</find>
++      <find>home slider</find>
++      <find>owl</find>
++      <find>Awa</find>
+     </findStrings>
+   </component>
+   <component name="Git.Settings">
+@@ -417,8 +410,6 @@
+   <component name="IdeDocumentHistory">
+     <option name="CHANGED_PATHS">
+       <list>
+-        <option value="$PROJECT_DIR$/objava/forms.py" />
+-        <option value="$PROJECT_DIR$/templates/homepage.html" />
+         <option value="$PROJECT_DIR$/account/urls.py" />
+         <option value="$PROJECT_DIR$/jez/views.py" />
+         <option value="$PROJECT_DIR$/account/templates/account/style.css" />
+@@ -451,23 +442,25 @@
+         <option value="$PROJECT_DIR$/templates/paginacija.html" />
+         <option value="$PROJECT_DIR$/account/templates/account/signup.html" />
+         <option value="$PROJECT_DIR$/studij/urls.py" />
+-        <option value="$PROJECT_DIR$/studij/models.py" />
+         <option value="$PROJECT_DIR$/studij/views.py" />
+         <option value="$PROJECT_DIR$/tema/urls.py" />
+         <option value="$PROJECT_DIR$/objava/urls.py" />
+         <option value="$PROJECT_DIR$/account/forms.py" />
+-        <option value="$PROJECT_DIR$/account/models.py" />
+         <option value="$PROJECT_DIR$/tema/views.py" />
+         <option value="$PROJECT_DIR$/studij/templates/studij/homepage.html" />
+-        <option value="$PROJECT_DIR$/templates/links.html" />
+         <option value="$PROJECT_DIR$/studij/templates/studij/semestri.html" />
+         <option value="$PROJECT_DIR$/tema/templates/tema/predmet.html" />
+         <option value="$PROJECT_DIR$/jez/settings.py" />
+         <option value="$PROJECT_DIR$/account/templates/account/mypage.html" />
+-        <option value="$PROJECT_DIR$/templates/index.html" />
++        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0159b5c0-2713-4a52-baee-6abb42ad97af/console.sql" />
+         <option value="$PROJECT_DIR$/account/views.py" />
+-        <option value="$PROJECT_DIR$/objava/templates/objava/post.html" />
++        <option value="$PROJECT_DIR$/templates/links.html" />
++        <option value="$PROJECT_DIR$/templates/backup2.html" />
++        <option value="$PROJECT_DIR$/templates/index.html" />
+         <option value="$PROJECT_DIR$/objava/views.py" />
++        <option value="$PROJECT_DIR$/objava/templates/objava/post.html" />
++        <option value="$PROJECT_DIR$/account/models.py" />
++        <option value="$PROJECT_DIR$/studij/models.py" />
+       </list>
+     </option>
+   </component>
+@@ -477,11 +470,11 @@
+     <detection-done>true</detection-done>
+     <sorting>DEFINITION_ORDER</sorting>
+   </component>
+-  <component name="ProjectFrameBounds" extendedState="1">
+-    <option name="x" value="1" />
+-    <option name="y" value="10" />
++  <component name="ProjectFrameBounds" extendedState="6">
++    <option name="x" value="-375" />
++    <option name="y" value="90" />
+     <option name="width" value="1930" />
+-    <option name="height" value="1090" />
++    <option name="height" value="955" />
+   </component>
+   <component name="ProjectView">
+     <navigator proportions="" version="1">
+@@ -498,24 +491,25 @@
+             <path>
+               <item name="jez" type="b2602c69:ProjectViewProjectNode" />
+               <item name="jez" type="462c0819:PsiDirectoryNode" />
+-              <item name="objava" type="462c0819:PsiDirectoryNode" />
++              <item name="account" type="462c0819:PsiDirectoryNode" />
+             </path>
+             <path>
+               <item name="jez" type="b2602c69:ProjectViewProjectNode" />
+               <item name="jez" type="462c0819:PsiDirectoryNode" />
+-              <item name="objava" type="462c0819:PsiDirectoryNode" />
+-              <item name="templates" type="462c0819:PsiDirectoryNode" />
++              <item name="studij" type="462c0819:PsiDirectoryNode" />
+             </path>
+             <path>
+               <item name="jez" type="b2602c69:ProjectViewProjectNode" />
+               <item name="jez" type="462c0819:PsiDirectoryNode" />
+-              <item name="objava" type="462c0819:PsiDirectoryNode" />
++              <item name="studij" type="462c0819:PsiDirectoryNode" />
+               <item name="templates" type="462c0819:PsiDirectoryNode" />
+-              <item name="objava" type="462c0819:PsiDirectoryNode" />
+             </path>
+             <path>
+               <item name="jez" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
++              <item name="jez" type="462c0819:PsiDirectoryNode" />
++              <item name="studij" type="462c0819:PsiDirectoryNode" />
++              <item name="templates" type="462c0819:PsiDirectoryNode" />
++              <item name="studij" type="462c0819:PsiDirectoryNode" />
+             </path>
+           </expand>
+           <select />
+@@ -533,15 +527,15 @@
+     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+   </component>
+   <component name="RecentsManager">
+-    <key name="MoveFile.RECENT_KEYS">
+-      <recent name="C:\Users\Korisnik\Desktop\Dev\jez_new\kontakt\templates\kontakt" />
+-      <recent name="C:\Users\Korisnik\Desktop\Dev\jez2\tema\templates\tema" />
+-    </key>
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\Users\Korisnik\Desktop\Dev\jez2\media\profile_image" />
+       <recent name="C:\Users\Korisnik\Desktop\Dev\jez2\account\templates\account" />
+       <recent name="C:\Users\Korisnik\Desktop\Dev\jez2\templates" />
+     </key>
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\Korisnik\Desktop\Dev\jez_new\kontakt\templates\kontakt" />
++      <recent name="C:\Users\Korisnik\Desktop\Dev\jez2\tema\templates\tema" />
++    </key>
+   </component>
+   <component name="RunDashboard">
+     <option name="ruleStates">
+@@ -879,15 +873,22 @@
+       <option name="project" value="LOCAL" />
+       <updated>1568209955672</updated>
+     </task>
+-    <option name="localTasksCounter" value="37" />
++    <task id="LOCAL-00037" summary="big commit">
++      <created>1568215781242</created>
++      <option name="number" value="00037" />
++      <option name="presentableId" value="LOCAL-00037" />
++      <option name="project" value="LOCAL" />
++      <updated>1568215781242</updated>
++    </task>
++    <option name="localTasksCounter" value="38" />
+     <servers />
+   </component>
+   <component name="ToolWindowManager">
+-    <frame x="2" y="8" width="1544" height="872" extended-state="0" />
++    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+     <editor active="true" />
+     <layout>
+-      <window_info x="22" y="144" width="229" height="705" id="Database" order="0" sideWeight="0.30212766" weight="0.21293801" />
+-      <window_info active="true" x="33" y="316" width="288" height="705" id="Project" order="1" sideWeight="0.69787234" visible="true" weight="0.1509434" />
++      <window_info x="22" y="144" width="229" height="705" id="Database" order="0" sideWeight="0.30212766" weight="0.21208054" />
++      <window_info x="33" y="316" width="288" height="705" id="Project" order="1" sideWeight="0.69787234" visible="true" weight="0.12416107" />
+       <window_info id="Structure" order="2" weight="0.1818792" />
+       <window_info id="Favorites" order="3" weight="0.32885906" />
+       <window_info anchor="bottom" id="Message" order="0" />
+@@ -901,19 +902,19 @@
+       <window_info anchor="bottom" id="Version Control" order="8" weight="0.30780143" />
+       <window_info anchor="bottom" id="Database Changes" order="9" />
+       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32882273" />
++      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.009929078" />
+       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32907802" />
+-      <window_info anchor="bottom" id="Database Console" order="13" weight="0.42269504" />
++      <window_info anchor="bottom" id="Database Console" order="13" weight="0.1276252" />
+       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+       <window_info anchor="right" id="SciView" order="3" weight="0.3295302" />
+     </layout>
+     <layout-to-restore>
+-      <window_info x="22" y="144" width="229" height="705" id="Database" order="0" sideWeight="0.30212766" weight="0.19798657" />
+-      <window_info x="33" y="316" width="288" height="705" id="Project" order="1" sideWeight="0.69787234" visible="true" weight="0.12751678" />
++      <window_info x="22" y="144" width="229" height="705" id="Database" order="0" sideWeight="0.30212766" weight="0.21293801" />
++      <window_info active="true" x="33" y="316" width="288" height="705" id="Project" order="1" sideWeight="0.69787234" visible="true" weight="0.15431267" />
+       <window_info id="Structure" order="2" weight="0.1818792" />
+-      <window_info id="Favorites" order="3" weight="0.32942432" />
++      <window_info id="Favorites" order="3" weight="0.32885906" />
+       <window_info anchor="bottom" id="Message" order="0" />
+       <window_info anchor="bottom" id="Find" order="1" weight="0.61229944" />
+       <window_info anchor="bottom" id="Run" order="2" weight="0.48794326" />
+@@ -925,8 +926,8 @@
+       <window_info anchor="bottom" id="Version Control" order="8" weight="0.30780143" />
+       <window_info anchor="bottom" id="Database Changes" order="9" />
+       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.1035461" />
+-      <window_info anchor="bottom" id="Python Console" order="12" />
++      <window_info anchor="bottom" id="Terminal" order="11" weight="0.16478191" />
++      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32907802" />
+       <window_info anchor="bottom" id="Database Console" order="13" weight="0.42269504" />
+       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+@@ -977,7 +978,6 @@
+     <option name="myLimit" value="2678400000" />
+   </component>
+   <component name="VcsManagerConfiguration">
+-    <MESSAGE value="media settings adjusted" />
+     <MESSAGE value="minor changes" />
+     <MESSAGE value="nesto ne dela" />
+     <MESSAGE value="sitnice" />
+@@ -1002,7 +1002,8 @@
+     <MESSAGE value="major changes" />
+     <MESSAGE value="upper-case bug fixed" />
+     <MESSAGE value="frontend bugs fixed" />
+-    <option name="LAST_COMMIT_MESSAGE" value="frontend bugs fixed" />
++    <MESSAGE value="big commit" />
++    <option name="LAST_COMMIT_MESSAGE" value="big commit" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+@@ -1024,86 +1025,6 @@
+     </breakpoint-manager>
+   </component>
+   <component name="editorHistoryManager">
+-    <entry file="file://$PROJECT_DIR$/donacije/urls.py">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="126">
+-          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/kontakt/urls.py">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="147">
+-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/za_brucose/templates/za_brucose/homepage.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="63">
+-          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/donacije/views.py">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="126">
+-          <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/kontakt/views.py">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state>
+-          <caret selection-end-line="6" selection-end-column="49" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/static/js/our_custom.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="63">
+-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/templates/courses.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="7119">
+-          <caret line="339" column="121" selection-start-line="339" selection-start-column="45" selection-end-line="339" selection-end-column="121" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/jez/wsgi.py">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="294">
+-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/jez/Procfile.py">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="42">
+-          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/templates/course.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="12180">
+-          <caret line="580" column="10" selection-start-line="154" selection-start-column="4" selection-end-line="580" selection-end-column="10" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/static/styles/style_login.css">
+-      <provider selected="true" editor-type-id="text-editor" />
+-    </entry>
+-    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/objava_objava">
+-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+-        <state>
+-          <filtering enabled="true" />
+-        </state>
+-      </provider>
+-    </entry>
+     <entry file="file://$PROJECT_DIR$/jez/urls.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="546">
+@@ -1132,13 +1053,7 @@
+         </state>
+       </provider>
+     </entry>
+-    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/django_session">
+-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+-        <state>
+-          <filtering enabled="true" />
+-        </state>
+-      </provider>
+-    </entry>
++    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/django_session" />
+     <entry file="file://$PROJECT_DIR$/studij/forms.py">
+       <provider selected="true" editor-type-id="text-editor" />
+     </entry>
+@@ -1149,20 +1064,8 @@
+         </state>
+       </provider>
+     </entry>
+-    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/account_student">
+-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+-        <state>
+-          <filtering enabled="true" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/auth_user">
+-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+-        <state>
+-          <filtering enabled="true" />
+-        </state>
+-      </provider>
+-    </entry>
++    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/account_student" />
++    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/auth_user" />
+     <entry file="file://$PROJECT_DIR$/donacije/templates/donacije/donacije.html">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="84">
+@@ -1199,31 +1102,6 @@
+       </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/studij/templates/studij/kolegiji.html" />
+-    <entry file="file://$PROJECT_DIR$/studij/views.py">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="441">
+-          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/account/models.py">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="336">
+-          <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+-          <folding>
+-            <element signature="e#0#28#0" expanded="true" />
+-            <marker date="1568195361459" expanded="true" signature="576:660" ph="..." />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/studij_studij">
+-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+-        <state>
+-          <filtering enabled="true" />
+-        </state>
+-      </provider>
+-    </entry>
+     <entry file="file://$PROJECT_DIR$/tema/views.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="189">
+@@ -1255,23 +1133,6 @@
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/templates/links.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="84">
+-          <caret line="4" column="41" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="41" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/account/templates/account/mypage.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="483">
+-          <caret line="23" column="157" selection-start-line="23" selection-start-column="157" selection-end-line="23" selection-end-column="157" />
+-          <folding>
+-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+     <entry file="file://$PROJECT_DIR$/studij/templates/studij/semestri.html">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="1554">
+@@ -1300,87 +1161,178 @@
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/templates/index.html">
++    <entry file="file://$PROJECT_DIR$/account/forms.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="1176">
+-          <caret line="56" column="61" lean-forward="true" selection-start-line="56" selection-start-column="61" selection-end-line="56" selection-end-column="61" />
+-          <folding>
+-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-          </folding>
++        <state relative-caret-position="588">
++          <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
+         </state>
+       </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/account/templates/account/settings.html">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="168">
+-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
++          <caret line="8" selection-start-line="8" selection-end-line="8" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/studij_smjer">
++    <entry file="file://$PROJECT_DIR$/account/tests.py">
++      <provider selected="true" editor-type-id="text-editor" />
++    </entry>
++    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/account_moj_kolegij">
+       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+         <state>
+           <filtering enabled="true" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/studij/templates/studij/homepage.html">
++    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0159b5c0-2713-4a52-baee-6abb42ad97af/console.sql">
++      <provider selected="true" editor-type-id="text-editor">
++        <state>
++          <caret column="209" selection-start-column="209" selection-end-column="209" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/account/templates/account/mypage.html">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="21">
++          <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/templates/links.html">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="42">
++          <caret line="2" column="44" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="44" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/templates/backup2.html">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="644">
+-          <caret line="76" column="74" lean-forward="true" selection-start-line="76" selection-start-column="74" selection-end-line="76" selection-end-column="74" />
++        <state relative-caret-position="252">
++          <caret line="12" column="20" selection-end-line="916" selection-end-column="7" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/studij/models.py">
++    <entry file="file://$PROJECT_DIR$/static/styles/main_styles.css">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="441">
+-          <caret line="21" column="67" lean-forward="true" selection-start-line="20" selection-start-column="3" selection-end-line="21" selection-end-column="67" />
++        <state relative-caret-position="146">
++          <caret line="136" column="23" selection-start-line="136" selection-start-column="23" selection-end-line="136" selection-end-column="23" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/account/forms.py">
++    <entry file="file://$PROJECT_DIR$/templates/index.html">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="537">
+-          <caret line="37" column="18" lean-forward="true" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
++        <state relative-caret-position="146">
++          <caret line="192" column="62" selection-start-line="192" selection-start-column="62" selection-end-line="192" selection-end-column="62" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/account_moj_kolegij">
++    <entry file="file://$PROJECT_DIR$/objava/forms.py">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="504">
++          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/objava/templates/objava/post.html">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="2310">
++          <caret line="110" column="45" selection-start-line="110" selection-start-column="45" selection-end-line="110" selection-end-column="45" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/objava_objava_files">
+       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+         <state>
+           <filtering enabled="true" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/studij_kolegij">
++    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/objava_objava_prijava">
++      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
++        <state>
++          <filtering enabled="true" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/objava_objava_likes">
+       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+         <state>
+           <filtering enabled="true" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/account/views.py">
++    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/objava_objava">
++      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
++        <state>
++          <filtering enabled="true" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/objava/views.py">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="252">
++          <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/account/models.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="376">
+-          <caret line="110" column="14" lean-forward="true" selection-start-line="110" selection-start-column="14" selection-end-line="110" selection-end-column="14" />
++        <state relative-caret-position="168">
++          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+           <folding>
+-            <element signature="e#0#45#0" expanded="true" />
++            <element signature="e#0#28#0" expanded="true" />
++            <marker date="1568742027291" expanded="true" signature="577:661" ph="..." />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/objava/templates/objava/post.html">
++    <entry file="file://$PROJECT_DIR$/account/views.py">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="1932">
++          <caret line="114" column="29" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/studij/views.py">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="441">
++          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/studij/templates/studij/homepage.html">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="231">
+-          <caret line="91" column="127" lean-forward="true" selection-start-line="88" selection-start-column="65" selection-end-line="91" selection-end-column="127" />
++        <state relative-caret-position="777">
++          <caret line="37" column="70" selection-start-line="37" selection-start-column="70" selection-end-line="37" selection-end-column="70" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/studij_studij">
++      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
++        <state>
++          <filtering enabled="true" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/studij_kolegij">
++      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
++        <state>
++          <filtering enabled="true" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/studij_smjer">
++      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
++        <state>
++          <filtering enabled="true" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/objava/views.py">
++    <entry file="file://$PROJECT_DIR$/studij/models.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="273">
+-          <caret line="81" column="27" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
++        <state relative-caret-position="219">
++          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+         </state>
+       </provider>
+     </entry>

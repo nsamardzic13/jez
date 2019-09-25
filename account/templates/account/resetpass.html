@@ -1,5 +1,5 @@
 {% autoescape off %}
     Pozdrav {{ user.username }},
-    Klikni na link kako bi ovnovio svoju lozinku:
+    Klikni na link kako bi obnovio svoju lozinku:
     http://{{ domain }}{% url 'account:resetpass' uidb64=uid token=token %}
 {% endautoescape %}

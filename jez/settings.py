@@ -35,12 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
-    'tko_smo',
     'za_brucose',
     'studij',
     'objava',
     'tema',
-    'kontakt',
     'donacije'
 
 ]

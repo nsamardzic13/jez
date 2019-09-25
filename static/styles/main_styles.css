@@ -561,6 +561,7 @@ section
 	-ms-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
+	width: 200px;
 }
 .hamburger:hover i
 {

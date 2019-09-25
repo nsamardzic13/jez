@@ -112,12 +112,15 @@ def signup_view(request):
             student = student_form.save(commit=False) #želim spremiti u studenta al prvo pohranim podatke (commit - false) i onda nadodam podatke iz usera)
             student.user = user
             student.save()
-            return HttpResponse('Confirm')
+            status = 1
+            context = {'status': status, }
+            return render(request, "account/obavijesti.html", context)
 
     form = RegistrationForm()
     student_form = StudentProfileForm()
     student_form.fields['studij'].widget.attrs = {'class': 'form-control'}
     context = {'form' : form, 'student_form' : student_form,}
+
     return render(request, "account/signup.html", context)
 
 def forgotpass_view(request):
@@ -137,7 +140,10 @@ def forgotpass_view(request):
             to_email = email_html
             email = EmailMessage(mail_subject, message, to=[to_email])
             email.send()
-            return HttpResponse('Confirm')
+            status = 3
+            context = {'status':status,}
+            return render(request, "account/obavijesti.html", context)
+
 
     return render(request, "account/forgotpass.html")
 
@@ -171,11 +177,14 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        status = 2
+        #return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
-        return HttpResponse('Activation link is invalid!')
+        status = 4
+        #return HttpResponse('invalid link')
 
+    context = {'status': status, }
+    return render(request, "account/obavijesti.html", context)
 @login_required()
 def mypage_view(request):
     username = request.user.username

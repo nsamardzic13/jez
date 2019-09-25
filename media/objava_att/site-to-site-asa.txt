@@ -1,0 +1,98 @@
+1.Define local network and remote using object network and do "no nat"
+sh run object network 
+object network KOMP_LAN 
+subnet 172.16.10.0 255.255.255.0
+-----------------
+config t
+object network LAP_LAN
+subnet 192.168.10.0 255.255.255.0
+------------------------------
+config t
+object network KOMP_LAN
+nat (inside, outside) source static LAP_LAN  LAP_LAN destination static KOMP_LAN KOMP_LAN
+---------------
+2.create an acl to permit IP and ICMP traffic to the remote network
+access-list KOMP_S2S_VPN extended permit ip 192.168.10.0 255.255.255.0 172.16.10.0 255.255.255.0
+access-list KOMP_S2S_VPN extended permit icmp 192.168.10.0 255.255.255.0 172.16.10.0 255.255.255.0
+sh access-list
+sh run access-list
+----------------
+3. create isakmp/ikev1 policy and enable it (huh)
+config t
+crypto ikev1 policy 10 (10 je ime)
+-------------
+Phase1 (kako nauèiti što moram sve)(mora odgovarati suprotnoj strani)
+Hash
+Authen
+Group
+Lifetime
+Encryption
+---------------
+hash sha 
+authentication pre-share
+group 2
+lifetime 86400 (ne mora nužno biti isto)
+encryption aes
+exit
+sh run crypto (provjera)
+--------------------------
+config t
+crypto ikev1 enable outside (moram je pridružiti nekom suèelju)
+--------------------------
+4. create the tunnel group
+config t
+tunnel-group 10.8.0.2 ipsec-attributes 
+(tu se radi lozinka)
+ikev1 pre-shared-key cisco123
+sh run tunnel (mora biti tamo)7
+more system:running-config (prikaže lozinku)
+-------
+5. create the ipsec transform set (hashing and encyrption)
+config t
+crypto ipsec ikev1 transfrom-set ESP-AES-SHA esp-aes esp-sha-hmac 
+sh run crypto (za provjeru)
+-------
+6. create a crypto map and enable it
+crypto map KOMP_VPN_MAP 1 match address KOMP_S2S_VPN 
+crypto map KOMP_VPN_MAP 1 set peer 10.8.0.2 
+crypto map KOMP_VPN_MAP 1 set ikev1 transfrom-set ESP-AES-SHA
+sh run crypto
+config t
+crypto map KOMP_VPN_MAP interface outside
+
+----------
+verifikacija i troubleshooting
+sh run crypto
+sh crypto ipsec sa
+sh run tunnel
+sh crypto isakamp sa 
+
+--------------------
+
+
+7. ping from inside node to trigger the tunnel
+
+Pinging 172.16.10.100 with 32 bytes of data:
+Request timed out.
+Reply from 172.16.10.100: bytes=32 time=2ms TTL=128
+Reply from 172.16.10.100: bytes=32 time=1ms TTL=128
+Reply from 172.16.10.100: bytes=32 time=1ms TTL=128
+------------------
+SITE-A(config)# sh crypto ikev1 sa
+
+IKEv1 SAs:
+
+   Active SA: 1
+    Rekey SA: 0 (A tunnel will report 1 Active and 1 Rekey SA during rekey)
+Total IKE SA: 1
+
+1   IKE Peer: 10.8.0.2
+    Type    : L2L             Role    : initiator
+    Rekey   : no              State   : MM_ACTIVE
+
+
+
+
+
+
+
