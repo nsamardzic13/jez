@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'styles/blog_single.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'styles/blog_single_responsive.css' %}">
 
+
 <div class="super_container">
 	<div class="blog">
 		<div class="container">
@@ -38,8 +39,8 @@
                                                     <div class="comment_time ml-auto">{{obj.date}}</div>
                                                 </div>
 
-                                                <div class="comment_text">
-                                                        <p>{{obj.tekst}}</p>
+                                                <div class="comment_text" id = "textbox{{obj.objava_id}}">
+                                                        <p>{{obj.tekst | linebreaks}}</p>
                                                  </div>
                                                 {% endif %}
                                                  <!--FILES   -->
@@ -53,7 +54,6 @@
                                                              <br><br>
                                                         {% endif %}
                                                        {% endfor %}
-
                                                  </div>
                                                 <!--LIKES-->
                                                 {% if prethodna_objava != obj.objava_id %}
@@ -75,7 +75,7 @@
                                                          <input type="hidden" value="{{ tema_id }}" name="get_tema_id">
                                                           <input type="hidden" value="{{ smjer_id }}" name="get_smjer_id">
                                                      </form>
-                                                    <div class="comment_extra comment_likes"><a href="#id_tekst" onclick="copyText('{{user.username}}', '{{obj.tekst}}', '{{obj.date}}')"><i class="fa fa-reply" style="font-size:22px;color:#e60e08" aria-hidden="true"></i>&nbsp;Odgovori</a></div>
+                                                    <div class="comment_extra comment_likes"><a href="#id_tekst" onclick="copyText('{{user.username}}', 'textbox{{obj.objava_id}}', '{{obj.date}}')"><i class="fa fa-reply" style="font-size:22px;color:#e60e08" aria-hidden="true"></i>&nbsp;Odgovori</a></div>
                                                      {% if student.stars > 2 %}
                                                         <form id = "post_report{{obj.objava_id}}" action="{% url 'objava:report' %}" method="post">
                                                             {% csrf_token %}
