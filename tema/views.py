@@ -13,7 +13,7 @@ def teme_views(request, studij_id, kolegij_id, semestar_num, smjer_id):
     moj_kolegij = Moj_Kolegij.objects.filter(username=username, kolegij_id=kolegij_id).exists()
 
     #ispis svih postojecih tema i dodavanje novih
-    sve_teme = Tema.objects.all().filter(kolegij_id=kolegij_id).order_by('tema_id')
+    sve_teme = Tema.objects.all().filter(kolegij_id=kolegij_id).order_by('-tema_id')
     form = TemaForm()
 
     if 'dodaj_temu' in request.POST:
