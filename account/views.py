@@ -188,7 +188,7 @@ def activate(request, uidb64, token):
 @login_required()
 def mypage_view(request):
     username = request.user.username
-    svi_moji_kolegiji = Kolegij.objects.raw('select distinct * from studij_kolegij, studij_smjer, account_moj_kolegij where studij_smjer.smjer_id = account_moj_kolegij.smjer_id and studij_kolegij.kolegij_id=account_moj_kolegij.kolegij_id and account_moj_kolegij.username= %s and studij_kolegij.studij_id=account_moj_kolegij.studij_id', [username])
+    svi_moji_kolegiji = Kolegij.objects.raw('select * from studij_kolegij, account_moj_kolegij where account_moj_kolegij.username=%s and studij_kolegij.studij_id=account_moj_kolegij.studij_id and studij_kolegij.smjer_id=account_moj_kolegij.smjer_id and studij_kolegij.kolegij_id=account_moj_kolegij.kolegij_id', [username])
     moje_objave= Objava.objects.all().filter(username=request.user).count()
     if len(list(svi_moji_kolegiji)) == 0:
         svi_moji_kolegiji = 0

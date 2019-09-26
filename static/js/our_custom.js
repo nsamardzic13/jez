@@ -1,11 +1,16 @@
 function copyText(user, text, datum) {
-    document.getElementById('id_tekst').value += user + " je " + datum + " napisao/la:\n" + stripHtml(text) + "\n--------------------------------------------------\n";
+    answer = document.getElementById('id_tekst')
+
+    answer.value += user + " je " + datum + " napisao/la:\n" + stripHtml(text) + "\n--------------------------------------------------\n";
+    answer.style.color= 'red';
+
+    Object.assign(answer.style, css);
 }
 
 function stripHtml(html)
 {
-   var c = document.getElementById(html);
-   return c.innerText;
+    return document.getElementById('html').innerText
+
 }
 
 function changeclass(element){
