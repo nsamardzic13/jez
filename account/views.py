@@ -93,9 +93,15 @@ def change_password(request):
         return render(request, 'account/change_password.html', context)
 
 def signup_view(request):
+    #na početku se inicijaliziraju forme, ako je poslije IF-a u slučaju nevalidne forme greške se neće ispisati
+    #jer će se forma opet inicijalizirati
+    form = RegistrationForm()
+    student_form = StudentProfileForm()
+
     if request.method == 'POST':
         form = RegistrationForm(data=request.POST)
         student_form = StudentProfileForm(request.POST)
+
         if form.is_valid() and student_form.is_valid():
             user = form.save(commit = False) #prvo spremim podatke iz forme u DJANGO USER MODEL
             user.is_active = False
@@ -117,8 +123,6 @@ def signup_view(request):
             context = {'status': status, }
             return render(request, "account/obavijesti.html", context)
 
-    form = RegistrationForm()
-    student_form = StudentProfileForm()
     student_form.fields['studij'].widget.attrs = {'class': 'form-control'}
     context = {'form' : form, 'student_form' : student_form,}
 
@@ -191,31 +195,36 @@ def mypage_view(request):
     username = request.user.username
     svi_moji_kolegiji = Kolegij.objects.raw('select * from studij_kolegij, account_moj_kolegij where account_moj_kolegij.username=%s and studij_kolegij.studij_id=account_moj_kolegij.studij_id and studij_kolegij.smjer_id=account_moj_kolegij.smjer_id and studij_kolegij.kolegij_id=account_moj_kolegij.kolegij_id', [username])
     moje_objave= Objava.objects.all().filter(username=request.user).count()
+
     if len(list(svi_moji_kolegiji)) == 0:
-        svi_moji_kolegiji = 0
-    #
-    # paginator = Paginator(svi_moji_kolegiji, 1)
-    # page = request.GET.get('page')
-    #
-    # try:
-    #     items = paginator.page(page)
-    # except PageNotAnInteger:
-    #     items = paginator.page(1)
-    # except EmptyPage:
-    #     items = paginator.page(paginator.num_pages)
-    #
-    # index = items.number - 1
-    # max_index = len(paginator.page_range)
-    #
-    # start_index = index - 5 if index >= 5 else 0
-    # end_index = index + 5 if index <= max_index - 5 else max_index
-    # page_range = paginator.page_range[start_index:end_index]
+        flag = 0
+    else:
+        flag = 1
+
+    paginator = Paginator(svi_moji_kolegiji, 10)
+    page = request.GET.get('page')
+
+    try:
+        items = paginator.page(page)
+    except PageNotAnInteger:
+        items = paginator.page(1)
+    except EmptyPage:
+        items = paginator.page(paginator.num_pages)
+
+    index = items.number - 1
+    max_index = len(paginator.page_range)
+
+    start_index = index - 5 if index >= 5 else 0
+    end_index = index + 5 if index <= max_index - 5 else max_index
+    page_range = paginator.page_range[start_index:end_index]
+
 
     context = {'svi_moji_kolegiji' : svi_moji_kolegiji,
                'moje_objave' : moje_objave,
-               # 'items': items,
-               # 'page_range': page_range,
-               # 'end': max_index,
+               'items': items,
+               'page_range': page_range,
+               'end': max_index,
+               'flag': flag,
                }
     return render(request, "account/mypage.html", context)
 

@@ -12,13 +12,16 @@ def homepage(request):
         'predd': predd,
         'dipl': dipl,
     }
-    return render(request, 'studij/homepage.html', context)
+    return render(request, 'studij/arhiva_kolegija.html', context)
 
 
 @login_required()
 def program(request, studij_id, smjer_id):
     smjer = Smjer.objects.get(studij_id=studij_id, smjer_id=smjer_id)
-    smjer_ime = smjer.smjer_ime
+    if smjer.smjer_ime.startswith('!'):
+        smjer_ime = smjer.getnaziv()
+    else:
+        smjer_ime = smjer.smjer_ime
     kolegiji = Kolegij.objects.all().filter(studij_id=studij_id, smjer_id=smjer_id)
 
     context={

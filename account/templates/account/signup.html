@@ -10,13 +10,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-{% if successful_submit %}
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#exampleModal").modal('show');
-        });
-    </script>
-{% endif %}
+
 
 
 <br><br><br><br>
@@ -29,11 +23,11 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <input type="text" class="form-control" name="username" id="id_username" maxlength="150" placeholder="Korisničko ime">
-                    <p>{{form.errors.username}}</p>
+                    <p>ERROR!{{form.errors.username}}</p>
                 </div>
 
                 <div class="form-group">
-                    <input type="email" class="form-control" name="email" maxlength="150" id="id_email" placeholder="@riteh mail">
+                    <input type="email" class="form-control" name="email" maxlength="150" id="id_email" placeholder="@riteh.hr">
                     <p>{{form.errors.email}}</p>
                 </div>
 
@@ -81,7 +75,7 @@
 
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-info" data-dismiss="modal" style="background-color: blue">Zatvori</button>
+                                    <button type="button" class="btn btn-info" data-dismiss="modal" style="background-color: #0062cc; border-color: #0062cc" >Zatvori</button>
                                 </div>
 
                             </div>

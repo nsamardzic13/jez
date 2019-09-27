@@ -1,0 +1,86 @@
+{% extends 'account/mypage.html' %}
+
+{% load static from staticfiles %}
+{% load extras %}
+
+{% block content %}
+
+<div class="super_container">
+	<br><br><br>
+   <div class="course">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="course_container">
+						<div class="course_title">Arhiva kolegija</div><br>
+							<div class="tab_panel active">
+								<div class="tab_panel_content" style="height: fit-content;">
+									<div class="tab_panel_title">Studijski programi</div>
+									<div class="tab_panel_text">
+										<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.</p>
+									</div>
+
+									<ul class="dropdowns">
+										{% csrf_token %}
+
+										{% for studij in predd %}
+											{% if studij.smjerovi_postoje %}
+												<li class="has_children">
+													<div class="dropdown_item">
+														<div class="dropdown_item_title"><span  style="color: #0062cc">{{studij.studij_ime}}</span></div>
+													</div>
+													<ul>
+														<li class="has_children">
+															{% for smjer in studij.getsmjerovi %}
+															<div class="dropdown_item">
+																<div class="dropdown_item_title"><span><a href="/studij/studijski_programi/studij={{studij.studij_id}}/smjer={{smjer.smjer_id}}">{{smjer.smjer_ime}}</a></span></div>
+															</div>
+															{% endfor %}
+														</li>
+													</ul>
+												</li>
+											{% else %}
+											<div class="dropdown_item">
+												<div class="dropdown_item_title"><span><a  style="color: #0062cc" href="/studij/studijski_programi/studij={{studij.studij_id}}/smjer=!{{studij.studij_id}}">{{studij.studij_ime}}</a></div>
+											</div>
+											{% endif %}
+										{% endfor %}
+
+										{% for studij in dipl %}
+											{% csrf_token %}
+											{% if studij.smjerovi_postoje %}
+												<li class="has_children">
+													<div class="dropdown_item">
+														<div class="dropdown_item_title"><span  style="color: #0062cc">{{studij.studij_ime}}</span></div>
+													</div>
+													<ul>
+														<li class="has_children">
+															{% for smjer in studij.getsmjerovi %}
+															<div class="dropdown_item">
+																<div class="dropdown_item_title"><span><a href="/studij/studijski_programi/studij={{studij.studij_id}}/smjer={{smjer.smjer_id}}">{{smjer.smjer_ime}}</a></span></div>
+															</div>
+															{% endfor %}
+														</li>
+													</ul>
+												</li>
+											{% else %}
+											<div class="dropdown_item">
+												<div class="dropdown_item_title"><span><a  style="color: #0062cc" href="/studij/studijski_programi/studij={{studij.studij_id}}/smjer=!{{studij.studij_id}}">{{studij.studij_ime}}</a></div>
+											</div>
+											{% endif %}
+										{% endfor %}
+
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="{% static 'js/course.js' %}"></script>
+</body>
+</html>
+{% endblock %}

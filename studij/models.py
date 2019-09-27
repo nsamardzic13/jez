@@ -28,6 +28,11 @@ class Smjer(models.Model):
     smjer_ime= models.CharField(max_length=60)
     studij = models.ForeignKey(Studij, on_delete=models.CASCADE, default='pss')
 
+    def getnaziv(self):
+        return self.studij.studij_ime
+
+    def getkratica(self):
+        return self.studij.studij_id
 
 class Kolegij(models.Model):
     dummy_id = models.AutoField(primary_key=True)

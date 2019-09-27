@@ -11,3 +11,4 @@ function stripHtml(html)
 function changeclass(element){
     $(element).toggleClass('active')
 }
+

@@ -38,9 +38,9 @@
 										<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 										<span class="caret"></span></a>
 										<div class="dropdown-menu">
-                                            <span class="fa fa-gear" style="font-size:30px;color:blue "></span>
+                                            <span class="fa fa-gear" style="font-size:30px;color:#0062cc "></span>
 										  	<a href="{% url 'account:settings'%}">Postavke</a><br>
-                                            <span class="fa fa-sign-out" style="font-size:30px;color:blue "></span>
+                                            <span class="fa fa-sign-out" style="font-size:30px;color:#0062cc "></span>
 											<a href="{% url 'account:logout' %}">Odjavi se</a>
 										</div>
       								</li>
@@ -86,13 +86,13 @@
 				<!--Popis mojih kolegija -->
 				<div class="col-lg-8">
 					<div class="course_container">
-						<br><br>
+						<br><br><br>
 						<div class="course_title">Pregled E-kolegija</div>
 						<div class="course_info d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
 
 							<!-- Course Info Item -->
 							<div class="course_info_item">
-								<div class="course_info_title">Tvoj rating:</div>
+								<div class="course_info_title">Moj rating:</div>
 								{% if user.student.stars == 1 %}
 									<div class="rating_r rating_r_1"><i></i><i></i><i></i><i></i><i></i></div>
 								{% elif user.student.stars == 2 %}
@@ -125,11 +125,11 @@
 								<div class="tab_panel active">
 									<div class="tab_panel_title"></div>
 										<!-- Popis svih omiljenih kolegija -->
-										{% if svi_moji_kolegiji == 0 %}
+										{% if flag == 0 %}
 											<p> Trenutno nemate omiljenih kolegija, za dodavanje novih pregledajte <a href="{% url 'studij:homepage'%}">Arhivu kolegija</a></p>
 										{% else %}
 
-											{% for kolegij in svi_moji_kolegiji %}
+											{% for kolegij in items %}
 											<div class="dropdown_item">
 												<div class="dropdown_item_title">
 													<a href="/studij/studijski_programi/studij={{kolegij.studij_id}}/smjer={{kolegij.smjer_id}}/semestar={{kolegij.semestar}}/kolegij={{kolegij.kolegij_id}}"><span>{{kolegij.kolegij_ime}}</span></a>
