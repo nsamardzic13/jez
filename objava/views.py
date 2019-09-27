@@ -21,6 +21,7 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id, smjer_id)
     active_student = Student.objects.get(user_id = request.user)
     tema = Tema.objects.get(tema_id=tema_id)
     tema_ime=tema.tema_ime
+
     if request.method == 'POST':
         form = ObjavaForm(data=request.POST)
         if form.is_valid(): #ako imam tekst ne znaci da imam i files
@@ -79,7 +80,8 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id, smjer_id)
         'tema_id': tema_id,
         'tema_ime': tema_ime,
         'end': max_index,
-        'smjer_id':smjer_id
+        'smjer_id':smjer_id,
+        'tema_ime': tema_ime,
     }
     return render(request, 'objava/post.html', context)
 

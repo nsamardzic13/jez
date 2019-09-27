@@ -59,22 +59,25 @@ def login_view(request):
 
 @login_required()
 def settings_view(request):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            form = EditUserForm(request.POST, instance=request.user)
-            student_form = EditStudentForm(request.POST, request.FILES, instance=request.user.student)
-            if form.is_valid() and student_form.is_valid():
-                user_form = form.save()
-                student = student_form.save(commit=False)
-                student.user = user_form
-                student.save()
-                return redirect('account:settings')
-        else:
-            form = EditUserForm(instance=request.user)
-            student_form = EditStudentForm(instance=request.user.student)
-            student_form.fields['studij'].widget.attrs = {'class': 'form-control'}
-            context = {'form': form, 'student_form': student_form}
-            return render(request, "account/settings.html", context)
+
+
+    if request.method == 'POST':
+        form = EditUserForm(request.POST, instance=request.user)
+        student_form = EditStudentForm(request.POST, request.FILES, instance=request.user.student)
+        if form.is_valid() and student_form.is_valid():
+            user_form = form.save()
+            student = student_form.save(commit=False)
+            student.user = user_form
+            student.save()
+            return redirect('account:settings')
+    else:
+        form = EditUserForm(instance=request.user)
+        student_form = EditStudentForm(instance=request.user.student)
+        student_form.fields['studij'].widget.attrs = {'class': 'form-control'}
+
+    context = {'form': form, 'student_form': student_form}
+
+    return render(request, "account/settings.html", context)
 
 @login_required()
 def change_password(request):

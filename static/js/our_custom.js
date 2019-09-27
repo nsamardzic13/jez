@@ -1,5 +1,5 @@
 function copyText(user, text, datum) {
-    document.getElementById('id_tekst').value += user + " je " + datum + " napisao/la:\n" + stripHtml(text) + "\n--------------------------------------------------\n";
+    document.getElementById('id_tekst').value += datum + ";" + user + ":\n" + stripHtml(text) + "\n--------------------------------------------------\n";
 }
 
 function stripHtml(html)
@@ -8,7 +8,7 @@ function stripHtml(html)
    return c.innerText;
 }
 
-function changeclass(element){
-    $(element).toggleClass('active')
-}
+
+
+
 

@@ -23,7 +23,7 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <input type="text" class="form-control" name="username" id="id_username" maxlength="150" placeholder="Korisničko ime">
-                    <p>ERROR!{{form.errors.username}}</p>
+                    <p>{{form.errors.username}}</p>
                 </div>
 
                 <div class="form-group">

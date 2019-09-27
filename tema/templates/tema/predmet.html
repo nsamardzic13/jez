@@ -30,14 +30,14 @@
 						<!-- Course Tabs -->
 						<div class="course_tabs_container">
 							<div class="tabs d-flex flex-row align-items-center justify-content-start">
-								<div class="tab active" id="fragment-1">Opis kolegija</div>
-								<div class="tab" id="fragment-2">Materijali</div>
+								<div class="tab" id="div1">Opis kolegija</div>
+								<div class="tab active" id="div2on">Materijali</div>
 							</div>
 
 							<div class="tab_panels">
 
 								<!-- Description -->
-								<div class="tab_panel active">
+								<div class="tab_panel tab_panel_2" id="fragment1">
 									<div class="tab_panel_title">Software Training</div>
 									<div class="tab_panel_content">
 										<div class="tab_panel_text">
@@ -109,7 +109,7 @@
 								</div>
 
 								<!-- Materijali -->
-								<div class="tab_panel tab_panel_2">
+								<div class="tab_panel active" id="fragment2">
 									<div class="tab_panel_content">
 										<div class="tab_panel_title">Dodaj novu temu</div>
 										<div class="tab_panel_content">
@@ -118,7 +118,7 @@
                                                     {% csrf_token %}
 													<div class="form-inline">
                                                     	<input type="text" name="tema_ime" maxlength="50" required="" id="id_tema_ime" class="form-control float-left" style="width: 250px">&nbsp;&nbsp;
-                                                    	<button type="submit" name="dodaj_temu" class="btn btn-primary" style="background-color: #14bdee; border-color: #14bdee">Dodaj</button>
+                                                    	<button type="submit"  name="dodaj_temu" class="btn btn-primary" style="background-color: #14bdee; border-color: #14bdee">Dodaj</button>
                                                 	</div>
 												</form>
 											</div>
@@ -128,7 +128,14 @@
                                             <div class="dropdown_item">
                                                 <div class="dropdown_item_title">
                                                     <a href="/objava/studij={{studij_id}}/smjer={{smjer_id}}/semestar={{semestar_num}}/kolegij={{kolegij_id}}/tema={{tema.tema_id}}"><span>{{tema.tema_ime}}</span></a>
-                                            </div>
+                                            	<div class="dropdown_item_text">
+                                                    <!--<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>-->
+													<p style=" width: 450px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis; color: #000000;">
+														<i>{{tema.getlastpost}}</i>
+													</p>
+												</div>
+
+											</div>
                                             {% endfor %}
 										</div>
 									</div>
