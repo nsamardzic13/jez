@@ -30,8 +30,8 @@ class Objava(models.Model):
     def getprofileimage(self):
         return User.objects.get(username=self.username)
 
-    def __str__(self):
-        return self.objava_id
+    # def __str__(self):
+    #     return self.objava_id
 
 class Objava_Files(models.Model):
     attachment = models.FileField(upload_to='objava_att/', null=True, blank=True, max_length=500)

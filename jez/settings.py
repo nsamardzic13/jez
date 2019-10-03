@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'studij',
     'objava',
     'tema',
-    'donacije'
-
+    'donacije',
+    'storages',
 ]
 
 
@@ -133,6 +133,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+LOGIN_URL='/account/login/'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
@@ -140,10 +141,7 @@ STATICFILES_DIRS = (
 )
 
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-LOGIN_URL='/account/login/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
@@ -151,3 +149,14 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'jezweb2019@gmail.com'
 EMAIL_HOST_PASSWORD = 'benkovac'
 EMAIL_PORT = 587
+
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
