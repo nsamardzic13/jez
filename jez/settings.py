@@ -151,10 +151,19 @@ EMAIL_HOST_PASSWORD = 'benkovac'
 EMAIL_PORT = 587
 
 
+#user info za linux mora biti pohranjen u bash fileu
+"""
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+"""
 
+#user info za windows može direkt biti hardkodiran, napravila sam novog
+AWS_ACCESS_KEY_ID = "AKIA3FZTYELIRVEBCJLI"
+AWS_SECRET_ACCESS_KEY = "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"
+
+#bila prelijena za tražiti promjenu settingsa za bucket pa napravila jednostavno novi
+AWS_STORAGE_BUCKET_NAME = "jez-storage-2019"
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 

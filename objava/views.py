@@ -14,6 +14,15 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+
+from storages.backends.s3boto3 import S3Boto3Storage, SpooledTemporaryFile
+
+
+
+
+
+
+
 @login_required()
 def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id, smjer_id):
     form = ObjavaForm()
