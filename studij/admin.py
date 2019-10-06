@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Studij, Smjer
 
-# Register your models here.
+admin.site.register(Studij)
+admin.site.register(Smjer)

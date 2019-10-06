@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d993984f-5e6b-491f-a6db-443f308afced" name="Default Changelist" comment="frontend bugs fixed">
+    <list default="true" id="d993984f-5e6b-491f-a6db-443f308afced" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jez/Procfile.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/jez/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/jez/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objava/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/objava/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirments.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/runtime.txt" afterDir="false" />
     </list>
     <ignored path="C:\Users\Korisnik\Desktop\Dev\jez\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -210,12 +214,13 @@
           <entry key="html" value="95" />
           <entry key="js" value="6" />
           <entry key="objava_objava" value="2" />
-          <entry key="py" value="93" />
+          <entry key="py" value="94" />
           <entry key="sql" value="1" />
           <entry key="studij_kolegij" value="11" />
           <entry key="studij_smjer" value="15" />
           <entry key="studij_studij" value="12" />
           <entry key="tema_tema" value="1" />
+          <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -224,7 +229,8 @@
           <entry key="Database Element" value="60" />
           <entry key="HTML" value="95" />
           <entry key="JavaScript" value="6" />
-          <entry key="Python" value="93" />
+          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="Python" value="94" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
@@ -306,43 +312,62 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/jez/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="164" column="85" selection-start-line="164" selection-start-column="85" selection-end-line="164" selection-end-column="85" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/objava/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/objava/templates/objava/post.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="50" column="99" selection-start-line="50" selection-start-column="99" selection-end-line="50" selection-end-column="99" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/account/urls.py">
+        <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
             <state>
+              <caret column="22" lean-forward="true" selection-start-column="22" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="421">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/runtime.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="12" selection-start-column="12" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jez/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="398">
+              <caret line="173" lean-forward="true" selection-start-line="173" selection-end-line="173" />
               <folding>
-                <element signature="e#0#28#0" expanded="true" />
+                <element signature="e#301#310#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jez/wsgi.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="e#219#228#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/studij/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -398,8 +423,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/studij/templates/studij/kolegiji.html" />
-        <option value="$PROJECT_DIR$/studij/templates/studij/backup.html" />
         <option value="$PROJECT_DIR$/objava/templatetags/extras.py" />
         <option value="$PROJECT_DIR$/static/styles/course.css" />
         <option value="$PROJECT_DIR$/objava/templates/objava/backup.html" />
@@ -411,7 +434,6 @@
         <option value="$PROJECT_DIR$/donacije/urls.py" />
         <option value="$PROJECT_DIR$/za_brucose/templates/za_brucose/homepage.html" />
         <option value="$PROJECT_DIR$/donacije/views.py" />
-        <option value="$PROJECT_DIR$/jez/wsgi.py" />
         <option value="$PROJECT_DIR$/jez/Procfile.py" />
         <option value="$PROJECT_DIR$/account/templates/account/settings.html" />
         <option value="$PROJECT_DIR$/objava/models.py" />
@@ -449,6 +471,9 @@
         <option value="$PROJECT_DIR$/objava/views.py" />
         <option value="$PROJECT_DIR$/objava/templates/objava/post.html" />
         <option value="$PROJECT_DIR$/jez/settings.py" />
+        <option value="$PROJECT_DIR$/jez/wsgi.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/runtime.txt" />
       </list>
     </option>
   </component>
@@ -468,6 +493,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -483,26 +509,12 @@
             <path>
               <item name="jez" type="b2602c69:ProjectViewProjectNode" />
               <item name="jez" type="462c0819:PsiDirectoryNode" />
-              <item name="objava" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jez" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jez" type="462c0819:PsiDirectoryNode" />
-              <item name="objava" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jez" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jez" type="462c0819:PsiDirectoryNode" />
-              <item name="objava" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="objava" type="462c0819:PsiDirectoryNode" />
+              <item name="studij" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -871,11 +883,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="779" y="0" width="757" height="830" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info x="22" y="144" width="229" height="705" id="Database" order="0" sideWeight="0.30212766" weight="0.21251719" />
-      <window_info x="33" y="316" width="288" height="705" id="Project" order="1" sideWeight="0.69787234" visible="true" weight="0.18255034" />
+      <window_info active="true" x="33" y="316" width="288" height="705" id="Project" order="1" sideWeight="0.69787234" visible="true" weight="0.26111907" />
       <window_info id="Structure" order="2" weight="0.1818792" />
       <window_info id="Favorites" order="3" weight="0.32885906" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -889,7 +901,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.30780143" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2070922" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2998565" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32907802" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.42269504" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -1016,31 +1028,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/studij/templates/studij/kolegiji.html" />
-    <entry file="file://$PROJECT_DIR$/account/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/account/templates/account/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/links.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="41" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jez/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -1313,21 +1300,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/account/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/account/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="77" column="4" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1348,10 +1326,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/studij/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/jez/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="164" column="85" selection-start-line="164" selection-start-column="85" selection-end-line="164" selection-end-column="85" />
+        <state relative-caret-position="398">
+          <caret line="173" lean-forward="true" selection-start-line="173" selection-end-line="173" />
+          <folding>
+            <element signature="e#301#310#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jez/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#219#228#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runtime.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
         </state>
       </provider>
     </entry>
