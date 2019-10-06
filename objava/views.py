@@ -12,15 +12,6 @@ from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-
-
-from storages.backends.s3boto3 import S3Boto3Storage, SpooledTemporaryFile
-
-
-
-
-
 
 
 @login_required()
@@ -33,7 +24,9 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id, smjer_id)
 
     if request.method == 'POST':
         form = ObjavaForm(data=request.POST)
-        if form.is_valid(): #ako imam tekst ne znaci da imam i files
+        file_form = FilesObjavaForm(request.POST, request.FILES)
+
+        if form.is_valid() and file_form.is_valid(): #ako imam tekst ne znaci da imam i files
             objava = form.save(commit=False)
             objava.username = request.user
             kol = Kolegij.objects.get(kolegij_id=kolegij_id, studij_id=studij_id, smjer_id=smjer_id)
@@ -41,14 +34,12 @@ def objava_view(request, studij_id, semestar_num, kolegij_id, tema_id, smjer_id)
             objava.tema = Tema.objects.get(tema_id = tema_id)
             objava.save()
 
-
-            file_form = FilesObjavaForm(request.POST, request.FILES)
-            if file_form.is_valid():
-                files = request.FILES.getlist('attachment')  # field name in model
-                for f in files:
-                    file_instance = Objava_Files(attachment=f, objava=objava, tema_id=tema_id)
-                    file_instance.save()
-
+            files = request.FILES.getlist('attachment')  # field name in model
+            for f in files:
+                file_instance = Objava_Files(attachment=f, objava=objava, tema_id=tema_id)
+                file_instance.save()
+        else:
+            max_size=True
         #tu dodati da se prešalta na zadnju
         return HttpResponseRedirect(reverse('objava:objava_homepage', kwargs={'studij_id':studij_id, 'kolegij_id':kolegij_id, 'semestar_num':semestar_num ,'tema_id':tema_id, 'smjer_id':smjer_id}))
 

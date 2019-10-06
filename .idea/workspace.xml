@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d993984f-5e6b-491f-a6db-443f308afced" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jez/Procfile.py" beforeDir="false" />
@@ -9,6 +10,9 @@
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirments.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/runtime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/runtime.txt" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/jez/Procfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/jez/Procfile.py" afterDir="false" />
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
     </list>
     <ignored path="C:\Users\Korisnik\Desktop\Dev\jez\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -178,15 +182,16 @@
     <session id="-249473928">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="24" />
-          <entry key="project.open.time.13" value="2" />
+          <entry key="project.closed" value="26" />
+          <entry key="project.open.time.13" value="3" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="3" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.23" value="1" />
-          <entry key="project.open.time.39" value="1" />
+          <entry key="project.open.time.39" value="2" />
           <entry key="project.open.time.43" value="1" />
+          <entry key="project.open.time.44" value="1" />
           <entry key="project.open.time.45" value="1" />
           <entry key="project.open.time.47" value="1" />
           <entry key="project.open.time.50" value="2" />
@@ -201,20 +206,26 @@
           <entry key="project.open.time.75" value="2" />
           <entry key="project.open.time.79" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="27" />
+          <entry key="project.opened" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="Procfile" value="2" />
           <entry key="account_moj_kolegij" value="5" />
           <entry key="account_student" value="3" />
           <entry key="auth_user" value="10" />
           <entry key="css" value="5" />
           <entry key="django_session" value="1" />
-          <entry key="html" value="95" />
+          <entry key="html" value="96" />
           <entry key="js" value="6" />
+<<<<<<< HEAD
           <entry key="objava_objava" value="2" />
           <entry key="py" value="94" />
+=======
+          <entry key="objava_objava" value="3" />
+          <entry key="py" value="98" />
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
           <entry key="sql" value="1" />
           <entry key="studij_kolegij" value="11" />
           <entry key="studij_smjer" value="15" />
@@ -226,31 +237,37 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="5" />
-          <entry key="Database Element" value="60" />
-          <entry key="HTML" value="95" />
+          <entry key="Database Element" value="61" />
+          <entry key="HTML" value="96" />
           <entry key="JavaScript" value="6" />
+<<<<<<< HEAD
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="Python" value="94" />
+=======
+          <entry key="PLAIN_TEXT" value="4" />
+          <entry key="Python" value="98" />
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="Procfile" value="4" />
           <entry key="cell" value="1511" />
           <entry key="css" value="9" />
-          <entry key="html" value="7394" />
+          <entry key="html" value="7448" />
           <entry key="js" value="472" />
-          <entry key="py" value="6925" />
-          <entry key="txt" value="179" />
+          <entry key="py" value="7384" />
+          <entry key="txt" value="204" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="9" />
-          <entry key="HTML" value="7394" />
+          <entry key="HTML" value="7448" />
           <entry key="JavaScript" value="472" />
-          <entry key="PLAIN_TEXT" value="179" />
-          <entry key="Python" value="6925" />
+          <entry key="PLAIN_TEXT" value="208" />
+          <entry key="Python" value="7384" />
           <entry key="Scratch" value="1511" />
         </counts>
       </usages-collector>
@@ -312,6 +329,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
@@ -359,15 +377,30 @@
               <folding>
                 <element signature="e#219#228#0" expanded="true" />
               </folding>
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Procfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="22" selection-start-column="22" selection-end-column="22" />
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/studij/admin.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="63">
               <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/jez/Procfile.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="14" selection-start-column="14" selection-end-column="14" />
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
             </state>
           </provider>
         </entry>
@@ -384,8 +417,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>kol</find>
-      <find>includ</find>
       <find>styles/main_styles.css</find>
       <find>plugins/greensock/TweenMax.min.js</find>
       <find>styles/responsive.css</find>
@@ -414,6 +445,8 @@
       <find>Opis</find>
       <find>tab ac</find>
       <find>settings</find>
+      <find>MAX</find>
+      <find>python</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -423,8 +456,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/objava/templatetags/extras.py" />
         <option value="$PROJECT_DIR$/static/styles/course.css" />
+=======
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
         <option value="$PROJECT_DIR$/objava/templates/objava/backup.html" />
         <option value="$PROJECT_DIR$/templates/about.html" />
         <option value="$PROJECT_DIR$/tko_smo/templates/tko_smo/homepage.html" />
@@ -434,7 +470,11 @@
         <option value="$PROJECT_DIR$/donacije/urls.py" />
         <option value="$PROJECT_DIR$/za_brucose/templates/za_brucose/homepage.html" />
         <option value="$PROJECT_DIR$/donacije/views.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/jez/Procfile.py" />
+=======
+        <option value="$PROJECT_DIR$/jez/wsgi.py" />
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
         <option value="$PROJECT_DIR$/account/templates/account/settings.html" />
         <option value="$PROJECT_DIR$/objava/models.py" />
         <option value="$PROJECT_DIR$/account/templates/account/login.html" />
@@ -468,12 +508,20 @@
         <option value="$PROJECT_DIR$/static/js/our_custom.js" />
         <option value="$PROJECT_DIR$/tema/templates/tema/predmet.html" />
         <option value="$PROJECT_DIR$/account/views.py" />
+        <option value="$PROJECT_DIR$/objava/forms.py" />
         <option value="$PROJECT_DIR$/objava/views.py" />
         <option value="$PROJECT_DIR$/objava/templates/objava/post.html" />
+        <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/jez/settings.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/jez/wsgi.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/runtime.txt" />
+=======
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/runtime.txt" />
+        <option value="$PROJECT_DIR$/jez/Procfile.py" />
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
       </list>
     </option>
   </component>
@@ -483,9 +531,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="11" />
-    <option name="width" value="1654" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="872" />
+    <option name="y" value="21" />
+    <option name="width" value="1128" />
     <option name="height" value="1039" />
   </component>
   <component name="ProjectView">
@@ -506,11 +555,14 @@
               <item name="jez" type="462c0819:PsiDirectoryNode" />
               <item name="jez" type="462c0819:PsiDirectoryNode" />
             </path>
+<<<<<<< HEAD
             <path>
               <item name="jez" type="b2602c69:ProjectViewProjectNode" />
               <item name="jez" type="462c0819:PsiDirectoryNode" />
               <item name="studij" type="462c0819:PsiDirectoryNode" />
             </path>
+=======
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
           </expand>
           <select />
         </subPane>
@@ -879,15 +931,30 @@
       <option name="project" value="LOCAL" />
       <updated>1569508855623</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="s3 done?">
+      <created>1570300794390</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1570300794391</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="779" y="0" width="757" height="830" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info x="22" y="144" width="229" height="705" id="Database" order="0" sideWeight="0.30212766" weight="0.21251719" />
       <window_info active="true" x="33" y="316" width="288" height="705" id="Project" order="1" sideWeight="0.69787234" visible="true" weight="0.26111907" />
+=======
+    <frame x="698" y="17" width="902" height="831" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info x="22" y="144" width="229" height="705" id="Database" order="0" sideWeight="0.30212766" weight="0.11208054" />
+      <window_info active="true" x="33" y="316" width="288" height="705" id="Project" order="1" sideWeight="0.69787234" visible="true" weight="0.25771973" />
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
       <window_info id="Structure" order="2" weight="0.1818792" />
       <window_info id="Favorites" order="3" weight="0.32885906" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -901,7 +968,11 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.30780143" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2998565" />
+=======
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.31948423" />
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32907802" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.42269504" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -977,7 +1048,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="media settings adjusted" />
     <MESSAGE value="minor changes" />
     <MESSAGE value="nesto ne dela" />
     <MESSAGE value="sitnice" />
@@ -1002,7 +1072,8 @@
     <MESSAGE value="major changes" />
     <MESSAGE value="upper-case bug fixed" />
     <MESSAGE value="frontend bugs fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="frontend bugs fixed" />
+    <MESSAGE value="s3 done?" />
+    <option name="LAST_COMMIT_MESSAGE" value="s3 done?" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1028,6 +1099,7 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/jez/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -1049,6 +1121,9 @@
         </state>
       </provider>
     </entry>
+=======
+    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/account_moj_kolegij" />
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
     <entry file="file://$PROJECT_DIR$/templates/backup2.html" />
     <entry file="file://$USER_HOME$/Anaconda3/envs/jez/Lib/importlib/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1142,13 +1217,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/objava_objava">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/account/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -1205,10 +1273,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
-          <folding>
-            <marker date="1569594335171" expanded="true" signature="1393:1394" ph="..." />
-            <marker date="1569594335171" expanded="true" signature="1393:1398" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1244,13 +1308,6 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/objava/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1301,6 +1358,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/account/urls.py">
       <provider selected="true" editor-type-id="text-editor" />
+<<<<<<< HEAD
+=======
     </entry>
     <entry file="file://$PROJECT_DIR$/account/views.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1309,20 +1368,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/requirments.txt" />
+    <entry file="das://0159b5c0-2713-4a52-baee-6abb42ad97af/database/jez_database/schema/public/table/objava_objava">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
+    </entry>
+    <entry file="file://$PROJECT_DIR$/objava/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="175">
+          <caret line="77" column="4" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="4" />
+=======
+        <state relative-caret-position="483">
+          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/objava/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="231">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/objava/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/objava/templates/objava/post.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="50" column="99" selection-start-line="50" selection-start-column="99" selection-end-line="50" selection-end-column="99" />
+        <state relative-caret-position="364">
+          <caret line="124" column="42" selection-start-line="124" selection-start-column="42" selection-end-line="124" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -1335,6 +1422,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jez/settings.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="398">
           <caret line="173" lean-forward="true" selection-start-line="173" selection-end-line="173" />
           <folding>
@@ -1350,11 +1438,23 @@
           <folding>
             <element signature="e#219#228#0" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="3591">
+          <caret line="172" selection-start-line="172" selection-end-line="172" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runtime.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="7" selection-start-column="7" selection-end-column="7" />
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="421">
           <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
         </state>
@@ -1364,6 +1464,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="12" selection-start-column="12" selection-end-column="12" />
+=======
+        <state relative-caret-position="69">
+          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" selection-start-column="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jez/Procfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
         </state>
       </provider>
     </entry>

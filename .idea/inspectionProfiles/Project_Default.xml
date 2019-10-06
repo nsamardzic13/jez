@@ -4,9 +4,14 @@
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
+<<<<<<< HEAD
           <list size="2">
             <item index="0" class="java.lang.String" itemvalue="Django" />
             <item index="1" class="java.lang.String" itemvalue="python-dateutil" />
+=======
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="python-dateutil" />
+>>>>>>> 2adae8478fea4a72e1af993f2d3ade1288f42f56
           </list>
         </value>
       </option>

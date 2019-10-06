@@ -1,1 +1,1 @@
-web: gunicorn jez.wsgi --log-file -
+web: gunicorn jez.wsgi

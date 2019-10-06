@@ -28,3 +28,5 @@ class FilesObjavaForm(forms.ModelForm):
              if sum > MAX_SIZE:
                  raise ValidationError("Prevelika datoteka, moguće je učitati maksimalno 5MB")
          return  attachment
+
+
