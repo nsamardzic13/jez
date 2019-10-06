@@ -112,15 +112,16 @@
                                     {% csrf_token %}
                                     <div class="justify-content-center input_col">
                                         <div>
-                                            <div class="form_title">Komentiraj</div>
+                                            <div class="form_title">Komentiraj (255)</div>
                                             <label for="id_tekst"></label>
                                             <textarea name="tekst" required="" id="id_tekst" class="comment_input comment_textarea"></textarea>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label for="id_attachment">Attachment:</label>
+                                        <label for="id_attachment">Privitak:</label>
                                         <input type="file" name="attachment" multiple="" id="id_attachment">
+                                        <label>max 5MB</label>
                                     </div>
 
                                     <div>
