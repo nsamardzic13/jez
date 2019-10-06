@@ -115,7 +115,7 @@
 		<nav class="menu_nav">
 			<ul class="menu_mm">
 				<li class="menu_mm"><a href="{% url 'homepage' %}">Jež</a></li>
-				<li class="menu_mm"><a href="{% url 'za_brucose:homepage'%}">Za brucoše</a></li>
+				<li class="menu_mm"><a href="{% url 'za_brucose:homepage'%}">Za brucose</a></li>
 				<li class="menu_mm"><a href="{% url 'donacije:donacije'%}">Doniraj</a></li>
 				{% if not user.is_authenticated %}
 					<li class="menu_mm"><a href="{% url 'account:signup'%}">Registriraj se</a></li>
