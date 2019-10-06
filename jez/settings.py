@@ -135,10 +135,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 LOGIN_URL='/account/login/'
 
-STATIC_URL = '/home/ubuntu/jez/static'
-STATIC_ROOT = '/home/ubuntu/jez/static'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    '/home/ubuntu/jez/static',
+    os.path.join(BASE_DIR, 'static'),
 )
 
 MEDIA_URL = '/media/'
