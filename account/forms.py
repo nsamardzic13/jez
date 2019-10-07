@@ -62,7 +62,6 @@ class StudentProfileForm(forms.ModelForm):
         fields = ('studij',)
 
 class EditUserForm(UserChangeForm):
-
     class Meta:
         model = User
         fields = (
@@ -72,9 +71,6 @@ class EditUserForm(UserChangeForm):
             'email'
         )
 
-        widgets = {
-            'email': forms.TextInput(attrs={'disabled': True},)
-        }
 
 class EditStudentForm(forms.ModelForm):
     class Meta:
