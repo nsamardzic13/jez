@@ -105,10 +105,10 @@ def change_password(request):
             #jedno kad se promjeni lozinka django automatski odjavi usera jer se promjene podaci
             return redirect('account:mypage')
             #neka poruka uspješna promjena blabla
-    else:
-        form = PasswordChangeForm(user=request.user)
-        context = {'form' : form}
-        return render(request, 'account/change_password.html', context)
+
+    form = PasswordChangeForm(user=request.user)
+    context = {'form' : form}
+    return render(request, 'account/change_password.html', context)
 
 def signup_view(request):
     #na početku se inicijaliziraju forme, ako je poslije IF-a u slučaju nevalidne forme greške se neće ispisati
